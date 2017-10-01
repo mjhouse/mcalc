@@ -1,49 +1,23 @@
 #include <map>
 #include <iostream>
+#include <cmath>
 #include <string>
 #include <gtkmm.h>
+#include <typeinfo>
 
 #include "group.hpp"
 
 Glib::RefPtr<Gtk::Builder> builder;
-std::map<std::string,double> box_vals;
-
-void on_button_clicked(){
-	Gtk::ComboBoxText* combobox;
-	Gtk::SpinButton* sfpmbox;
-	Gtk::SpinButton* dsbox;
-	Gtk::Label* loutput;
-
-	builder->get_widget("fs_materials_input",combobox);
-	builder->get_widget("fs_sfpm_input",sfpmbox);
-	builder->get_widget("fs_drillsize_input",dsbox);
-
-	std::string ctext = combobox->get_active_text();
-	double dSFPM = sfpmbox->get_value();
-	double dDrillSize = dsbox->get_value();
-
-	//4 x SFPM / Drill Diameter= RPM
-	double rpm = (4.0*dSFPM)/dDrillSize;
-	builder->get_widget("fs_materials_output",loutput);
-	loutput->set_text(std::to_string(rpm));
-}
-
-void on_combo_changed(){
-	Gtk::ComboBoxText* combobox;
-	Gtk::SpinButton* sfpmbox;
-	builder->get_widget("fs_sfpm_input",sfpmbox);
-	builder->get_widget("fs_materials_input",combobox);
-	sfpmbox->set_value(box_vals[combobox->get_active_text()]);
-}
 
 int main( int argc, char *argv[] ){
 	auto app = Gtk::Application::create(argc,argv,"org.mcalc.base");
 	builder = Gtk::Builder::create_from_file("bin/app.glade");
 
+
 	Gtk::Window* window = nullptr;
 	builder->get_widget("MCalc",window);
 
-	box_vals = {
+	std::map<std::string,double> md = {
 		{"Aluminum-",250.0},
 		{"Bakelite-",125.0},
 		{"Plastics-",125.0},
@@ -65,34 +39,10 @@ int main( int argc, char *argv[] ){
 		{"Wrought Iron",55.0}
 	};
 
-	Gtk::ComboBoxText* combobox;
-	builder->get_widget("fs_materials_input",combobox);
-
-	for ( const auto &pair : box_vals ) {
-		combobox->append(pair.first);
-	}
-
-	combobox->set_active_text(box_vals.begin()->first);
-	on_combo_changed();
-
-	Gtk::Button* btn;
-	builder->get_widget("fs_materials_btn",btn);
-	btn->signal_clicked().connect(sigc::ptr_fun(&on_button_clicked));
-	combobox->signal_changed().connect(sigc::ptr_fun(&on_combo_changed));
-
-	Gtk::Box* box;
-	builder->get_widget("feeds_speeds_box",box);
-	std::vector<Gtk::Widget*> widgets = box->get_children();
-	for( const auto &widget : widgets ){
-		std::cout << widget->get_name();
-	}
-
-	mcalc::Group* g = new mcalc::Group(builder,{
-		"fs_materials_input",
-		"fs_sfpm_input",
-		"fs_drillsize_input",
-		"fs_materials_output"
-	});
+	mcalc::Application* calc = new mcalc::Application(
+		builder,
+		md
+	);
 
 	/* CSS
 	GtkCssProvider* css_provider = nullptr;
