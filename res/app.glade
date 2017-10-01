@@ -169,6 +169,7 @@
                             <property name="active">0</property>
                             <items>
                               <item translatable="yes">Steel - Low Carbon (1020)</item>
+                              <item translatable="yes">Some other shit</item>
                             </items>
                           </object>
                         </child>
