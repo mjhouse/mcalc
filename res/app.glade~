@@ -2,6 +2,16 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
+  <object class="GtkAdjustment" id="fs_drill_adjustment">
+    <property name="upper">1</property>
+    <property name="step_increment">0.01</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="fs_sfpm_adjustment">
+    <property name="upper">1000</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
   <object class="GtkApplicationWindow" id="MCalc">
     <property name="can_focus">False</property>
     <child>
@@ -81,11 +91,19 @@
               <object class="GtkGrid" id="grid1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="column_spacing">10</property>
                 <child>
                   <object class="GtkComboBoxText" id="fs_materials_input">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="active">1</property>
+                    <property name="has_entry">True</property>
+                    <child internal-child="entry">
+                      <object class="GtkEntry" id="comboboxtext-entry">
+                        <property name="can_focus">False</property>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -93,9 +111,17 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="entry1">
+                  <object class="GtkSpinButton" id="fs_sfpm_input">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="max_length">6</property>
+                    <property name="width_chars">7</property>
+                    <property name="max_width_chars">5</property>
+                    <property name="input_purpose">number</property>
+                    <property name="adjustment">fs_sfpm_adjustment</property>
+                    <property name="climb_rate">1</property>
+                    <property name="digits">1</property>
+                    <property name="value">1</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -103,13 +129,16 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label3">
+                  <object class="GtkLabel" id="fs_materials_output">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xpad">10</property>
+                    <property name="ellipsize">end</property>
+                    <property name="width_chars">20</property>
+                    <property name="lines">1</property>
                   </object>
                   <packing>
-                    <property name="left_attach">3</property>
+                    <property name="left_attach">4</property>
                     <property name="top_attach">0</property>
                   </packing>
                 </child>
@@ -119,6 +148,23 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkSpinButton" id="fs_drillsize_input">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="max_length">4</property>
+                    <property name="width_chars">4</property>
+                    <property name="max_width_chars">4</property>
+                    <property name="input_purpose">number</property>
+                    <property name="adjustment">fs_drill_adjustment</property>
+                    <property name="climb_rate">0.01</property>
+                    <property name="digits">2</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
