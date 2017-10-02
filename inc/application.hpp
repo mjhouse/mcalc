@@ -1,15 +1,18 @@
-#ifndef GROUP_HPP
-#define GROUP_HPP
+#ifndef MCALC_APPLICATION_HPP
+#define MCALC_APPLICATION_HPP
 
-#include <gtkmm.h>
 #include <map>
+#include <gtkmm.h>
+
+#include "json.hpp"
+using json = nlohmann::json;
 
 namespace mcalc {
 
 	class Application {
 		private:
 			Glib::RefPtr<Gtk::Builder>		builder;
-			std::map<std::string,double>	material_data;
+			json datastore;
 
 			Gtk::SpinButton*	fs_sfpm_input;
 			Gtk::SpinButton*	fs_drillsize_input;
@@ -22,7 +25,7 @@ namespace mcalc {
 			void on_material_input_changed();
 
 		public:
-			Application(Glib::RefPtr<Gtk::Builder> b, std::map<std::string,double> d );
+			Application(Glib::RefPtr<Gtk::Builder> b);
 			virtual ~Application(){};
 	};
 

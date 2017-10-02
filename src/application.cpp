@@ -1,14 +1,15 @@
-#include <vector>
+#include <iostream>
 
-#include "group.hpp"
+#include "datastore.hpp"
+#include "application.hpp"
 
 namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Constructors/Destructors */
-	Application::Application(Glib::RefPtr<Gtk::Builder> b, std::map<std::string,double> d ){
+	Application::Application(Glib::RefPtr<Gtk::Builder> b){
 		this->builder = b;
-		this->material_data = d;
+		this->datastore = get_data();
 
 		b->get_widget("fs_sfpm_input",this->fs_sfpm_input);
 		b->get_widget("fs_drillsize_input",this->fs_drillsize_input);
@@ -18,8 +19,9 @@ namespace mcalc {
 
 		/* -------------------------------------------------------------
 		*	Initialize widgets that need data */
-		for ( const auto &pair : d ) {
-			this->fs_materials_input->append(pair.first);
+		json data = this->datastore["fs_materials_data"];
+		for (json::iterator it = data.begin(); it != data.end(); ++it) {
+			this->fs_materials_input->append(it.key());
 		}
 
 
@@ -30,13 +32,13 @@ namespace mcalc {
 		this->fs_materials_btn->signal_clicked().connect(sigc::mem_fun(*this,
 			&Application::on_material_sfpm_button_clicked));
 
-
 	}
 
 	/* -------------------------------------------------------------------------
 		Event Handlers */
 	void Application::on_material_input_changed(){
-		this->fs_sfpm_input->set_value(this->material_data[this->fs_materials_input->get_active_text()]);
+		json data = this->datastore["fs_materials_data"];
+		this->fs_sfpm_input->set_value(data[this->fs_materials_input->get_active_text()]);
 	}
 
 	void Application::on_material_sfpm_button_clicked(){
