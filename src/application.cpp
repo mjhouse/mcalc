@@ -46,6 +46,7 @@ namespace mcalc {
 			&Application::on_material_input_changed));
 		this->fs_materials_btn->signal_clicked().connect(sigc::mem_fun(*this,
 			&Application::on_material_sfpm_button_clicked));
+
 		this->fs_mill_select->signal_toggled().connect(sigc::mem_fun(*this,
 			&Application::on_fs_select_toggled));
 
@@ -68,10 +69,13 @@ namespace mcalc {
 	}
 
 	void Application::on_fs_select_toggled(){
-		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(this->fs_mill_select))){
-			std::cout << "MILL" << std::endl;
+		int is_lathe = this->fs_lathe_select->get_active();
+		if(is_lathe){
+			this->fs_lathe_grid->show();
+			this->fs_materials_grid->hide();
 		} else {
-			std::cout << "LATHE" << std::endl;
+			this->fs_materials_grid->show();
+			this->fs_lathe_grid->hide();
 		}
 	}
 
