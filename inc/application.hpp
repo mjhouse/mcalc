@@ -14,20 +14,36 @@ namespace mcalc {
 			Glib::RefPtr<Gtk::Builder>		builder;
 			json datastore;
 
-			Gtk::Grid*			fs_materials_grid;
-				Gtk::RadioButton*	fs_mill_select;
-				Gtk::RadioButton*	fs_lathe_select;
-				Gtk::SpinButton*	fs_sfpm_input;
-				Gtk::SpinButton*	fs_drillsize_input;
-				Gtk::ComboBoxText*	fs_materials_input;
-				Gtk::Button*		fs_materials_btn;
-				Gtk::Label*			fs_materials_output;
+			Gtk::RadioButton*	fs_mill_select;
+			Gtk::RadioButton*	fs_lathe_select;
+
+			Gtk::Grid*			fs_mill_grid;
+				Gtk::SpinButton*	fs_mill_sfpm_input;
+				Gtk::SpinButton*	fs_mill_drillsize_input;
+				Gtk::ComboBoxText*	fs_mill_material_input;
+				Gtk::Button*		fs_mill_btn;
+				Gtk::Label*			fs_mill_rpm_output;
 
 			Gtk::Grid*			fs_lathe_grid;
+				Gtk::ComboBoxText*	fs_lathe_material_input;
+				Gtk::ComboBoxText*	fs_lathe_material_input1;
+				Gtk::ComboBoxText*	fs_lathe_designation_input;
+				Gtk::ComboBoxText*	fs_lathe_hc_input;
+				Gtk::SpinButton*	fs_lathe_feedrate_input;
+				Gtk::SpinButton*	fs_lathe_velocity_input;
+				Gtk::Button*		fs_lathe_btn;
+
+				Gtk::Label*			fs_lathe_rpm_output;
+				Gtk::Label*			fs_lathe_feedrate_output;
+				Gtk::Label*			fs_lathe_velocity_output;
 
 		protected:
-			void on_material_sfpm_button_clicked();
-			void on_material_input_changed();
+			void on_mill_material_btn_clicked();
+			void on_lathe_material_btn_clicked();
+			void on_mill_material_changed();
+			void on_lathe_values_changed();
+			void on_lathe_hc_changed();
+			void on_update_designations();
 			void on_fs_select_toggled();
 
 		public:
