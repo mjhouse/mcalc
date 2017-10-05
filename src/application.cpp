@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "lathe.hpp"
+#include "material.hpp"
 #include "datastore.hpp"
 #include "application.hpp"
 

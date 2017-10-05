@@ -1,5 +1,5 @@
-#ifndef MCALC_LATHE_HPP
-#define MCALC_LATHE_HPP
+#ifndef MCALC_MATERIAL_HPP
+#define MCALC_MATERIAL_HPP
 
 #include <vector>
 #include <gtkmm.h>
@@ -8,6 +8,49 @@
 using json = nlohmann::json;
 
 namespace mcalc {
+
+	enum struct MaterialType {
+		none 		= 1000,
+		steel 		= 1000,
+		manganese 	= 1000,
+		nickel 		= 2000,
+		chromium 	= 5000,
+		molybdenum	= 4000,
+		vanadium 	= 1000,
+		tungsten 	= 7000,
+		silicon 	= 9000,
+	};
+
+	class Material {
+		private:
+			MaterialType type;
+			float percentage;
+
+		public:
+			Material ();
+			Material ( MaterialType m, float p );
+			~Material ();
+
+			void set_type ( MaterialType t );
+			void set_percentage ( float p );
+			MaterialType get_type ();
+			float get_percentage ();
+	};
+
+	class Alloy {
+		private:
+			std::vector<Material> materials;
+			float carbon;
+
+		public:
+			Alloy ( float c );
+			~Alloy ();
+
+			bool add_material ( MaterialType m, float p );
+			float get_percentage ();
+			std::string designation ();
+	};
+
 /*
 	struct Steel {
 		const int carbon_steel [4] {1000,1100,1200,1500};
