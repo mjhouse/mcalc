@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include "material.hpp"
 #include "datastore.hpp"
 #include "application.hpp"
 
@@ -12,30 +11,17 @@ namespace mcalc {
 		this->builder = b;
 		this->datastore = get_data();
 
-		b->get_widget("fs_mill_select",this->fs_mill_select);
-		b->get_widget("fs_lathe_select",this->fs_lathe_select);
 
-		b->get_widget("fs_mill_grid",this->fs_mill_grid);
-			b->get_widget("fs_mill_sfpm_input",this->fs_mill_sfpm_input);
-			b->get_widget("fs_mill_drillsize_input",this->fs_mill_drillsize_input);
-			b->get_widget("fs_mill_btn",this->fs_mill_btn);
-			b->get_widget("fs_mill_material_input",this->fs_mill_material_input);
-			b->get_widget("fs_mill_rpm_output",this->fs_mill_rpm_output);
-
-		b->get_widget("fs_lathe_grid",this->fs_lathe_grid);
-			b->get_widget("fs_lathe_material_input",this->fs_lathe_material_input);
-			b->get_widget("fs_lathe_material_input1",this->fs_lathe_material_input1);
-			b->get_widget("fs_lathe_designation_input",this->fs_lathe_designation_input);
-			b->get_widget("fs_lathe_hc_input",this->fs_lathe_hc_input);
-			b->get_widget("fs_lathe_feedrate_input",this->fs_lathe_feedrate_input);
-			b->get_widget("fs_lathe_velocity_input",this->fs_lathe_velocity_input);
-			b->get_widget("fs_lathe_btn",this->fs_lathe_btn);
-			b->get_widget("fs_lathe_rpm_output",this->fs_lathe_rpm_output);
-			b->get_widget("fs_lathe_feedrate_output",this->fs_lathe_feedrate_output);
-			b->get_widget("fs_lathe_velocity_output",this->fs_lathe_velocity_output);
+		b->get_widget("fs_material_input",this->fs_material_input);
+		b->get_widget("fs_designation_input",this->fs_designation_input);
+		b->get_widget("fs_diameter_input",this->fs_diameter_input);
+		b->get_widget("fs_tool_input",this->fs_tool_input);
+		b->get_widget("fs_velocity_output",this->fs_velocity_output);
+		b->get_widget("fs_feedrate_output",this->fs_feedrate_output);
+		b->get_widget("fs_rpm_output",this->fs_rpm_output);
 
 		/* -------------------------------------------------------------
-		*	Initialize widgets that need data */
+		*	Initialize widgets that need data
 
 		// load fs_mill_data into combobox "fs_mill_material_input"
 		json m_data = this->datastore["fs_mill_data"];
@@ -70,7 +56,7 @@ namespace mcalc {
 
 
 		/* -------------------------------------------------------------
-		*	Connect event handlers to events */
+		*	Connect event handlers to events
 		this->fs_mill_material_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_mill_material_changed));
 		this->fs_lathe_material_input->signal_changed().connect(sigc::mem_fun(*this,
@@ -90,6 +76,7 @@ namespace mcalc {
 		this->fs_mill_select->signal_toggled().connect(sigc::mem_fun(*this,
 			&Application::on_fs_select_toggled));
 
+		*/
 	}
 
 	/* -------------------------------------------------------------------------
@@ -100,6 +87,7 @@ namespace mcalc {
 		this->fs_mill_sfpm_input->set_value(data[this->fs_mill_material_input->get_active_text()]);
 	}
 
+/*
 	void Application::on_lathe_values_changed(){
 		std::string mat = this->fs_lathe_material_input->get_active_text();
 		std::string hc = this->fs_lathe_hc_input->get_active_text();
@@ -167,5 +155,5 @@ namespace mcalc {
 			this->fs_lathe_grid->hide();
 		}
 	}
-
+*/
 }

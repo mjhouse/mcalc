@@ -2,6 +2,7 @@ CC=g++
 CPPFLAGS=`pkg-config gtkmm-3.0 --cflags --libs` -std=c++11
 
 TARGET = bin/mcalc
+OUTDIR = bin
 BLDDIR = obj
 SRCDIR = src
 INCDIR = inc
@@ -32,4 +33,4 @@ obj/%.o: src/%.c*
 	$(CC) $(INC) -c $< -o $@ $(CPPFLAGS)
 
 clean:
-	rm $(BLDDIR)/*.o; rm $(TARGET)
+	rm $(BLDDIR)/*.o; rm $(TARGET); rm $(OUTDIR)/*

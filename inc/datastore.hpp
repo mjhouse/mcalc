@@ -5,181 +5,196 @@
 using json = nlohmann::json;
 
 namespace mcalc {
-
 	json get_data(){
 		json data = {
-			{"fs_mill_data",{
-				{"Aluminum-",250.0},
-				{"Bakelite-",125.0},
-				{"Plastics-",125.0},
-				{"Brass and bronze-",250.0},
-				{"Bronze, high tensile",85.0},
-				{"Cast iron, chilled",35.0},
-				{"Cast iron hard",85.0},
-				{"Cast iron soft",125.0},
-				{"Magnesium",325.0},
-				{"Malleable iron",85.0},
-				{"Monel, metal",45.0},
-				{"Nickel",50.0},
-				{"Steel annealed",65.0},
-				{"Forged steel",55.0},
-				{"Stainless, easy",65.0},
-				{"Stainless, hard",35.0},
-				{"Tool steel",55.0},
-				{"Slate marble and stone",20.0},
-				{"Wrought Iron",55.0}
-			}},
-			{"fs_lathe_data",{
-				{"velocity",{
-					{"Free machining plain carbon steels (resulfurized)",{
-						{"Designations",{"1212", "1213", "1215"}},
-						{"HSS",{{"low",270},{"high",290}}},
-						{"Carbide",{{"low",820},{"high",1045}}}
-					}},
-					{"Free machining plain carbon steels",{
-						{"Designations",{"1108", "1109", "1115", "1117", "1118", "1120", "1126", "1211"}},
-						{"HSS",{{"low",215},{"high",235}}},
-						{"Carbide",{{"low",950},{"high",950}}}
-					}},
-					{"Free machining plain carbon steels",{
-						{"Designations",{"1132", "1137", "1139", "1140", "1144", "1146", "1151"}},
-						{"HSS",{{"low",70},{"high",215}}},
-						{"Carbide",{{"low",670},{"high",800}}}
-					}},
-					{"Free machining plain carbon steels (Leaded)",{
-						{"Designations",{"11L17", "11L18", "12L13", "12L14"}},
-						{"HSS",{{"low",200},{"high",260}}},
-						{"Carbide",{{"low",800},{"high",820}}}
-					}},
-					{"Plain carbon steels",{
-						{"Designations",{"1006", "1008", "1009", "1010", "1012", "1015", "1016", "1017", "1018", "1019", "1020", "1021", "1022", "1023", "1024", "1025", "1026", "1513", "1514"}},
-						{"HSS",{{"low",125},{"high",215}}},
-						{"Carbide",{{"low",800},{"high",885}}}
-					}},
-					{"Plain carbon steels",{
-						{"Designations",{"1027", "1030", "1033", "1035", "1036", "1037", "1038", "1039", "1040", "1041", "1042", "1043", "1045", "1046", "1048", "1049", "1050", "1052", "1524", "1526", "1527", "1541"}},
-						{"HSS",{{"low",55},{"high",180}}},
-						{"Carbide",{{"low",670},{"high",970}}}
-					}},
-					{"Free machining alloy steels (resulfurized):",{
-						{"Designations",{"4140", "4150"}},
-						{"HSS",{{"low",70},{"high",200}}},
-						{"Carbide",{{"low",430},{"high",685}}}
-					}},
-					{"Water hardening tool steel",{
-						{"Designations",{"W1", "W2", "W5"}},
-						{"HSS",{{"low",180},{"high",180}}},
-						{"Carbide",{{"low",590},{"high",590}}}
-					}},
-					{"Cold work, oil hardening tool steel",{
-						{"Designations",{"O1", "O2", "O6", "O7"}},
-						{"HSS",{{"low",125},{"high",125}}},
-						{"Carbide",{{"low",590},{"high",590}}}
-					}},
-					{"Cold work, air hardening tool steel",{
-						{"Designations",{"A2", "A3", "A4", "A6", "A7", "A8", "A9", "A10"}},
-						{"HSS",{{"low",80},{"high",125}}},
-						{"Carbide",{{"low",355},{"high",365}}}
-					}},
-					{"Stainless steels (Austenitic)",{
-						{"Designations",{"201", "202", "301", "302", "304", "304L", "305", "308", "321", "347", "348"}},
-						{"HSS",{{"low",115},{"high",135}}},
-						{"Carbide",{{"low",570},{"high",570}}}
-					}},
-					{"Cast Iron",{
-						{"Designations",{"ASTM Class 20", "25", "30", "35", "40"}},
-						{"HSS",{{"low",145},{"high",215}}},
-						{"Carbide",{{"low",410},{"high",410}}}
-					}},
-					{"Brass",{
-						{"Designations",{"C35600", "C37700", "C36000", "C33200", "C34200", "C35300", "C48500", "C34000"}},
-						{"HSS",{{"low",300},{"high",350}}},
-						{"Carbide",{{"low",1170},{"high",1170}}}
-					}},
-					{"Bronze",{
-						{"Designations",{"C65500", "C22600", "C65100", "C67500"}},
-						{"HSS",{{"low",200},{"high",250}}},
-						{"Carbide",{{"low",715},{"high",715}}}
-					}},
-					{"Wrought aluminum",{
-						{"Designations",{"6061-T6", "5000", "6000", "7000 series"}},
-						{"HSS",{{"low",500},{"high",600}}},
-						{"Carbide",{{"low",2820},{"high",2820}}}
-					}},
-					{"Cast aluminum",{
-						{"Designations",{"Sand and permanent mold casting alloys"}},
-						{"HSS",{{"low",600},{"high",750}}},
-						{"Carbide",{{"low",2820},{"high",2820}}}
-					}}
-				}},
-				{"feedrate",{
-					{"SAE 1020 - Low Carbon Steel",{
-						{"HSS",{
-							{"low",0.002},
-							{"high",0.020}
-						}},
-						{"Carbide",{
-							{"low",0.006},
-							{"high",0.035}
-						}}
-					}},
-					{"SAE 1050 - High Carbon Steel",{
-						{"HSS",{
-							{"low",0.002},
-							{"high",0.015}
-						}},
-						{"Carbide",{
-							{"low",0.006},
-							{"high",0.030}
-						}}
-					}},
-					{"Stainless Steel",{
-						{"HSS",{
-							{"low",0.002},
-							{"high",0.005}
-						}},
-						{"Carbide",{
-							{"low",0.003},
-							{"high",0.006}
-						}}
-					}},
-					{"Aluminum",{
-						{"HSS",{
-							{"low",0.003},
-							{"high",0.030}
-						}},
-						{"Carbide",{
-							{"low",0.008},
-							{"high",0.045}
-						}}
-					}},
-					{"Brass & Bronze",{
-						{"HSS",{
-							{"low",0.003},
-							{"high",0.025}
-						}},
-						{"Carbide",{
-							{"low",0.008},
-							{"high",0.040}
-						}}
-					}},
-					{"Plastics*",{
-						{"HSS",{
-							{"low",0.005},
-							{"high",0.050}
-						}},
-						{"Carbide",{
-							{"low",0.005},
-							{"high",0.050}
-						}}
-					}}
-				}
-			}}}
+			{ 'Free-machining alloy steels': [
+				'41L30',
+				'41L40',
+				'41L47',
+				'41L50',
+				'43L47',
+				'51L32',
+				'52L100',
+				'86L20',
+				'86L40'] },
+			{ 'Alloy steels': [
+				'4012',
+				'4023',
+				'4024',
+				'4028',
+				'4118',
+				'4320',
+				'4419',
+				'4422',
+				'4427',
+				'4615',
+				'4620',
+				'4621',
+				'4626',
+				'4718',
+				'4720',
+				'4815',
+				'4817',
+				'4820',
+				'5015',
+				'5117',
+				'5120',
+				'6118',
+				'8115',
+				'8615',
+				'8617',
+				'8620',
+				'8622',
+				'8625',
+				'8627',
+				'8720',
+				'8822',
+				'94B17'] },
+			{ 'Free-machining plain carbon steels (resulfurized)': [
+				'11L17',
+				'11L18',
+				'12L13',
+				'12L14'] },
+			{ 'Plain carbon steels': [
+				'1006',
+				'1008',
+				'1009',
+				'1010',
+				'1012',
+				'1015',
+				'1016',
+				'1017',
+				'1018',
+				'1019',
+				'1020',
+				'1021',
+				'1022',
+				'1023',
+				'1024',
+				'1025',
+				'1026',
+				'1513',
+				'1514',
+				'1027',
+				'1030',
+				'1033',
+				'1035',
+				'1036',
+				'1037',
+				'1038',
+				'1039',
+				'1040',
+				'1041',
+				'1042',
+				'1043',
+				'1045',
+				'1046',
+				'1048',
+				'1049',
+				'1050',
+				'1052',
+				'1524',
+				'1526',
+				'1527',
+				'1541',
+				'1055',
+				'1060',
+				'1064',
+				'1065',
+				'1070',
+				'1074',
+				'1078',
+				'1080',
+				'1084',
+				'1086',
+				'1090',
+				'1095',
+				'1548',
+				'1551',
+				'1552',
+				'1561',
+				'1566'] },
+			{ 'Ultra-high-strength steels (not ASI)': [
+				'AMS alloys 6421 (98B37 Mod.)',
+				'6422 (98BV40)',
+				'6424',
+				'6427',
+				'6428',
+				'6430',
+				'6432',
+				'6433',
+				'6434',
+				'6436',
+				'6442'] },
+			{ 'Maraging steels (not AISI)': [
+				'18% Ni',
+				'200',
+				'250',
+				'300',
+				'350'] },
+			{ 'Nitriding steels (not AISI)': [
+				'Nitralloy 125',
+				'135',
+				'135 Mod.',
+				'225',
+				'230',
+				'Nitralloy N',
+				'Nitralloy EZ',
+				'Nitrex 1'] },
+			{ 'Free-machining alloy steels': [
+				'4140',
+				'4150'] },
+			{ 'Free-machining stainless steel (Ferritic)': [
+				'430F',
+				'430FSe',] },
+			{ 'Free-machining stainless steel (Martensitic)': [
+				'416',
+				'416Se',
+				'416 Plus X',
+				'420F',
+				'420FSe',
+				'440F',
+				'440FSe'] },
+			{ 'Free-machining stainless steel (Austenitic)': [
+				'203EZ',
+				'303',
+				'303Se',
+				'303MA',
+				'303Pb',
+				'303Cu',
+				'303 Plus X'] },
+			{ 'Stainless steels (Ferritic)': [
+				'414',
+				'431',
+				'440A',
+				'440B',
+				'440C'] },
+			{ 'High-speed steel': [
+				'M1',
+				'M2',
+				'M6',
+				'M10',
+				'T1',
+				'T2',
+				'T6',
+				'M3-1',
+				'M4 M7',
+				'M30',
+				'M33',
+				'M34',
+				'M36',
+				'M41',
+				'M42',
+				'M43',
+				'M44',
+				'M46',
+				'M47',
+				'T5',
+				'T8',
+				'T15',
+				'M3-2'] },
 		};
-
 		return data;
 	};
-
 }
-
 #endif
