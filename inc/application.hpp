@@ -16,6 +16,7 @@ namespace mcalc {
 
 			Gtk::ComboBoxText*		fs_material_input;
 			Gtk::ComboBoxText*		fs_designation_input;
+			Gtk::ComboBoxText*		fs_hardness_input;
 			Gtk::SpinButton*		fs_diameter_input;
 			Gtk::ComboBoxText*		fs_tool_input;
 
@@ -23,6 +24,12 @@ namespace mcalc {
 			Gtk::Scale*				fs_feedrate_output;
 			Gtk::Label*				fs_rpm_output;
 
+			// methods
+			void populate( Gtk::ComboBoxText* c, json d );
+
+			// handlers
+			void on_material_changed();
+			void on_designation_changed();
 /*
 		protected:
 			void on_mill_material_btn_clicked();
