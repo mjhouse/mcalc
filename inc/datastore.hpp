@@ -5,6 +5,18 @@
 using json = nlohmann::json;
 
 namespace mcalc {
+
+	class Row {
+	private:
+		std::string title;
+		std::vector columns;
+
+	public:
+		Row() : title("None"), columns({}) {};
+		~Row(){};
+	}
+
+
 	json get_data(){
 		json data = {
 			{ 'Free-machining alloy steels': [
