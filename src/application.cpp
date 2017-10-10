@@ -3,6 +3,8 @@
 #include "datastore.hpp"
 #include "application.hpp"
 
+#define get(X) (this->X->get_active_text())
+
 namespace mcalc {
 
 	/* -------------------------------------------------------------------------
@@ -14,11 +16,24 @@ namespace mcalc {
 
 		b->get_widget("fs_material_input",this->fs_material_input);
 		b->get_widget("fs_designation_input",this->fs_designation_input);
+		b->get_widget("fs_hardness_input",this->fs_hardness_input);
 		b->get_widget("fs_diameter_input",this->fs_diameter_input);
 		b->get_widget("fs_tool_input",this->fs_tool_input);
 		b->get_widget("fs_velocity_output",this->fs_velocity_output);
 		b->get_widget("fs_feedrate_output",this->fs_feedrate_output);
 		b->get_widget("fs_rpm_output",this->fs_rpm_output);
+
+		json m_data = this->datastore["material"];
+		for (json::iterator it = m_data.begin(); it != m_data.end(); ++it) {
+			this->fs_material_input->append(it.key());
+		}
+
+		this->fs_material_input->signal_changed().connect(sigc::mem_fun(*this,
+			&Application::on_material_changed));
+		this->fs_designation_input->signal_changed().connect(sigc::mem_fun(*this,
+			&Application::on_designation_changed));
+
+		this->fs_material_input->set_active(0);
 
 		/* -------------------------------------------------------------
 		*	Initialize widgets that need data
@@ -79,12 +94,36 @@ namespace mcalc {
 		*/
 	}
 
+	void Application::populate( Gtk::ComboBoxText* c, json d ){
+		gtk_combo_box_text_remove_all(c->gobj());
+		for (json::iterator it = d.begin(); it != d.end(); ++it) {
+			json j = *it;
+			if (j.is_object()) {
+				c->append(it.key());
+			} else {
+				c->append(it->get<std::string>());
+			}
+		}
+		c->set_active(0);
+	}
+
 	/* -------------------------------------------------------------------------
 		Event Handlers */
 
-	void Application::on_mill_material_changed(){
-		json data = this->datastore["fs_mill_data"];
-		this->fs_mill_sfpm_input->set_value(data[this->fs_mill_material_input->get_active_text()]);
+	void Application::on_material_changed(){
+		json data = this->datastore["material"][get(fs_material_input)];
+		this->populate(
+			this->fs_designation_input,
+			data
+		);
+	}
+
+	void Application::on_designation_changed(){
+		json data = this->datastore["material"][get(fs_material_input)][get(fs_designation_input)]["hardness"];
+		this->populate(
+			this->fs_hardness_input,
+			data
+		);
 	}
 
 /*
