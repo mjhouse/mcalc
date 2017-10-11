@@ -11,8 +11,8 @@ namespace mcalc {
 
 	class Application {
 		private:
-			Glib::RefPtr<Gtk::Builder>		builder;
-			json datastore;
+			Glib::RefPtr<Gtk::Builder> builder;
+			std::map<std::string,json> datastore;
 
 			Gtk::ComboBoxText*		fs_material_input;
 			Gtk::ComboBoxText*		fs_designation_input;
@@ -30,18 +30,9 @@ namespace mcalc {
 			// handlers
 			void on_material_changed();
 			void on_designation_changed();
-/*
-		protected:
-			void on_mill_material_btn_clicked();
-			void on_lathe_material_btn_clicked();
-			void on_mill_material_changed();
-			void on_lathe_values_changed();
-			void on_lathe_hc_changed();
-			void on_update_designations();
-			void on_fs_select_toggled();
-*/
+
 		public:
-			Application(Glib::RefPtr<Gtk::Builder> b);
+			Application(Glib::RefPtr<Gtk::Builder> b, std::map<std::string,json> d);
 			virtual ~Application(){};
 	};
 

@@ -1,20 +1,15 @@
 #include <iostream>
-
-#include "datastore.hpp"
 #include "application.hpp"
 
 #define get(X) (this->X->get_active_text())
-
-extern json get_data();
 
 namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Constructors/Destructors */
-	Application::Application(Glib::RefPtr<Gtk::Builder> b){
+	Application::Application(Glib::RefPtr<Gtk::Builder> b, std::map<std::string,json> d){
 		this->builder = b;
-		this->datastore = get_data();
-
+		this->datastore = d;
 
 		b->get_widget("fs_material_input",this->fs_material_input);
 		b->get_widget("fs_designation_input",this->fs_designation_input);
@@ -36,66 +31,10 @@ namespace mcalc {
 			&Application::on_designation_changed));
 
 		this->fs_material_input->set_active(0);
-
-		/* -------------------------------------------------------------
-		*	Initialize widgets that need data
-
-		// load fs_mill_data into combobox "fs_mill_material_input"
-		json m_data = this->datastore["fs_mill_data"];
-		for (json::iterator it = m_data.begin(); it != m_data.end(); ++it) {
-			this->fs_mill_material_input->append(it.key());
-		}
-
-		// load fs_lathe_data into combobox "fs_lathe_material_input"
-		json lf_data = this->datastore["fs_lathe_data"]["feedrate"];
-		for (json::iterator it = lf_data.begin(); it != lf_data.end(); ++it) {
-			this->fs_lathe_material_input->append(it.key());
-		}
-
-		// load fs_lathe_data into combobox "fs_lathe_material_input1"
-		json lv_data = this->datastore["fs_lathe_data"]["velocity"];
-		for (json::iterator it = lv_data.begin(); it != lv_data.end(); ++it) {
-			this->fs_lathe_material_input1->append(it.key());
-		}
-
-		// set the initial combobox values
-		this->fs_mill_material_input->set_active(0);
-		this->fs_lathe_material_input->set_active(0);
-		this->fs_lathe_material_input1->set_active(0);
-
-		// set the intial calculated values
-		this->on_mill_material_changed();
-		this->on_lathe_values_changed();
-		this->on_update_designations();
-
-		// hide the lathe grid
-		this->fs_lathe_grid->hide();
-
-
-		/* -------------------------------------------------------------
-		*	Connect event handlers to events
-		this->fs_mill_material_input->signal_changed().connect(sigc::mem_fun(*this,
-			&Application::on_mill_material_changed));
-		this->fs_lathe_material_input->signal_changed().connect(sigc::mem_fun(*this,
-			&Application::on_lathe_values_changed));
-		this->fs_lathe_hc_input->signal_changed().connect(sigc::mem_fun(*this,
-			&Application::on_lathe_values_changed));
-		this->fs_lathe_hc_input->signal_changed().connect(sigc::mem_fun(*this,
-			&Application::on_lathe_hc_changed));
-		this->fs_lathe_material_input1->signal_changed().connect(sigc::mem_fun(*this,
-			&Application::on_lathe_hc_changed));
-		this->fs_lathe_material_input1->signal_changed().connect(sigc::mem_fun(*this,
-			&Application::on_update_designations));
-		this->fs_mill_btn->signal_clicked().connect(sigc::mem_fun(*this,
-			&Application::on_mill_material_btn_clicked));
-		this->fs_lathe_btn->signal_clicked().connect(sigc::mem_fun(*this,
-			&Application::on_lathe_material_btn_clicked));
-		this->fs_mill_select->signal_toggled().connect(sigc::mem_fun(*this,
-			&Application::on_fs_select_toggled));
-
-		*/
 	}
 
+	/* -------------------------------------------------------------------------
+		Application Methods */
 	void Application::populate( Gtk::ComboBoxText* c, json d ){
 		gtk_combo_box_text_remove_all(c->gobj());
 		for (json::iterator it = d.begin(); it != d.end(); ++it) {
@@ -111,7 +50,6 @@ namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Event Handlers */
-
 	void Application::on_material_changed(){
 		json data = this->datastore["material"][get(fs_material_input)];
 		this->populate(

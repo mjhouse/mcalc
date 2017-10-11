@@ -1,59 +1,71 @@
 #ifndef MCALC_DATASTORE_HPP
 #define MCALC_DATASTORE_HPP
 
-#include <iostream>
 #include <vector>
+
 #include "json.hpp"
 using json = nlohmann::json;
 
 namespace mcalc {
-
-	enum struct EntryType {
-		STRING,
-		FLOAT,
-		INTEGER,
-	};
-
-	class Entry {
-		private:
-			std::string value;
-			EntryType _type;
-
-		public:
-			Entry();
-			Entry( int i );
-			Entry( float i );
-			Entry( std::string i );
-			~Entry(){};
-
-			void set( std::string s );
-			void set( int i );
-			void set( float f );
-
-			std::string get_str();
-			int get_int();
-			float get_float();
-
-			EntryType type();
-			std::string type_str();
-
-			std::string to_string();
-	};
-
-	class Table {
-		private:
-			std::map<std::string, int> column_titles;
-			std::map<std::string, int> row_titles;
-			std::vector<std::vector<Entry>> cells;
-
-		public:
-			Table( int r, int c );
-			~Table();
-
-			Entry* get( int r, int c );
-
-			void print();
-	};
-
+	json tools = {
+		{"Uncoated Carbide",
+			{"hard",{
+				{"feed", { {"max",{""}}, {"min",{""}} }},
+				{"speed",{ {"max",{""}}, {"min",{""}} }}
+			}},
+			{"tough",{
+				{"feed", { {"max",{""}}, {"min",{""}} }},
+				{"speed",{ {"max",{""}}, {"min",{""}} }}
+			}}
+		},
+	}
+	json material = {
+			{"Free-machining plain carbon steels",{
+				{"1132",{{ "hardness", {"175-225","275-325"}}}},
+				{"1137",{{ "hardness", {"175-225","275-325"}}}},
+				{"1139",{{ "hardness", {"175-225","275-325"}}}},
+				{"1140",{{ "hardness", {"175-225","275-325"}}}},
+				{"1144",{{ "hardness", {"175-225","275-325"}}}},
+				{"1146",{{ "hardness", {"175-225","275-325"}}}},
+				{"1151",{{ "hardness", {"175-225","275-325"}}}},
+				{"1108",{{ "hardness", {"100-150","150-200"}}}},
+				{"1109",{{ "hardness", {"100-150","150-200"}}}},
+				{"1115",{{ "hardness", {"100-150","150-200"}}}},
+				{"1117",{{ "hardness", {"100-150","150-200"}}}},
+				{"1118",{{ "hardness", {"100-150","150-200"}}}},
+				{"1120",{{ "hardness", {"100-150","150-200"}}}},
+				{"1126",{{ "hardness", {"100-150","150-200"}}}},
+				{"1211",{{ "hardness", {"100-150","150-200"}}}},
+				{"1212",{{ "hardness", {"100-150","150-200"}}}},
+				{"1213",{{ "hardness", {"100-150","150-200"}}}},
+				{"1215",{{ "hardness", {"100-150","150-200"}}}},
+				{"11L17",{{ "hardness", {"200-250"}}}},
+				{"11L18",{{ "hardness", {"200-250"}}}},
+				{"12L13",{{ "hardness", {"200-250"}}}},
+				{"12L14",{{ "hardness", {"200-250"}}}}
+			}},
+			{"Plain carbon steels",{
+				{"1006",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1008",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1009",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1010",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1012",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1015",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1016",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1017",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1018",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1019",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1020",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1021",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1022",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1023",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1024",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1025",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1026",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1513",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}},
+				{"1514",{{ "hardness", {"100-125","125-175","175-225","225-275"}}}}
+			}}
+		};
 }
+
 #endif
