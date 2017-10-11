@@ -5,6 +5,8 @@
 
 #define get(X) (this->X->get_active_text())
 
+extern json get_data();
+
 namespace mcalc {
 
 	/* -------------------------------------------------------------------------
