@@ -9,13 +9,15 @@ using json = nlohmann::json;
 namespace mcalc {
 	json tools = {
 		{"Uncoated Carbide",
-			{"hard",{
-				{"feed", { {"max",{""}}, {"min",{""}} }},
-				{"speed",{ {"max",{""}}, {"min",{""}} }}
-			}},
-			{"tough",{
-				{"feed", { {"max",{""}}, {"min",{""}} }},
-				{"speed",{ {"max",{""}}, {"min",{""}} }}
+			{"",{
+				{"hard",{
+					{"feed", { {"max",{""}}, {"min",{""}} }},
+					{"speed",{ {"max",{""}}, {"min",{""}} }}
+				}},
+				{"tough",{
+					{"feed", { {"max",{""}}, {"min",{""}} }},
+					{"speed",{ {"max",{""}}, {"min",{""}} }}
+				}}
 			}}
 		},
 	}
