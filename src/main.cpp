@@ -14,11 +14,7 @@ int main( int argc, char *argv[] ){
 	Gtk::Window* window = nullptr;
 	builder->get_widget("mcalc",window);
 
-	std::map<std::string,json> DATA = {
-		{"material",mcalc::material},
-	};
-
-	mcalc::Application* calc = new mcalc::Application(builder,DATA);
+	mcalc::Application* calc = new mcalc::Application(builder,mcalc::material);
 
 	//GtkCssProvider* css_provider = nullptr;
 	//gtk_css_provider_load_from_path (css_provider, "bin/app.css", NULL);

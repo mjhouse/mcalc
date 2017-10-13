@@ -12,7 +12,7 @@ namespace mcalc {
 	class Application {
 		private:
 			Glib::RefPtr<Gtk::Builder> builder;
-			std::map<std::string,json> datastore;
+			json datastore;
 
 			Gtk::ComboBoxText*		fs_material_input;
 			Gtk::ComboBoxText*		fs_designation_input;
@@ -30,9 +30,11 @@ namespace mcalc {
 			// handlers
 			void on_material_changed();
 			void on_designation_changed();
+			void on_hardness_changed();
+			void on_tool_changed();
 
 		public:
-			Application(Glib::RefPtr<Gtk::Builder> b, std::map<std::string,json> d);
+			Application(Glib::RefPtr<Gtk::Builder> b, json d);
 			virtual ~Application(){};
 	};
 

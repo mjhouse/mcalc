@@ -7,7 +7,7 @@ namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Constructors/Destructors */
-	Application::Application(Glib::RefPtr<Gtk::Builder> b, std::map<std::string,json> d){
+	Application::Application(Glib::RefPtr<Gtk::Builder> b, json d){
 		this->builder = b;
 		this->datastore = d;
 
@@ -20,7 +20,7 @@ namespace mcalc {
 		b->get_widget("fs_feedrate_output",this->fs_feedrate_output);
 		b->get_widget("fs_rpm_output",this->fs_rpm_output);
 
-		json m_data = this->datastore["material"];
+		json m_data = this->datastore;
 		for (json::iterator it = m_data.begin(); it != m_data.end(); ++it) {
 			this->fs_material_input->append(it.key());
 		}
@@ -29,6 +29,10 @@ namespace mcalc {
 			&Application::on_material_changed));
 		this->fs_designation_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_designation_changed));
+		this->fs_hardness_input->signal_changed().connect(sigc::mem_fun(*this,
+			&Application::on_hardness_changed));
+		this->fs_tool_input->signal_changed().connect(sigc::mem_fun(*this,
+			&Application::on_tool_changed));
 
 		this->fs_material_input->set_active(0);
 	}
@@ -39,7 +43,7 @@ namespace mcalc {
 		gtk_combo_box_text_remove_all(c->gobj());
 		for (json::iterator it = d.begin(); it != d.end(); ++it) {
 			json j = *it;
-			if (j.is_object()) {
+			if (!j.is_primitive()) {
 				c->append(it.key());
 			} else {
 				c->append(it->get<std::string>());
@@ -50,20 +54,31 @@ namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Event Handlers */
+
 	void Application::on_material_changed(){
-		json data = this->datastore["material"][get(fs_material_input)];
-		this->populate(
-			this->fs_designation_input,
-			data
-		);
+		json data = this->datastore [get(fs_material_input)];
+		this->populate( this->fs_designation_input, data );
 	}
 
 	void Application::on_designation_changed(){
-		json data = this->datastore["material"][get(fs_material_input)][get(fs_designation_input)]["hardness"];
-		this->populate(
-			this->fs_hardness_input,
-			data
-		);
+		json data = this->datastore [get(fs_material_input)]
+									[get(fs_designation_input)];
+		this->populate(	this->fs_hardness_input, data );
+	}
+
+	void Application::on_hardness_changed(){
+		json data = this->datastore [get(fs_material_input)]
+									[get(fs_designation_input)]
+									[get(fs_hardness_input)];
+		this->populate( this->fs_tool_input, data );
+	}
+
+	void Application::on_tool_changed(){
+		json data = this->datastore [get(fs_material_input)]
+									[get(fs_designation_input)]
+									[get(fs_hardness_input)]
+									[get(fs_tool_input)];
+		std::cout << data << std::endl;
 	}
 
 /*

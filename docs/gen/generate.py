@@ -76,22 +76,17 @@ def generate_json( data ):
 
 	return json
 
-def generate_output_str( data, buf='\t\t', readable=False ):
+def generate_output_str( data, buf='\t\t'):
 	out = ''
-	if readable:
-		b,n = buf, '\n'
-		s = '{0}{{"{1}",{{\n{2}\n{0}}}}}'.format
-	else:
-		b,n = '',''
-		s = '{0}{{"{1}",{{{2}{0}}}}}'.format
+	s = '{0}{{"{1}",{{\n{2}\n{0}}}}}'.format
 	if not isinstance(data,list):
 		for i,item in enumerate(data.items()):
 			k,v = item
-			out += s(b,k,generate_output_str(v, b + '\t'))
-			if i == len(data)-1: out += n
-		else: out += ',{}'.format(n)
+			out += s(buf,k,generate_output_str(v, buf + '\t'))
+			if i == len(data)-1: out += '\n'
+			else: out += ',\n'
 	else:
-		out += b + ','.join(['"{}"'.format(w) for w in data])
+		out += buf + ','.join(['"{}"'.format(w) for w in data])
 
 	with open('data.hpp','w') as f:
 		f.write('namespace mcalc {{\n\tjson material = {{\n{}\n\t}}; \n}}'.format(out))

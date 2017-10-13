@@ -33,4 +33,4 @@ obj/%.o: src/%.c*
 	$(CC) $(INC) -c $< -o $@ $(CPPFLAGS)
 
 clean:
-	rm $(BLDDIR)/*.o; rm $(TARGET); rm $(OUTDIR)/*
+	rm $(BLDDIR)/*.o; rm $(TARGET);
