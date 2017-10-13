@@ -40,7 +40,7 @@ def get_jhardness( row ):
 
 def generate_json( data ):
 	rstart,rend = 0, 11
-	cstart,cend = 4, 15
+	cstart,cend = 3, 16
 
 	json = {}
 	for i,row in enumerate(data[rstart:rend]):
@@ -58,40 +58,51 @@ def generate_json( data ):
 					for j,col in enumerate(row[cstart:cend]):
 						header = data[0][j+cstart]
 						tool, kind  = get_jtoolkind( header )
-						feed, speed = get_jfeedspeed( col )
+						if tool == 'HSS':
+							values = get_jfeedspeed( col )
+							odata = hdata.setdefault(tool,[])
+							odata.extend(values)
 
-						odata = hdata.setdefault(tool,{})
-						kdata = odata.setdefault(kind,{})
-						fdata = kdata.setdefault('feed',[])
-						sdata = kdata.setdefault('speed',[])
+						else:
+							feed, speed = get_jfeedspeed( col )
 
-						fdata.append(feed)
-						sdata.append(speed)
+							odata = hdata.setdefault(tool,{})
+							kdata = odata.setdefault(kind,{})
+							fdata = kdata.setdefault('feed',[])
+							sdata = kdata.setdefault('speed',[])
 
-
-					#if tool not in v: v[tool] = {}
-					#if kind not in v[tool]: v[tool][kind] = {}
-					#for hard in hardnesses:
-					#	if hard not in v[tool][kind]:
-					#		v[tool][kind][hard] = {}
-
-						#if 'feeds' not in v[tool][kind][hard]:
-						#	v[tool][kind][hard]['feeds'] = []
-						#if 'speeds' not in v[tool][kind][hard]:
-						#	v[tool][kind][hard]['speeds'] = []
-
-						#v[tool][kind][hard]['feeds'].append(feed)
-						#v[tool][kind][hard]['speeds'].append(speed)
+							fdata.append(feed)
+							sdata.append(speed)
 
 	return json
 
+def generate_output_str( data, buf='\t\t', readable=False ):
+	out = ''
+	if readable:
+		b,n = buf, '\n'
+		s = '{0}{{"{1}",{{\n{2}\n{0}}}}}'.format
+	else:
+		b,n = '',''
+		s = '{0}{{"{1}",{{{2}{0}}}}}'.format
+	if not isinstance(data,list):
+		for i,item in enumerate(data.items()):
+			k,v = item
+			out += s(b,k,generate_output_str(v, b + '\t'))
+			if i == len(data)-1: out += n
+		else: out += ',{}'.format(n)
+	else:
+		out += b + ','.join(['"{}"'.format(w) for w in data])
+
+	with open('data.hpp','w') as f:
+		f.write('namespace mcalc {{\n\tjson material = {{\n{}\n\t}}; \n}}'.format(out))
+
+	return out
 
 def generate_cpp( fn ):
 	with open(fn,newline='') as f:
 		data = list(list(r) for r in csv.reader(f))
 		code = generate_json(data)
-
-		pp.pprint(code)
+		sout = generate_output_str(code)
 
 
 
