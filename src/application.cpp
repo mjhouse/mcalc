@@ -1,7 +1,7 @@
 #include <iostream>
 #include "application.hpp"
 
-#define get(X) (this->X->get_active_text())
+#define jnotnull(X) (X.type() != json::value_t::null)
 
 namespace mcalc {
 
@@ -16,6 +16,7 @@ namespace mcalc {
 		b->get_widget("fs_hardness_input",this->fs_hardness_input);
 		b->get_widget("fs_diameter_input",this->fs_diameter_input);
 		b->get_widget("fs_tool_input",this->fs_tool_input);
+		b->get_widget("fs_grade_input",this->fs_grade_input);
 		b->get_widget("fs_velocity_output",this->fs_velocity_output);
 		b->get_widget("fs_feedrate_output",this->fs_feedrate_output);
 		b->get_widget("fs_rpm_output",this->fs_rpm_output);
@@ -25,60 +26,92 @@ namespace mcalc {
 			this->fs_material_input->append(it.key());
 		}
 
-		this->fs_material_input->signal_changed().connect(sigc::mem_fun(*this,
+		this->fs_mi = this->fs_material_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_material_changed));
-		this->fs_designation_input->signal_changed().connect(sigc::mem_fun(*this,
+		this->fs_di = this->fs_designation_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_designation_changed));
-		this->fs_hardness_input->signal_changed().connect(sigc::mem_fun(*this,
+		this->fs_hi = this->fs_hardness_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_hardness_changed));
-		this->fs_tool_input->signal_changed().connect(sigc::mem_fun(*this,
+		this->fs_ti = this->fs_tool_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_tool_changed));
+		this->fs_gi = this->fs_grade_input->signal_changed().connect(sigc::mem_fun(*this,
+			&Application::on_grade_changed));
 
 		this->fs_material_input->set_active(0);
 	}
 
 	/* -------------------------------------------------------------------------
 		Application Methods */
-	void Application::populate( Gtk::ComboBoxText* c, json d ){
-		gtk_combo_box_text_remove_all(c->gobj());
-		for (json::iterator it = d.begin(); it != d.end(); ++it) {
-			json j = *it;
-			if (!j.is_primitive()) {
-				c->append(it.key());
-			} else {
-				c->append(it->get<std::string>());
+	void Application::populate( Gtk::ComboBoxText* c, sigc::connection h, json d ){
+		if(d.type() != json::value_t::null){
+			h.block(true);
+			gtk_combo_box_text_remove_all(c->gobj());
+			for (json::iterator it = d.begin(); it != d.end(); ++it) {
+				json j = *it;
+				if (!j.is_primitive()) {
+					c->append(it.key());
+				} else {
+					if (it->type() != json::value_t::null){
+						c->append(it->get<std::string>());
+					}
+				}
 			}
+			h.block(false);
+			c->set_active(0);
 		}
-		c->set_active(0);
+	}
+
+	void Application::set_slider( Gtk::Scale* s, json j ) {
+		if (j.is_array()) {
+			std::vector<double> v;
+			for (json::iterator it = j.begin(); it != j.end(); ++it) {
+				std::string val = it->get<std::string>();
+				v.push_back(std::stod(val));
+			}
+			double min = *std::min_element(v.begin(),v.end());
+			double max = *std::max_element(v.begin(),v.end());
+			double mid = (max-min)/2+min;
+			s->set_range(min,max);
+			s->set_value(mid);
+			s->add_mark(mid,Gtk::POS_BOTTOM,"default");
+		}
 	}
 
 	/* -------------------------------------------------------------------------
 		Event Handlers */
 
 	void Application::on_material_changed(){
-		json data = this->datastore [get(fs_material_input)];
-		this->populate( this->fs_designation_input, data );
+		json data = this->datastore [this->fs_material_input->get_active_text()];
+		this->populate( this->fs_designation_input, this->fs_di, data );
 	}
 
 	void Application::on_designation_changed(){
-		json data = this->datastore [get(fs_material_input)]
-									[get(fs_designation_input)];
-		this->populate(	this->fs_hardness_input, data );
+		json data = this->datastore [this->fs_material_input->get_active_text()]
+									[this->fs_designation_input->get_active_text()];
+		this->populate(	this->fs_hardness_input, this->fs_hi, data );
 	}
 
 	void Application::on_hardness_changed(){
-		json data = this->datastore [get(fs_material_input)]
-									[get(fs_designation_input)]
-									[get(fs_hardness_input)];
-		this->populate( this->fs_tool_input, data );
+		
 	}
 
-	void Application::on_tool_changed(){
-		json data = this->datastore [get(fs_material_input)]
-									[get(fs_designation_input)]
-									[get(fs_hardness_input)]
-									[get(fs_tool_input)];
-		std::cout << data << std::endl;
+	void Application::on_tool_changed(){}
+
+	void Application::on_grade_changed(){
+		std::string grade = this->fs_grade_input->get_active_id();
+		json data = this->datastore [this->fs_material_input->get_active_text()]
+									[this->fs_designation_input->get_active_text()]
+									[this->fs_hardness_input->get_active_text()]
+									[this->fs_tool_input->get_active_text()];
+
+		if (!data.is_array()) {
+			json speed = data[grade]["speed"];
+			json feed = data[grade]["feed"];
+			if (jnotnull(speed) && jnotnull(feed)) {
+				this->set_slider(this->fs_velocity_output,speed);
+				this->set_slider(this->fs_feedrate_output,feed);
+			}
+		}
 	}
 
 /*

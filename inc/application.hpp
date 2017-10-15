@@ -14,24 +14,34 @@ namespace mcalc {
 			Glib::RefPtr<Gtk::Builder> builder;
 			json datastore;
 
+			// connection references
+			sigc::connection		fs_mi;
+			sigc::connection		fs_di;
+			sigc::connection		fs_hi;
+			sigc::connection		fs_ti;
+			sigc::connection		fs_gi;
+
 			Gtk::ComboBoxText*		fs_material_input;
 			Gtk::ComboBoxText*		fs_designation_input;
 			Gtk::ComboBoxText*		fs_hardness_input;
 			Gtk::SpinButton*		fs_diameter_input;
 			Gtk::ComboBoxText*		fs_tool_input;
+			Gtk::ComboBoxText*		fs_grade_input;
 
 			Gtk::Scale*				fs_velocity_output;
 			Gtk::Scale*				fs_feedrate_output;
 			Gtk::Label*				fs_rpm_output;
 
 			// methods
-			void populate( Gtk::ComboBoxText* c, json d );
+			void populate( Gtk::ComboBoxText* c, sigc::connection h, json d );
+			void set_slider( Gtk::Scale* s, json j );
 
 			// handlers
 			void on_material_changed();
 			void on_designation_changed();
 			void on_hardness_changed();
 			void on_tool_changed();
+			void on_grade_changed();
 
 		public:
 			Application(Glib::RefPtr<Gtk::Builder> b, json d);
