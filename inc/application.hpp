@@ -7,25 +7,7 @@
 #include "json.hpp"
 using json = nlohmann::json;
 
-typedef void (*on_change)();
-
 namespace mcalc {
-
-	/*
-	class Interface {
-		private:
-			sigc::connection	handler;
-			on_change			changed;
-
-		public:
-			Interface(){
-				changed = nullptr;
-				handler = nullptr;
-			};
-			~Interface(){};
-			void update( json d ){};
-	};
-	*/
 
 	class Application {
 		private:
@@ -52,10 +34,6 @@ namespace mcalc {
 			Gtk::Scale*				fs_velocity_output;
 			Gtk::Scale*				fs_feedrate_output;
 			Gtk::Label*				fs_rpm_output;
-
-			// methods
-			void populate( Gtk::ComboBoxText* c, sigc::connection h, json d );
-			void set_slider( Gtk::Scale* s, sigc::connection h, json j );
 
 			// handlers
 			void on_material_changed();

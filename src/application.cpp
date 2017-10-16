@@ -1,5 +1,6 @@
 #include <iostream>
 #include "application.hpp"
+#include "mclib.hpp"
 
 #define jnotnull(X) (X.type() != json::value_t::null)
 
@@ -48,55 +49,17 @@ namespace mcalc {
 	}
 
 	/* -------------------------------------------------------------------------
-		Application Methods */
-	void Application::populate( Gtk::ComboBoxText* c, sigc::connection h, json d ){
-		if(d.type() != json::value_t::null){
-			h.block(true);
-			gtk_combo_box_text_remove_all(c->gobj());
-			for (json::iterator it = d.begin(); it != d.end(); ++it) {
-				json j = *it;
-				if (!j.is_primitive()) {
-					c->append(it.key());
-				} else {
-					if (it->type() != json::value_t::null){
-						c->append(it->get<std::string>());
-					}
-				}
-			}
-			h.block(false);
-			c->set_active(0);
-		}
-	}
-
-	void Application::set_slider( Gtk::Scale* s, sigc::connection h, json j ) {
-		if (j.is_array()) {
-			std::vector<double> v;
-			for (json::iterator it = j.begin(); it != j.end(); ++it) {
-				std::string val = it->get<std::string>();
-				v.push_back(std::stod(val));
-			}
-			double min = *std::min_element(v.begin(),v.end());
-			double max = *std::max_element(v.begin(),v.end());
-			double mid = (max-min)/2+min;
-			s->set_range(min,max);
-			s->set_value(mid);
-			s->clear_marks();
-			s->add_mark(mid,Gtk::POS_BOTTOM,"default");
-		}
-	}
-
-	/* -------------------------------------------------------------------------
 		Event Handlers */
 
 	void Application::on_material_changed(){
 		json data = this->datastore [this->fs_material_input->get_active_text()];
-		this->populate( this->fs_designation_input, this->fs_di, data );
+		mc::set_comboboxtext( this->fs_designation_input, this->fs_di, data );
 	}
 
 	void Application::on_designation_changed(){
 		json data = this->datastore [this->fs_material_input->get_active_text()]
 									[this->fs_designation_input->get_active_text()];
-		this->populate(	this->fs_hardness_input, this->fs_hi, data );
+		mc::set_comboboxtext( this->fs_hardness_input, this->fs_hi, data );
 	}
 
 	void Application::on_hardness_changed(){
@@ -117,19 +80,17 @@ namespace mcalc {
 			json speed = data[grade]["speed"];
 			json feed = data[grade]["feed"];
 			if (jnotnull(speed) && jnotnull(feed)) {
-				this->set_slider(this->fs_velocity_output,this->fs_vo,speed);
-				this->set_slider(this->fs_feedrate_output,this->fs_fo,feed);
+				mc::set_slider(this->fs_velocity_output,this->fs_vo,speed);
+				mc::set_slider(this->fs_feedrate_output,this->fs_fo,feed);
 			}
 		}
 	}
 
 	void Application::on_velocity_changed(){
-		double v = this->fs_velocity_output->get_value();
-		double d = this->fs_diameter_input->get_value();
-		double rpm = (4.0*v)/d;
-		if(!std::isinf(rpm)){
-			this->fs_rpm_output->set_text(std::to_string(rpm));
-		}
+		this->fs_rpm_output->set_text(std::to_string(mc::calculate_rpm(
+			this->fs_velocity_output->get_value(),
+			this->fs_diameter_input->get_value()
+		)));
 	}
 
 	void Application::on_feedrate_changed(){
