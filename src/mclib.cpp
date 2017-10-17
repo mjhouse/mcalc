@@ -2,6 +2,75 @@
 
 namespace mc {
 
+	Broadcaster* Broadcaster::get_instance() {
+		static Broadcaster instance;
+		return &instance;
+	}
+
+	void Broadcaster::subscribe(Subscriber* s) {
+		subscribers.push_back(s);
+	}
+
+	void Broadcaster::broadcast( Subscriber* s ) {
+		for(auto& a : subscribers){
+			a->notify(s);
+		}
+	}
+
+	ComboBoxText::ComboBoxText( Gtk::ComboBoxText* w, json* d, std::string n ){
+		broadcaster = Broadcaster::get_instance();
+		broadcaster->subscribe(this);
+		widget = w;
+		data = d;
+		name = n;
+
+		w->signal_changed().connect(sigc::mem_fun(*this,
+			&ComboBoxText::broadcast));
+	};
+	ComboBoxText::~ComboBoxText(){};
+
+	void ComboBoxText::broadcast(){
+		broadcaster->broadcast(this);
+	}
+
+	void ComboBoxText::notify( Subscriber* s ){
+		if(s != this) {
+			if(!references.empty()){
+				std::vector<std::string> v;
+				for(auto& a : references){
+					v.push_back(a->get_value());
+				}
+				this->set_value(v);
+			}
+		}
+	};
+
+	void ComboBoxText::set_references( std::vector<Interface*> i ){ references = i; };
+
+	std::string ComboBoxText::get_value(){
+		return widget->get_active_text();
+	};
+
+	void ComboBoxText::set_value( std::vector<std::string> v ){
+		gtk_combo_box_text_remove_all(widget->gobj());
+		json d = *data;
+
+		for(auto& str : v){ d = d[str]; }
+
+		for(json::iterator it = d.begin(); it != d.end(); ++it){
+			widget->append(it.key());
+			/*
+			if (!(*it).is_primitive()) {
+				widget->append(it.key());
+			} else {
+				if (it->type() != json::value_t::null){
+					widget->append(it->get<std::string>());
+				}
+			}
+			*/
+		}
+	};
+
 	/* ---------------------------------------------------------------------- */
 
 	void set_slider( Gtk::Scale* s, sigc::connection h, json j ) {

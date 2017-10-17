@@ -239,6 +239,7 @@
                     <property name="adjustment">workpiece_diameter_adjust</property>
                     <property name="climb_rate">0.02</property>
                     <property name="digits">3</property>
+                    <property name="value">3</property>
                   </object>
                   <packing>
                     <property name="left_attach">5</property>

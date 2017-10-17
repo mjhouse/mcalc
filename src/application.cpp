@@ -22,11 +22,7 @@ namespace mcalc {
 		b->get_widget("fs_feedrate_output",this->fs_feedrate_output);
 		b->get_widget("fs_rpm_output",this->fs_rpm_output);
 
-		json m_data = this->datastore;
-		for (json::iterator it = m_data.begin(); it != m_data.end(); ++it) {
-			this->fs_material_input->append(it.key());
-		}
-
+		/*
 		this->fs_mi = this->fs_material_input->signal_changed().connect(sigc::mem_fun(*this,
 			&Application::on_material_changed));
 		this->fs_di = this->fs_designation_input->signal_changed().connect(sigc::mem_fun(*this,
@@ -46,14 +42,20 @@ namespace mcalc {
 
 		this->fs_material_input->set_active(0);
 		this->fs_grade_input->set_active(0);
+		*/
+
+		mc::ComboBoxText* mat = new mc::ComboBoxText(this->fs_material_input, &(this->datastore), "material");
+		mc::ComboBoxText* des = new mc::ComboBoxText(this->fs_designation_input, &(this->datastore), "designations");
+		des->set_references(std::vector<mc::Interface*> {mat});
+
 	}
 
 	/* -------------------------------------------------------------------------
 		Event Handlers */
 
 	void Application::on_material_changed(){
-		json data = this->datastore [this->fs_material_input->get_active_text()];
-		mc::set_comboboxtext( this->fs_designation_input, this->fs_di, data );
+		//json data = this->datastore [this->fs_material_input->get_active_text()];
+		//mc::set_comboboxtext( this->fs_designation_input, this->fs_di, data );
 	}
 
 	void Application::on_designation_changed(){
