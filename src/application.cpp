@@ -17,10 +17,21 @@ namespace mcalc {
 		b->get_widget("fs_hardness_input",this->fs_hardness_input);
 		b->get_widget("fs_diameter_input",this->fs_diameter_input);
 		b->get_widget("fs_tool_input",this->fs_tool_input);
-		b->get_widget("fs_grade_input",this->fs_grade_input);
 		b->get_widget("fs_velocity_output",this->fs_velocity_output);
 		b->get_widget("fs_feedrate_output",this->fs_feedrate_output);
 		b->get_widget("fs_rpm_output",this->fs_rpm_output);
+
+		mc::ComboBoxText* mat = new mc::ComboBoxText(this->fs_material_input, &(this->datastore));
+		mc::ComboBoxText* des = new mc::ComboBoxText(this->fs_designation_input, &(this->datastore));
+		mc::ComboBoxText* hrd = new mc::ComboBoxText(this->fs_hardness_input, &(this->datastore));
+		mc::ComboBoxText* too = new mc::ComboBoxText(this->fs_tool_input, &(this->datastore));
+		mc::Slider*		  vel = new mc::Slider(this->fs_velocity_output, &(this->datastore));
+		des->set_references(std::vector<mc::Interface*> {mat});
+		hrd->set_references(std::vector<mc::Interface*> {mat,des});
+		vel->set_references(
+			std::vector<mc::Interface*> {mat,des,hrd,too,_VAL("hard"),_VAL("speed")},
+			std::vector<mc::Interface*> {mat,des,hrd,too,_VAL("tough"),_VAL("speed")}
+		);
 
 		/*
 		this->fs_mi = this->fs_material_input->signal_changed().connect(sigc::mem_fun(*this,
@@ -44,10 +55,6 @@ namespace mcalc {
 		this->fs_grade_input->set_active(0);
 		*/
 
-		mc::ComboBoxText* mat = new mc::ComboBoxText(this->fs_material_input, &(this->datastore), "material");
-		mc::ComboBoxText* des = new mc::ComboBoxText(this->fs_designation_input, &(this->datastore), "designations");
-		des->set_references(std::vector<mc::Interface*> {mat});
-
 	}
 
 	/* -------------------------------------------------------------------------
@@ -59,9 +66,9 @@ namespace mcalc {
 	}
 
 	void Application::on_designation_changed(){
-		json data = this->datastore [this->fs_material_input->get_active_text()]
-									[this->fs_designation_input->get_active_text()];
-		mc::set_comboboxtext( this->fs_hardness_input, this->fs_hi, data );
+		//json data = this->datastore [this->fs_material_input->get_active_text()]
+		//							[this->fs_designation_input->get_active_text()];
+		//mc::set_comboboxtext( this->fs_hardness_input, this->fs_hi, data );
 	}
 
 	void Application::on_hardness_changed(){
@@ -73,6 +80,7 @@ namespace mcalc {
 	}
 
 	void Application::on_grade_changed(){
+		/*
 		std::string grade = this->fs_grade_input->get_active_id();
 		json data = this->datastore [this->fs_material_input->get_active_text()]
 									[this->fs_designation_input->get_active_text()]
@@ -86,21 +94,37 @@ namespace mcalc {
 				mc::set_slider(this->fs_feedrate_output,this->fs_fo,feed);
 			}
 		}
+		*/
+		/*
+		std::string grade = this->fs_grade_input->get_active_id();
+		json data = this->datastore [this->fs_material_input->get_active_text()]
+									[this->fs_designation_input->get_active_text()]
+									[this->fs_hardness_input->get_active_text()]
+									[this->fs_tool_input->get_active_text()];
+		if (!data.is_array()) {
+			json speed = data[grade]["speed"];
+			if (jnotnull(speed)) {
+				mc::set_slider(this->fs_velocity_output,this->fs_vo,speed);
+			}
+		}
+		*/
 	}
 
 	void Application::on_velocity_changed(){
+		/*
 		this->fs_rpm_output->set_text(std::to_string(mc::calculate_rpm(
 			this->fs_velocity_output->get_value(),
 			this->fs_diameter_input->get_value()
 		)));
+		*/
 	}
 
 	void Application::on_feedrate_changed(){
-		std::cout << "feedrate changed" << std::endl;
+		//std::cout << "feedrate changed" << std::endl;
 	}
 
 	void Application::on_diameter_changed(){
-		std::cout << "diameter changed" << std::endl;
+		//std::cout << "diameter changed" << std::endl;
 	}
 
 }

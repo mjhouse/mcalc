@@ -19,7 +19,6 @@ namespace mcalc {
 			sigc::connection		fs_di;
 			sigc::connection		fs_hi;
 			sigc::connection		fs_ti;
-			sigc::connection		fs_gi;
 			sigc::connection		fs_vo;
 			sigc::connection		fs_fo;
 			sigc::connection		fs_ai;
@@ -29,7 +28,6 @@ namespace mcalc {
 			Gtk::ComboBoxText*		fs_hardness_input;
 			Gtk::SpinButton*		fs_diameter_input;
 			Gtk::ComboBoxText*		fs_tool_input;
-			Gtk::ComboBoxText*		fs_grade_input;
 
 			Gtk::Scale*				fs_velocity_output;
 			Gtk::Scale*				fs_feedrate_output;

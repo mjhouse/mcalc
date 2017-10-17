@@ -11,55 +11,62 @@ namespace mc {
 		subscribers.push_back(s);
 	}
 
-	void Broadcaster::broadcast( Subscriber* s ) {
+	void Broadcaster::broadcast( Interface* s ) {
 		for(auto& a : subscribers){
 			a->notify(s);
 		}
 	}
 
-	ComboBoxText::ComboBoxText( Gtk::ComboBoxText* w, json* d, std::string n ){
+	/* -------------------------------------------------------------------------
+		ComboBoxText */
+	ComboBoxText::ComboBoxText( Gtk::ComboBoxText* w, json* d){
 		broadcaster = Broadcaster::get_instance();
 		broadcaster->subscribe(this);
 		widget = w;
 		data = d;
-		name = n;
 
-		w->signal_changed().connect(sigc::mem_fun(*this,
+		on_change_conn = w->signal_changed().connect(sigc::mem_fun(*this,
 			&ComboBoxText::broadcast));
 	};
+
 	ComboBoxText::~ComboBoxText(){};
 
 	void ComboBoxText::broadcast(){
 		broadcaster->broadcast(this);
 	}
 
-	void ComboBoxText::notify( Subscriber* s ){
-		if(s != this) {
-			if(!references.empty()){
-				std::vector<std::string> v;
-				for(auto& a : references){
-					v.push_back(a->get_value());
-				}
-				this->set_value(v);
-			}
+	void ComboBoxText::notify( Interface* s ){
+		if(_IN(s,references)) {
+			populate();
 		}
 	};
 
-	void ComboBoxText::set_references( std::vector<Interface*> i ){ references = i; };
+	void ComboBoxText::populate(){
+		if(!references.empty()){
+			std::vector<std::string> v;
+			for(auto& a : references){
+				v.push_back(a->get_value());
+			}
+			this->set_value(v);
+		}
+	};
+
+	void ComboBoxText::set_references( std::vector<Interface*> i ){
+		references = i;
+		populate();
+	};
 
 	std::string ComboBoxText::get_value(){
 		return widget->get_active_text();
 	};
 
 	void ComboBoxText::set_value( std::vector<std::string> v ){
+		on_change_conn.block(true);
 		gtk_combo_box_text_remove_all(widget->gobj());
 		json d = *data;
 
 		for(auto& str : v){ d = d[str]; }
-
 		for(json::iterator it = d.begin(); it != d.end(); ++it){
-			widget->append(it.key());
-			/*
 			if (!(*it).is_primitive()) {
 				widget->append(it.key());
 			} else {
@@ -67,9 +74,98 @@ namespace mc {
 					widget->append(it->get<std::string>());
 				}
 			}
-			*/
+		}
+		widget->set_active(0);
+		on_change_conn.block(false);
+	};
+	/* ---------------------------------------------------------------------- */
+
+	/* -------------------------------------------------------------------------
+		Slider */
+	Slider::Slider( Gtk::Scale* w, json* d){
+		broadcaster = Broadcaster::get_instance();
+		broadcaster->subscribe(this);
+		widget = w;
+		data = d;
+
+		on_change_conn = w->signal_value_changed().connect(sigc::mem_fun(*this,
+			&Slider::broadcast));
+	};
+
+	Slider::~Slider(){};
+
+	void Slider::broadcast(){
+		broadcaster->broadcast(this);
+	}
+
+	void Slider::notify( Interface* s ){
+		if(_IN(s,start_ref)||_IN(s,end_ref)){
+			populate();
 		}
 	};
+
+	void Slider::set_references( std::vector<Interface*> s, std::vector<Interface*> e ){
+		start_ref = s;
+		end_ref = e;
+		populate();
+	};
+
+	void Slider::populate(){
+		/*
+		json d = *data;
+
+		for(auto& a : references){d = d[a->get_value()];}
+
+		std::vector<double> hard_values;
+		std::vector<double> tough_values;
+
+		json hard = d["hard"];
+		json tough = d["tough"];
+		for(auto& b : hard["speed"]){
+			std::string val = b.get<std::string>();
+			hard_values.push_back(std::stod(val));
+		}
+
+		for(auto& b : tough["speed"]){
+			std::string val = b.get<std::string>();
+			tough_values.push_back(std::stod(val));
+		}
+
+		double h_max = *std::max_element(hard_values.begin(),hard_values.end());
+		double h_min = *std::min_element(hard_values.begin(),hard_values.end());
+		double t_max = *std::max_element(tough_values.begin(),tough_values.end());
+		double t_min = *std::min_element(tough_values.begin(),tough_values.end());
+		*/
+	};
+
+	std::string Slider::get_value(){
+		return std::to_string(widget->get_value());
+	};
+
+	void Slider::set_value( double max, double min, double val ){
+		on_change_conn.block(true);
+
+		on_change_conn.block(false);
+	};
+	/* ---------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/* ---------------------------------------------------------------------- */
 
