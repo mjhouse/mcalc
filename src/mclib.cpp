@@ -2,40 +2,6 @@
 
 namespace mc {
 
-	/* -------------------------------------------------------------------------
-		Broadcaster */
-
-	Broadcast::Broadcast () {}
-
-	Broadcast::~Broadcast () {}
-
-	void Broadcast::subscribe ( Interface i ) {
-		this->subscribers.push_back(i);
-	}
-
-	void Broadcast::unsubscribe ( Interface i ) {}
-
-	void Broadcast::broadcast ( Type t ) {
-		for(auto& a : subscribers){
-			a.notify(t);
-		}
-	}
-
-	/* ---------------------------------------------------------------------- */
-	/* -------------------------------------------------------------------------
-		Interfaces */
-
-		Interface::Interface(){};
-		Interface::~Interface(){};
-
-		void Interface::update( json d ){
-
-		};
-
-		void Interface::notify( Broadcast::Type t ){
-			
-		};
-
 	/* ---------------------------------------------------------------------- */
 
 	void set_slider( Gtk::Scale* s, sigc::connection h, json j ) {
