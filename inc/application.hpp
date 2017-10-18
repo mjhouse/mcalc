@@ -31,17 +31,8 @@ namespace mcalc {
 
 			Gtk::Scale*				fs_velocity_output;
 			Gtk::Scale*				fs_feedrate_output;
+			Gtk::Scale*				fs_grade_output;
 			Gtk::Label*				fs_rpm_output;
-
-			// handlers
-			void on_material_changed();
-			void on_designation_changed();
-			void on_hardness_changed();
-			void on_tool_changed();
-			void on_grade_changed();
-			void on_velocity_changed();
-			void on_feedrate_changed();
-			void on_diameter_changed();
 
 		public:
 			Application(Glib::RefPtr<Gtk::Builder> b, json d);

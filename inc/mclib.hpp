@@ -5,52 +5,24 @@
 #include <iostream>
 #include <gtkmm.h>
 
+#include "interface.hpp"
+
 #include "json.hpp"
 using json = nlohmann::json;
 
 #define _IN(E,V) (std::find(V.begin(), V.end(), E) != V.end())
-#define _VAL(V) (new mc::DummyInterface(V))
+
+#define _max(V) (*std::max_element(V.begin(),V.end()))
+#define _min(V) (*std::min_element(V.begin(),V.end()))
 
 namespace mc {
 
-	class Interface {
-		public:
-			virtual std::string get_value()=0;
-	};
-
-	class Subscriber {
-		public:
-			virtual void notify(Interface* s)=0;
-			virtual void broadcast()=0;
-	};
-
-	class Broadcaster {
-		private:
-			std::vector<Subscriber*> subscribers;
-
-			Broadcaster() : subscribers({}) {};
-
-		public:
-			static Broadcaster* get_instance();
-			void subscribe(Subscriber* s);
-			void broadcast(Interface* s);
-	};
-
-	class DummyInterface : public Interface {
-		private:
-			std::string value;
-		public:
-			DummyInterface( std::string s ){value=s;};
-			std::string get_value(){return value;}
-	};
-
-	class ComboBoxText : public Subscriber, public Interface {
+	class ComboBoxText : public Interface {
 		private:
 			json* data;
 			sigc::connection on_change_conn;
 			std::vector<Interface*> references;
 			Gtk::ComboBoxText* widget;
-			Broadcaster* broadcaster;
 
 		public:
 			ComboBoxText( Gtk::ComboBoxText* w, json* d);
@@ -65,14 +37,15 @@ namespace mc {
 			void set_value( std::vector<std::string> v );
 	};
 
-	class Slider : public Subscriber, public Interface {
+	class Slider : public Interface {
 		private:
 			json* data;
 			sigc::connection on_change_conn;
 			std::vector<Interface*> start_ref;
 			std::vector<Interface*> end_ref;
 			Gtk::Scale* widget;
-			Broadcaster* broadcaster;
+			Interface* scaler;
+			std::map<double,std::string> marks;
 
 		public:
 			Slider( Gtk::Scale* w, json* d);
@@ -82,19 +55,54 @@ namespace mc {
 			void broadcast();
 			void populate();
 
+
+			void set_marks();
+			void set_marks( std::map<double,std::string> m );
+			void set_scaler( Interface* i );
 			void set_references( std::vector<Interface*> s, std::vector<Interface*> e );
 			std::string get_value();
 			void set_value( double max, double min, double val );
 	};
 
+	class Output : public Interface {
+		private:
+			json* data;
+			sigc::connection on_change_conn;
+			std::vector<Interface*> references;
+			Gtk::Label* widget;
+			std::function<double(std::vector<mc::Interface*>)> calculator;
 
+		public:
+			Output( Gtk::Label* w, json* d);
+			~Output();
 
+			void notify(Interface* s);
+			void broadcast();
 
+			void set_references( std::vector<Interface*> r );
+			void set_calculator( std::function<double(std::vector<mc::Interface*>)> f );
+			std::string get_value();
+			void set_value( double v );
+	};
 
+	class Spinner : public Interface {
+		private:
+			json* data;
+			sigc::connection on_change_conn;
+			std::vector<Interface*> references;
+			Gtk::SpinButton* widget;
 
-	void set_slider( Gtk::Scale* s, sigc::connection h, json j );
-	void set_comboboxtext( Gtk::ComboBoxText* c, sigc::connection h, json d );
-	double calculate_rpm ( double v, double d );
+		public:
+			Spinner( Gtk::SpinButton* w, json* d);
+			~Spinner();
+
+			void notify(Interface* s);
+			void broadcast();
+
+			void set_references( std::vector<Interface*> r );
+			std::string get_value();
+			void set_value( double d );
+	};
 }
 
 #endif

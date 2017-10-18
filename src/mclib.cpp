@@ -1,27 +1,12 @@
 #include "mclib.hpp"
+#include "interface.hpp"
+#include "broadcaster.hpp"
 
 namespace mc {
-
-	Broadcaster* Broadcaster::get_instance() {
-		static Broadcaster instance;
-		return &instance;
-	}
-
-	void Broadcaster::subscribe(Subscriber* s) {
-		subscribers.push_back(s);
-	}
-
-	void Broadcaster::broadcast( Interface* s ) {
-		for(auto& a : subscribers){
-			a->notify(s);
-		}
-	}
 
 	/* -------------------------------------------------------------------------
 		ComboBoxText */
 	ComboBoxText::ComboBoxText( Gtk::ComboBoxText* w, json* d){
-		broadcaster = Broadcaster::get_instance();
-		broadcaster->subscribe(this);
 		widget = w;
 		data = d;
 
@@ -31,14 +16,14 @@ namespace mc {
 
 	ComboBoxText::~ComboBoxText(){};
 
-	void ComboBoxText::broadcast(){
-		broadcaster->broadcast(this);
-	}
-
 	void ComboBoxText::notify( Interface* s ){
 		if(_IN(s,references)) {
 			populate();
 		}
+	};
+
+	void ComboBoxText::broadcast(){
+		broadcaster->broadcast(this);
 	};
 
 	void ComboBoxText::populate(){
@@ -83,8 +68,6 @@ namespace mc {
 	/* -------------------------------------------------------------------------
 		Slider */
 	Slider::Slider( Gtk::Scale* w, json* d){
-		broadcaster = Broadcaster::get_instance();
-		broadcaster->subscribe(this);
 		widget = w;
 		data = d;
 
@@ -94,14 +77,31 @@ namespace mc {
 
 	Slider::~Slider(){};
 
-	void Slider::broadcast(){
-		broadcaster->broadcast(this);
-	}
-
 	void Slider::notify( Interface* s ){
-		if(_IN(s,start_ref)||_IN(s,end_ref)){
+		if(_IN(s,start_ref)||_IN(s,end_ref)||s==scaler){
 			populate();
 		}
+	};
+
+	void Slider::broadcast(){
+		broadcaster->broadcast(this);
+	};
+
+	void Slider::set_marks(){
+		if(!marks.empty()){
+			for(auto& mark : marks){
+				widget->add_mark(mark.first,Gtk::POS_BOTTOM,mark.second);
+			}
+		}
+	};
+
+	void Slider::set_marks( std::map<double,std::string> m ){
+		marks = m;
+		set_marks();
+	};
+
+	void Slider::set_scaler( Interface* i ){
+		scaler = i;
 	};
 
 	void Slider::set_references( std::vector<Interface*> s, std::vector<Interface*> e ){
@@ -111,107 +111,102 @@ namespace mc {
 	};
 
 	void Slider::populate(){
-		/*
-		json d = *data;
+		if(!start_ref.empty() && !end_ref.empty()){
+			std::vector<double> vstart = as_vector( tunnel(data,start_ref) );
+			std::vector<double> vend = as_vector(tunnel(data,end_ref));
 
-		for(auto& a : references){d = d[a->get_value()];}
+			double s_max = _max(vstart);
+			double s_min = _min(vstart);
+			double e_max = _max(vend);
+			double e_min = _min(vend);
+			double scale = scaler ? std::stod(scaler->get_value())/100 : 1.0;
 
-		std::vector<double> hard_values;
-		std::vector<double> tough_values;
+			double tmin = s_min < e_min ? s_min : e_min;
+			double tmax = s_max < e_max ? s_max : e_max;
 
-		json hard = d["hard"];
-		json tough = d["tough"];
-		for(auto& b : hard["speed"]){
-			std::string val = b.get<std::string>();
-			hard_values.push_back(std::stod(val));
+			double min = (fabs(s_min-e_min)*scale) + tmin;
+			double max = (fabs(s_max-e_max)*scale) + tmax;
+
+			double mid = (max-min)/2+min;
+			set_value( min, max, mid );
 		}
-
-		for(auto& b : tough["speed"]){
-			std::string val = b.get<std::string>();
-			tough_values.push_back(std::stod(val));
-		}
-
-		double h_max = *std::max_element(hard_values.begin(),hard_values.end());
-		double h_min = *std::min_element(hard_values.begin(),hard_values.end());
-		double t_max = *std::max_element(tough_values.begin(),tough_values.end());
-		double t_min = *std::min_element(tough_values.begin(),tough_values.end());
-		*/
 	};
 
 	std::string Slider::get_value(){
 		return std::to_string(widget->get_value());
 	};
 
-	void Slider::set_value( double max, double min, double val ){
+	void Slider::set_value( double min, double max, double mid ){
 		on_change_conn.block(true);
-
+		widget->set_range(min,max);
+		widget->set_value(mid);
+		widget->clear_marks();
+		widget->add_mark(mid,Gtk::POS_BOTTOM,"default");
+		set_marks();
 		on_change_conn.block(false);
 	};
 	/* ---------------------------------------------------------------------- */
 
+	Output::Output( Gtk::Label* w, json* d){
+		widget = w;
+		data = d;
+	};
 
+	Output::~Output(){};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	/* ---------------------------------------------------------------------- */
-
-	void set_slider( Gtk::Scale* s, sigc::connection h, json j ) {
-		if (j.is_array()) {
-			std::vector<double> v;
-			for (json::iterator it = j.begin(); it != j.end(); ++it) {
-				std::string val = it->get<std::string>();
-				v.push_back(std::stod(val));
-			}
-			double min = *std::min_element(v.begin(),v.end());
-			double max = *std::max_element(v.begin(),v.end());
-			double mid = (max-min)/2+min;
-			s->set_range(min,max);
-			s->set_value(mid);
-			s->clear_marks();
-			s->add_mark(mid,Gtk::POS_BOTTOM,"default");
-		}
-	}
-
-	void set_comboboxtext( Gtk::ComboBoxText* c, sigc::connection h, json d ){
-		if(d.type() != json::value_t::null){
-			h.block(true);
-			gtk_combo_box_text_remove_all(c->gobj());
-			for (json::iterator it = d.begin(); it != d.end(); ++it) {
-				json j = *it;
-				if (!j.is_primitive()) {
-					c->append(it.key());
-				} else {
-					if (it->type() != json::value_t::null){
-						c->append(it->get<std::string>());
-					}
-				}
-			}
-			h.block(false);
-			c->set_active(0);
-		}
-	}
-
-	double calculate_rpm ( double v, double d ) {
-		double rpm = (4.0*v)/d;
-		if(!std::isinf(rpm)){
-			return rpm;
-		} else {
-			return 0.0;
+	void Output::notify(Interface* s){
+		if(_IN(s,references)){
+			double result = calculator(references);
+			set_value(result);
 		}
 	};
 
+	void Output::broadcast(){
+		broadcaster->broadcast(this);
+	};
+
+	void Output::set_references( std::vector<Interface*> r ){
+		references = r;
+	};
+
+	void Output::set_calculator( std::function<double(std::vector<mc::Interface*>)> f ){
+		calculator = f;
+	};
+
+	std::string Output::get_value(){
+		return widget->get_text();
+	};
+
+	void Output::set_value( double v ){
+		widget->set_text(std::to_string(v));
+	};
+
+
+	Spinner::Spinner( Gtk::SpinButton* w, json* d){
+		widget = w;
+		data = d;
+
+		on_change_conn = w->signal_value_changed().connect(sigc::mem_fun(*this,
+			&Spinner::broadcast));
+	};
+
+	Spinner::~Spinner(){};
+
+	void Spinner::notify(Interface* s){};
+
+	void Spinner::broadcast(){
+		broadcaster->broadcast(this);
+	};
+
+	void Spinner::set_references( std::vector<Interface*> r ){
+		references = r;
+	};
+
+	std::string Spinner::get_value(){
+		return std::to_string(widget->get_value());
+	};
+
+	void Spinner::set_value( double d ){
+		widget->set_value(d);
+	};
 }
