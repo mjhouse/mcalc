@@ -10,6 +10,7 @@ using json = nlohmann::json;
 namespace mc {
 
 	class Broadcaster;
+	class Event;
 
 	class Interface {
 		protected:
@@ -40,20 +41,20 @@ namespace mc {
 
 		public:
 			Interface();
-			~Interface();
+			virtual ~Interface();
 			virtual std::string get_value()=0;
-			virtual void notify(Interface* s)=0;
+			virtual void notify(Event* e)=0;
 			virtual void broadcast()=0;
 	};
 
 	class DummyInterface : public Interface {
 		private:
 			std::string value;
-			
+
 		public:
 			DummyInterface( std::string s ){value=s;};
 			std::string get_value(){return value;}
-			void notify(Interface* s){};
+			void notify(Event* e){};
 			void broadcast(){};
 	};
 }
