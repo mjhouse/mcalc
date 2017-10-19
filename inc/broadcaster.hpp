@@ -16,18 +16,21 @@ namespace mc {
 		public:
 			static Broadcaster* get_instance();
 			void subscribe(Interface* s);
-			void broadcast(Event e);
+			void broadcast(Event* e);
 	};
 
 	class Event {
 
-		enum Type { ALL, SINGLE };
+		public:
+			enum Type { ALL, SINGLE };
 
 		private:
 			Event::Type	event_type;
 			Interface*	event_sender;
 
 		public:
+			Event( Type t );
+			Event( Interface* s );
 			Event( Type t, Interface* s );
 			~Event(){};
 

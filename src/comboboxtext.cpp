@@ -18,13 +18,19 @@ namespace mc {
 	ComboBoxText::~ComboBoxText(){};
 
 	void ComboBoxText::notify( Event* e ){
-		if(_in(e->sender(),references)) {
-			populate();
+		switch(e->type()){
+			case Event::Type::SINGLE:
+				if(_in(e->sender(),references)) {
+					populate();
+				}
+				break;
+			case Event::Type::ALL:
+				break;
 		}
 	};
 
 	void ComboBoxText::broadcast(){
-		broadcaster->broadcast(this);
+		broadcaster->broadcast(new Event(this));
 	};
 
 	void ComboBoxText::populate(){

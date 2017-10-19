@@ -13,9 +13,19 @@ namespace mc {
 	Output::~Output(){};
 
 	void Output::notify( Event* e ){
-		if(_in(e->sender(),references)){
-			double result = calculator(references);
-			set_value(result);
+		switch(e->type()){
+			case Event::Type::SINGLE:
+				if(_in(e->sender(),references)){
+					double result = calculator(references);
+					set_value(result);
+				}
+				break;
+			case Event::Type::ALL:
+				if(e->sender()!=this){
+					double result = calculator(references);
+					set_value(result);					
+				}
+				break;
 		}
 	};
 

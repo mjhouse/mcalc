@@ -21,8 +21,14 @@ namespace mc {
 	Slider::~Slider(){};
 
 	void Slider::notify( Event* e ){
-		if(_in(e->sender(),start_ref)||_in(e->sender(),end_ref)||e->sender()==scaler){
-			populate();
+		switch(e->type()){
+			case Event::Type::SINGLE:
+				if(_in(e->sender(),start_ref)||_in(e->sender(),end_ref)||e->sender()==scaler){
+					populate();
+				}
+				break;
+			case Event::Type::ALL:
+				break;
 		}
 	};
 
@@ -87,6 +93,7 @@ namespace mc {
 		widget->add_mark(mid,Gtk::POS_BOTTOM,"default");
 		set_marks();
 		on_change_conn.block(false);
+		broadcaster->broadcast(new Event(Event::Type::ALL,this));
 	};
 
 }

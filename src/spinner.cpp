@@ -13,7 +13,14 @@ namespace mc {
 
 	Spinner::~Spinner(){};
 
-	void Spinner::notify(Event* e){};
+	void Spinner::notify(Event* e){
+		switch(e->type()){
+			case Event::Type::SINGLE:
+				break;
+			case Event::Type::ALL:
+				break;
+		}
+	};
 
 	void Spinner::broadcast(){
 		broadcaster->broadcast(new Event(this));
