@@ -1,8 +1,0 @@
-<map id="mcalc::Application" name="mcalc::Application">
-<area shape="rect" id="node2" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="5,171,144,197"/>
-<area shape="rect" id="node3" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="220,95,319,121"/>
-<area shape="rect" id="node5" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="169,171,261,197"/>
-<area shape="rect" id="node6" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="285,171,366,197"/>
-<area shape="rect" id="node7" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="390,171,477,197"/>
-<area shape="rect" id="node4" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="210,5,329,32"/>
-</map>

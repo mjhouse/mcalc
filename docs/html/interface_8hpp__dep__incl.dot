@@ -1,0 +1,14 @@
+digraph "inc/interface.hpp"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="inc/interface.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="inc/comboboxtext.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$comboboxtext_8hpp.html",tooltip="The class definition file for the comboboxtext class. "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="inc/output.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$output_8hpp.html",tooltip="The class definition file for the output class. "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="inc/slider.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$slider_8hpp.html",tooltip="The class definition file for the slider class. "];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="inc/spinner.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$spinner_8hpp.html",tooltip="The class definition file for the spinner class. "];
+}
