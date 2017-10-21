@@ -1,0 +1,148 @@
+\hypertarget{classmcalc_1_1Application}{}\section{mcalc\+:\+:Application Class Reference}
+\label{classmcalc_1_1Application}\index{mcalc\+::\+Application@{mcalc\+::\+Application}}
+
+
+{\ttfamily \#include $<$application.\+hpp$>$}
+
+
+
+Collaboration diagram for mcalc\+:\+:Application\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classmcalc_1_1Application__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmcalc_1_1Application_a44bc4c3091df2f37d9c5c5773d18de59}{Application} (Glib\+::\+Ref\+Ptr$<$ Gtk\+::\+Builder $>$ b, \hyperlink{application_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json} d)
+\item 
+\hyperlink{classmcalc_1_1Application_a74e71090e2ccb489e865fd55875c36bf}{$\sim$\+Application} ()
+\item 
+{\footnotesize template$<$class A , class B $>$ }\\A $\ast$ \hyperlink{classmcalc_1_1Application_a11b823b5d31e917b83e97806bcbbcb18}{get\+\_\+wrapper} (std\+::string n)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Glib\+::\+Ref\+Ptr$<$ Gtk\+::\+Builder $>$ \hyperlink{classmcalc_1_1Application_ae877f6c9210ec88c743a54f750a54892}{builder}
+\item 
+\hyperlink{application_8hpp_ab701e3ac61a85b337ec5c1abaad6742d}{json} \hyperlink{classmcalc_1_1Application_a2fa9d06d424a8def5ea70fa07e844b9c}{datastore}
+\item 
+\hyperlink{classmc_1_1ComboBoxText}{mc\+::\+Combo\+Box\+Text} $\ast$ \hyperlink{classmcalc_1_1Application_a8c78f8ea0615db28858001aa5ed6b7b6}{fs\+\_\+material}
+\item 
+\hyperlink{classmc_1_1ComboBoxText}{mc\+::\+Combo\+Box\+Text} $\ast$ \hyperlink{classmcalc_1_1Application_a5dd81c68d005acedeb18336bfe87cdcb}{fs\+\_\+designation}
+\item 
+\hyperlink{classmc_1_1ComboBoxText}{mc\+::\+Combo\+Box\+Text} $\ast$ \hyperlink{classmcalc_1_1Application_acf53945a5bd5386c2d492e225878c45c}{fs\+\_\+hardness}
+\item 
+\hyperlink{classmc_1_1ComboBoxText}{mc\+::\+Combo\+Box\+Text} $\ast$ \hyperlink{classmcalc_1_1Application_a9775057e24515e6e3cf8c1c9a3144512}{fs\+\_\+tool}
+\item 
+\hyperlink{classmc_1_1Spinner}{mc\+::\+Spinner} $\ast$ \hyperlink{classmcalc_1_1Application_aa5fa7c6a44d89abb85a6947767261698}{fs\+\_\+diameter}
+\item 
+\hyperlink{classmc_1_1Slider}{mc\+::\+Slider} $\ast$ \hyperlink{classmcalc_1_1Application_aa92847f0410356a5515c461b269a840d}{fs\+\_\+grade}
+\item 
+\hyperlink{classmc_1_1Slider}{mc\+::\+Slider} $\ast$ \hyperlink{classmcalc_1_1Application_a6d4441380476fcbdafe23b28da5f6647}{fs\+\_\+velocity}
+\item 
+\hyperlink{classmc_1_1Slider}{mc\+::\+Slider} $\ast$ \hyperlink{classmcalc_1_1Application_a7cd486d0bde1d1ecdf82c41a5f2e6d53}{fs\+\_\+feedrate}
+\item 
+\hyperlink{classmc_1_1Output}{mc\+::\+Output} $\ast$ \hyperlink{classmcalc_1_1Application_a4b08a214c34fcb417f5cd14ca2e479c0}{fs\+\_\+rpm}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The main application manager. Maintains the interface wrappers around individual G\+UI elements (Gtk\+::\+Widgets). 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{mcalc\+::\+Application@{mcalc\+::\+Application}!Application@{Application}}
+\index{Application@{Application}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{Application(\+Glib\+::\+Ref\+Ptr$<$ Gtk\+::\+Builder $>$ b, json d)}{Application(Glib::RefPtr< Gtk::Builder > b, json d)}}]{\setlength{\rightskip}{0pt plus 5cm}mcalc\+::\+Application\+::\+Application (
+\begin{DoxyParamCaption}
+\item[{Glib\+::\+Ref\+Ptr$<$ Gtk\+::\+Builder $>$}]{b, }
+\item[{{\bf json}}]{d}
+\end{DoxyParamCaption}
+)}\hypertarget{classmcalc_1_1Application_a44bc4c3091df2f37d9c5c5773d18de59}{}\label{classmcalc_1_1Application_a44bc4c3091df2f37d9c5c5773d18de59}
+The constructor for the application.
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & A Gtk\+::\+Builder initialized from a glade file. \\
+\hline
+{\em d} & J\+S\+ON data used for value lookups and populating the ui. \\
+\hline
+\end{DoxyParams}
+\index{mcalc\+::\+Application@{mcalc\+::\+Application}!````~Application@{$\sim$\+Application}}
+\index{````~Application@{$\sim$\+Application}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{$\sim$\+Application()}{~Application()}}]{\setlength{\rightskip}{0pt plus 5cm}mcalc\+::\+Application\+::$\sim$\+Application (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmcalc_1_1Application_a74e71090e2ccb489e865fd55875c36bf}{}\label{classmcalc_1_1Application_a74e71090e2ccb489e865fd55875c36bf}
+The application destructor 
+
+\subsection{Member Function Documentation}
+\index{mcalc\+::\+Application@{mcalc\+::\+Application}!get\+\_\+wrapper@{get\+\_\+wrapper}}
+\index{get\+\_\+wrapper@{get\+\_\+wrapper}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{get\+\_\+wrapper(std\+::string n)}{get_wrapper(std::string n)}}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class A , class B $>$ A $\ast$ mcalc\+::\+Application\+::get\+\_\+wrapper (
+\begin{DoxyParamCaption}
+\item[{std\+::string}]{n}
+\end{DoxyParamCaption}
+)}\hypertarget{classmcalc_1_1Application_a11b823b5d31e917b83e97806bcbbcb18}{}\label{classmcalc_1_1Application_a11b823b5d31e917b83e97806bcbbcb18}
+A templated function that generates Interfaces for given Gtk\+::\+Widgets.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em A} & The Interface subclass to create \\
+\hline
+{\em B} & The Gtk\+::\+Widget type to look up\\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & The name to lookup in builder (Gtk\+::\+Builder) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new Interface object. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{mcalc\+::\+Application@{mcalc\+::\+Application}!builder@{builder}}
+\index{builder@{builder}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{builder}{builder}}]{\setlength{\rightskip}{0pt plus 5cm}Glib\+::\+Ref\+Ptr$<$Gtk\+::\+Builder$>$ mcalc\+::\+Application\+::builder\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_ae877f6c9210ec88c743a54f750a54892}{}\label{classmcalc_1_1Application_ae877f6c9210ec88c743a54f750a54892}
+The Gtk\+::\+Builder that is used to fetch ui elements. \index{mcalc\+::\+Application@{mcalc\+::\+Application}!datastore@{datastore}}
+\index{datastore@{datastore}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{datastore}{datastore}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf json} mcalc\+::\+Application\+::datastore\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a2fa9d06d424a8def5ea70fa07e844b9c}{}\label{classmcalc_1_1Application_a2fa9d06d424a8def5ea70fa07e844b9c}
+The generated tabls and other data used for lookups. \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+designation@{fs\+\_\+designation}}
+\index{fs\+\_\+designation@{fs\+\_\+designation}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+designation}{fs_designation}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Combo\+Box\+Text}$\ast$ mcalc\+::\+Application\+::fs\+\_\+designation\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a5dd81c68d005acedeb18336bfe87cdcb}{}\label{classmcalc_1_1Application_a5dd81c68d005acedeb18336bfe87cdcb}
+A\+I\+S\+I/\+S\+AE material designation \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+diameter@{fs\+\_\+diameter}}
+\index{fs\+\_\+diameter@{fs\+\_\+diameter}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+diameter}{fs_diameter}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Spinner}$\ast$ mcalc\+::\+Application\+::fs\+\_\+diameter\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_aa5fa7c6a44d89abb85a6947767261698}{}\label{classmcalc_1_1Application_aa5fa7c6a44d89abb85a6947767261698}
+diameter of the material \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+feedrate@{fs\+\_\+feedrate}}
+\index{fs\+\_\+feedrate@{fs\+\_\+feedrate}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+feedrate}{fs_feedrate}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Slider}$\ast$ mcalc\+::\+Application\+::fs\+\_\+feedrate\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a7cd486d0bde1d1ecdf82c41a5f2e6d53}{}\label{classmcalc_1_1Application_a7cd486d0bde1d1ecdf82c41a5f2e6d53}
+feed rate of material \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+grade@{fs\+\_\+grade}}
+\index{fs\+\_\+grade@{fs\+\_\+grade}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+grade}{fs_grade}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Slider}$\ast$ mcalc\+::\+Application\+::fs\+\_\+grade\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_aa92847f0410356a5515c461b269a840d}{}\label{classmcalc_1_1Application_aa92847f0410356a5515c461b269a840d}
+grade of material (hard/tough) \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+hardness@{fs\+\_\+hardness}}
+\index{fs\+\_\+hardness@{fs\+\_\+hardness}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+hardness}{fs_hardness}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Combo\+Box\+Text}$\ast$ mcalc\+::\+Application\+::fs\+\_\+hardness\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_acf53945a5bd5386c2d492e225878c45c}{}\label{classmcalc_1_1Application_acf53945a5bd5386c2d492e225878c45c}
+material hardness \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+material@{fs\+\_\+material}}
+\index{fs\+\_\+material@{fs\+\_\+material}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+material}{fs_material}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Combo\+Box\+Text}$\ast$ mcalc\+::\+Application\+::fs\+\_\+material\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a8c78f8ea0615db28858001aa5ed6b7b6}{}\label{classmcalc_1_1Application_a8c78f8ea0615db28858001aa5ed6b7b6}
+material to use \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+rpm@{fs\+\_\+rpm}}
+\index{fs\+\_\+rpm@{fs\+\_\+rpm}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+rpm}{fs_rpm}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Output}$\ast$ mcalc\+::\+Application\+::fs\+\_\+rpm\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a4b08a214c34fcb417f5cd14ca2e479c0}{}\label{classmcalc_1_1Application_a4b08a214c34fcb417f5cd14ca2e479c0}
+revolutions per minute \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+tool@{fs\+\_\+tool}}
+\index{fs\+\_\+tool@{fs\+\_\+tool}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+tool}{fs_tool}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Combo\+Box\+Text}$\ast$ mcalc\+::\+Application\+::fs\+\_\+tool\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a9775057e24515e6e3cf8c1c9a3144512}{}\label{classmcalc_1_1Application_a9775057e24515e6e3cf8c1c9a3144512}
+cutting tool to use \index{mcalc\+::\+Application@{mcalc\+::\+Application}!fs\+\_\+velocity@{fs\+\_\+velocity}}
+\index{fs\+\_\+velocity@{fs\+\_\+velocity}!mcalc\+::\+Application@{mcalc\+::\+Application}}
+\subsubsection[{\texorpdfstring{fs\+\_\+velocity}{fs_velocity}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf mc\+::\+Slider}$\ast$ mcalc\+::\+Application\+::fs\+\_\+velocity\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classmcalc_1_1Application_a6d4441380476fcbdafe23b28da5f6647}{}\label{classmcalc_1_1Application_a6d4441380476fcbdafe23b28da5f6647}
+speed of the tool 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\hyperlink{application_8hpp}{application.\+hpp}\item 
+src/application.\+cpp\end{DoxyCompactItemize}

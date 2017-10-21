@@ -14,9 +14,9 @@ namespace mc {
 		subscribers.push_back(s);
 	}
 
-	void Broadcaster::broadcast( Event* e ) {
+	void Broadcaster::broadcast( Event e ) {
 		for(auto& a : subscribers){
-			a->notify(e);
+			a->notify(&e);
 		}
 	}
 

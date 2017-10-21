@@ -23,14 +23,14 @@ namespace mc {
 			case Event::Type::ALL:
 				if(e->sender()!=this){
 					double result = calculator(references);
-					set_value(result);					
+					set_value(result);
 				}
 				break;
 		}
 	};
 
 	void Output::broadcast(){
-		broadcaster->broadcast(new Event(this));
+		broadcaster->broadcast(Event(this));
 	};
 
 	void Output::set_references( std::vector<Interface*> r ){

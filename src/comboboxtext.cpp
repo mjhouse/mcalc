@@ -30,7 +30,7 @@ namespace mc {
 	};
 
 	void ComboBoxText::broadcast(){
-		broadcaster->broadcast(new Event(this));
+		broadcaster->broadcast(Event(this));
 	};
 
 	void ComboBoxText::populate(){

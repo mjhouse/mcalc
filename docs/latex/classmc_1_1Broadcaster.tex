@@ -1,0 +1,51 @@
+\hypertarget{classmc_1_1Broadcaster}{}\section{mc\+:\+:Broadcaster Class Reference}
+\label{classmc_1_1Broadcaster}\index{mc\+::\+Broadcaster@{mc\+::\+Broadcaster}}
+
+
+{\ttfamily \#include $<$broadcaster.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classmc_1_1Broadcaster_aad912e54f0309b68f32fe1cd40e4abb5}{subscribe} (\hyperlink{classmc_1_1Interface}{Interface} $\ast$s)
+\item 
+void \hyperlink{classmc_1_1Broadcaster_a7779ed0c085d890e1a25af4f104bf8cc}{broadcast} (\hyperlink{classmc_1_1Event}{Event} e)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classmc_1_1Broadcaster}{Broadcaster} $\ast$ \hyperlink{classmc_1_1Broadcaster_a2f5d57c051b9dd3132529f79de43d178}{get\+\_\+instance} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classmc_1_1Broadcaster}{Broadcaster} singleton class that acts as a communication channel for Interfaces. 
+
+\subsection{Member Function Documentation}
+\index{mc\+::\+Broadcaster@{mc\+::\+Broadcaster}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!mc\+::\+Broadcaster@{mc\+::\+Broadcaster}}
+\subsubsection[{\texorpdfstring{broadcast(\+Event e)}{broadcast(Event e)}}]{\setlength{\rightskip}{0pt plus 5cm}void mc\+::\+Broadcaster\+::broadcast (
+\begin{DoxyParamCaption}
+\item[{{\bf Event}}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{classmc_1_1Broadcaster_a7779ed0c085d890e1a25af4f104bf8cc}{}\label{classmc_1_1Broadcaster_a7779ed0c085d890e1a25af4f104bf8cc}
+broadcast an event to all subscribed interfaces \index{mc\+::\+Broadcaster@{mc\+::\+Broadcaster}!get\+\_\+instance@{get\+\_\+instance}}
+\index{get\+\_\+instance@{get\+\_\+instance}!mc\+::\+Broadcaster@{mc\+::\+Broadcaster}}
+\subsubsection[{\texorpdfstring{get\+\_\+instance()}{get_instance()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Broadcaster} $\ast$ mc\+::\+Broadcaster\+::get\+\_\+instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classmc_1_1Broadcaster_a2f5d57c051b9dd3132529f79de43d178}{}\label{classmc_1_1Broadcaster_a2f5d57c051b9dd3132529f79de43d178}
+get the singleton instance of broadcaster \index{mc\+::\+Broadcaster@{mc\+::\+Broadcaster}!subscribe@{subscribe}}
+\index{subscribe@{subscribe}!mc\+::\+Broadcaster@{mc\+::\+Broadcaster}}
+\subsubsection[{\texorpdfstring{subscribe(\+Interface $\ast$s)}{subscribe(Interface *s)}}]{\setlength{\rightskip}{0pt plus 5cm}void mc\+::\+Broadcaster\+::subscribe (
+\begin{DoxyParamCaption}
+\item[{{\bf Interface} $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{classmc_1_1Broadcaster_aad912e54f0309b68f32fe1cd40e4abb5}{}\label{classmc_1_1Broadcaster_aad912e54f0309b68f32fe1cd40e4abb5}
+subscribe an interface to receive notifications 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+inc/\hyperlink{broadcaster_8hpp}{broadcaster.\+hpp}\item 
+src/broadcaster.\+cpp\end{DoxyCompactItemize}

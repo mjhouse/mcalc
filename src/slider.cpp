@@ -33,7 +33,7 @@ namespace mc {
 	};
 
 	void Slider::broadcast(){
-		broadcaster->broadcast(new Event(this));
+		broadcaster->broadcast(Event(this));
 	};
 
 	void Slider::set_marks(){
@@ -93,7 +93,7 @@ namespace mc {
 		widget->add_mark(mid,Gtk::POS_BOTTOM,"default");
 		set_marks();
 		on_change_conn.block(false);
-		broadcaster->broadcast(new Event(Event::Type::ALL,this));
+		broadcaster->broadcast(Event(Event::Type::ALL,this));
 	};
 
 }

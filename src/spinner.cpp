@@ -23,7 +23,7 @@ namespace mc {
 	};
 
 	void Spinner::broadcast(){
-		broadcaster->broadcast(new Event(this));
+		broadcaster->broadcast(Event(this));
 	};
 
 	void Spinner::set_references( std::vector<Interface*> r ){

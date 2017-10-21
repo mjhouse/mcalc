@@ -76,9 +76,21 @@ namespace mcalc {
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.
 		mc::Broadcaster* broadcaster = mc::Broadcaster::get_instance();
-		broadcaster->broadcast(new mc::Event(mc::Event::Type::ALL));
+		broadcaster->broadcast(mc::Event(mc::Event::Type::ALL));
 	}
 
+
+	Application::~Application () {
+		delete fs_material;
+		delete fs_designation;
+		delete fs_hardness;
+		delete fs_tool;
+		delete fs_diameter;
+		delete fs_grade;
+		delete fs_velocity;
+		delete fs_feedrate;
+		delete fs_rpm;
+	}
 	/* -------------------------------------------------------------------------
 		Functions */
 

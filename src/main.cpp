@@ -1,3 +1,15 @@
+/** @file
+
+	@brief		This file contains the main function.
+
+	@details 	The main function initializes the Gtk::Application,
+				loads the UI file (glade xml) and launches the
+				mcalc::Application to handle user interaction.
+
+	@author Michael House
+	@version 0.1 10/19/17
+*/
+
 #include <map>
 #include <iostream>
 #include <string>
