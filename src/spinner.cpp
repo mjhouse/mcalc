@@ -11,7 +11,11 @@ namespace mc {
 			&Spinner::broadcast));
 	};
 
-	Spinner::~Spinner(){};
+	Spinner::~Spinner(){
+		references.clear();
+		delete widget;
+		widget = nullptr;
+	};
 
 	void Spinner::notify(Event* e){
 		switch(e->type()){

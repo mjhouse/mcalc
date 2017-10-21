@@ -14,21 +14,30 @@ namespace mc {
 		widget = w;
 		data = d;
 
+		scaler = nullptr;
+
 		on_change_conn = w->signal_value_changed().connect(sigc::mem_fun(*this,
 			&Slider::broadcast));
 	};
 
-	Slider::~Slider(){};
+	Slider::~Slider(){
+		start_ref.clear();
+		end_ref.clear();
+		delete widget;
+		widget = nullptr;
+	};
 
 	void Slider::notify( Event* e ){
-		switch(e->type()){
-			case Event::Type::SINGLE:
-				if(_in(e->sender(),start_ref)||_in(e->sender(),end_ref)||e->sender()==scaler){
-					populate();
-				}
-				break;
-			case Event::Type::ALL:
-				break;
+		if (e) {
+			switch(e->type()){
+				case Event::Type::SINGLE:
+					if(_in(e->sender(),start_ref)||_in(e->sender(),end_ref)||e->sender()==scaler){
+						populate();
+					}
+					break;
+				case Event::Type::ALL:
+					break;
+			}
 		}
 	};
 

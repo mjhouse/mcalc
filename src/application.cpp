@@ -31,6 +31,12 @@ namespace mcalc {
 		fs_feedrate 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_feedrate_output");
 		fs_rpm 			= get_wrapper<mc::Output,Gtk::Label>("fs_rpm_output");
 
+		hard 			= _vinterface("hard");
+		tough 			= _vinterface("tough");
+		speed 			= _vinterface("speed");
+		feed 			= _vinterface("feed");
+
+
 		// set referenced ui elements. when the references change their values,
 		// they broadcast a message, and any Interface that has them as a reference
 		// will also update themselves.
@@ -62,15 +68,15 @@ namespace mcalc {
 		// that the scaler adjusts between.
 		fs_velocity->set_scaler(fs_grade);
 		fs_velocity->set_references(
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,_vinterface("hard"),_vinterface("speed")},
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,_vinterface("tough"),_vinterface("speed")}
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,hard,speed},
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough,speed}
 		);
 
 		// do the same for the feed rate Slider.
 		fs_feedrate->set_scaler(fs_grade);
 		fs_feedrate->set_references(
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,_vinterface("hard"),_vinterface("feed")},
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,_vinterface("tough"),_vinterface("feed")}
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,hard,feed},
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough,feed}
 		);
 
 		// manually broadcast a single ALL event to make the ui initialize itself with
@@ -81,15 +87,20 @@ namespace mcalc {
 
 
 	Application::~Application () {
-		delete fs_material;
-		delete fs_designation;
-		delete fs_hardness;
-		delete fs_tool;
-		delete fs_diameter;
-		delete fs_grade;
-		delete fs_velocity;
-		delete fs_feedrate;
-		delete fs_rpm;
+		delete fs_material; 	fs_material		= nullptr;
+		delete fs_designation; 	fs_designation	= nullptr;
+		delete fs_hardness; 	fs_hardness 	= nullptr;
+		delete fs_tool; 		fs_tool			= nullptr;
+		delete fs_diameter; 	fs_diameter 	= nullptr;
+		delete fs_grade; 		fs_grade		= nullptr;
+		delete fs_velocity; 	fs_velocity 	= nullptr;
+		delete fs_feedrate; 	fs_feedrate 	= nullptr;
+		delete fs_rpm; 			fs_rpm			= nullptr;
+
+		delete hard; 			hard			= nullptr;
+		delete tough; 			tough			= nullptr;
+		delete speed; 			speed			= nullptr;
+		delete feed; 			feed			= nullptr;
 	}
 	/* -------------------------------------------------------------------------
 		Functions */

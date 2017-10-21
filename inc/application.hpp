@@ -21,6 +21,8 @@
 using json = nlohmann::json; /**< alias for the nlohmann namespace*/
 
 namespace mc {
+	class Interface;
+	class DummyInterface;
 	class ComboBoxText;
 	class Spinner;
 	class Slider;
@@ -56,6 +58,11 @@ namespace mcalc {
 			mc::Slider*		  fs_feedrate;		/**< feed rate of material */
 			mc::Output*		  fs_rpm;			/**< revolutions per minute */
 
+			mc::DummyInterface* hard;
+			mc::DummyInterface* tough;
+			mc::DummyInterface* speed;
+			mc::DummyInterface* feed;
+			
 		public:
 			/**
 				The constructor for the application.

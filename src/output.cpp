@@ -10,7 +10,11 @@ namespace mc {
 		data = d;
 	};
 
-	Output::~Output(){};
+	Output::~Output(){
+		references.clear();
+		delete widget;
+		widget = nullptr;
+	};
 
 	void Output::notify( Event* e ){
 		switch(e->type()){

@@ -15,7 +15,11 @@ namespace mc {
 			&ComboBoxText::broadcast));
 	};
 
-	ComboBoxText::~ComboBoxText(){};
+	ComboBoxText::~ComboBoxText(){
+		references.clear();
+		delete widget;
+		widget = nullptr;
+	};
 
 	void ComboBoxText::notify( Event* e ){
 		switch(e->type()){

@@ -14,6 +14,7 @@
 #define MCALC_INTERFACE_HPP
 
 #include <vector>
+#include <iostream>
 
 #include "json.hpp"
 using json = nlohmann::json; /**< alias for the nlohmann namespace*/
@@ -24,6 +25,7 @@ using json = nlohmann::json; /**< alias for the nlohmann namespace*/
 namespace mc {
 
 	class Broadcaster;
+	class DummyInterface;
 	class Event;
 
 	/**
@@ -44,7 +46,6 @@ namespace mc {
 				for(auto& a : i){k = k[a->get_value()];}
 				return k;
 			}
-
 
 			/**
 				A utility function that generates a vector of doubles

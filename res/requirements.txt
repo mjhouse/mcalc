@@ -1,3 +1,0 @@
-graphviz
-doxygen
-libgtkmm-3.0

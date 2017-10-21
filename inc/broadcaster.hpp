@@ -31,9 +31,10 @@ namespace mc {
 			Broadcaster() : subscribers({}) {};
 
 		public:
-			static Broadcaster* get_instance();		/**< get the singleton instance of broadcaster */
-			void subscribe(Interface* s);			/**< subscribe an interface to receive notifications */
-			void broadcast(Event e);				/**< broadcast an event to all subscribed interfaces */
+			static Broadcaster* get_instance();		/**< Get the singleton instance of broadcaster */
+			~Broadcaster();							/**< The destructor */
+			void subscribe(Interface* s);			/**< Subscribe an interface to receive notifications */
+			void broadcast(Event e);				/**< Broadcast an event to all subscribed interfaces */
 	};
 
 	/**

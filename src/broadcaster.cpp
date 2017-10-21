@@ -10,6 +10,10 @@ namespace mc {
 		return &instance;
 	}
 
+	Broadcaster::~Broadcaster() {
+		subscribers.clear();
+	}
+
 	void Broadcaster::subscribe(Interface* s) {
 		subscribers.push_back(s);
 	}
