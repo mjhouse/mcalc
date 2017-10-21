@@ -21,15 +21,23 @@ namespace mcalc {
 
 		// generate wrapping Interface's for each ui element that we need to interact
 		// with.
-		fs_material 	= get_wrapper<mc::ComboBoxText,Gtk::ComboBoxText>("fs_material_input");
-		fs_designation 	= get_wrapper<mc::ComboBoxText,Gtk::ComboBoxText>("fs_designation_input");
-		fs_hardness 	= get_wrapper<mc::ComboBoxText,Gtk::ComboBoxText>("fs_hardness_input");
-		fs_tool 		= get_wrapper<mc::ComboBoxText,Gtk::ComboBoxText>("fs_tool_input");
+
+		builder->get_widget_derived("fs_material_input",fs_material);
+		builder->get_widget_derived("fs_designation_input",fs_designation);
+		builder->get_widget_derived("fs_hardness_input",fs_hardness);
+		builder->get_widget_derived("fs_tool_input",fs_tool);
+		builder->get_widget_derived("fs_rpm_output",fs_rpm);
+
+		fs_material->set_data(&datastore);
+		fs_designation->set_data(&datastore);
+		fs_hardness->set_data(&datastore);
+		fs_tool->set_data(&datastore);
+		fs_rpm->set_data(&datastore);
+
 		fs_diameter 	= get_wrapper<mc::Spinner,Gtk::SpinButton>("fs_diameter_input");
 		fs_grade 		= get_wrapper<mc::Slider,Gtk::Scale>("fs_grade_output");
 		fs_velocity 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_velocity_output");
 		fs_feedrate 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_feedrate_output");
-		fs_rpm 			= get_wrapper<mc::Output,Gtk::Label>("fs_rpm_output");
 
 		hard 			= _vinterface("hard");
 		tough 			= _vinterface("tough");

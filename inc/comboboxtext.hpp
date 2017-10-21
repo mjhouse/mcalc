@@ -24,7 +24,6 @@ using json = nlohmann::json; /**< alias for the nlohmann namespace*/
 
 namespace mc {
 
-	class Interface;
 	class Event;
 
 	/**
@@ -32,20 +31,19 @@ namespace mc {
 		it when dependent values change, and broadcasts an
 		event when the user selects a value.
 	*/
-	class ComboBoxText : public Interface {
+	class ComboBoxText : public mc::Interface, public Gtk::ComboBoxText {
 		private:
+			bool blocked;
 			json* data;
-			sigc::connection on_change_conn;
-			std::vector<Interface*> references;
-			Gtk::ComboBoxText* widget;
+			std::vector<mc::Interface*> references;
 
 		public:
 			/**
-				Constructor
-				@param w the Gtk::ComboBoxText to wrap
-				@param d Pointer to the json datastore
+				Constructor for the Gtk::Builder
+				@param cobject A base object typedef
+				@param refGlade A reference to the builder.
 			*/
-			ComboBoxText( Gtk::ComboBoxText* w, json* d);
+			ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
 
 			/** The destructor */
 			~ComboBoxText();
@@ -59,7 +57,12 @@ namespace mc {
 			/**
 				Sends out a change event.
 			*/
-			void broadcast();
+			virtual void on_changed();
+
+			/**
+				Set internal json data
+			*/
+			void set_data(json* d);
 
 			/**
 				Populates the UI with values from the datastore.
@@ -71,12 +74,18 @@ namespace mc {
 				the ComboBoxText to update when they change.
 				@param i A vector of Interfaces to use as a reference
 			*/
-			void set_references( std::vector<Interface*> i );
+			void set_references( std::vector<mc::Interface*> i );
 
 			/**
 				Get the current value of the ComboBoxText
 			*/
 			std::string get_value();
+
+			/**
+				Stop/start broadcasting events
+				@param b True allows broadcasts, false dis-allows.
+			*/
+			void block( bool b );
 
 			/**
 				Set the ComboBoxText contents

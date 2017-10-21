@@ -7,20 +7,26 @@ namespace mc {
 
 	/* -------------------------------------------------------------------------
 		ComboBoxText */
-	ComboBoxText::ComboBoxText( Gtk::ComboBoxText* w, json* d){
-		widget = w;
-		data = d;
-
-		on_change_conn = w->signal_changed().connect(sigc::mem_fun(*this,
-			&ComboBoxText::broadcast));
+	ComboBoxText::ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
+	:	Gtk::ComboBoxText(cobject),
+	 	blocked (false) {
 	};
 
+	/* The destructor */
 	ComboBoxText::~ComboBoxText(){
 		references.clear();
-		delete widget;
-		widget = nullptr;
 	};
 
+	/* Broadcast when the value changes */
+	void ComboBoxText::on_changed(){
+		// if block flag isn't set, broadcast
+		if(!blocked){
+			broadcaster->broadcast(Event(this));
+			Gtk::ComboBoxText::on_changed();
+		}
+	}
+
+	/* Receive events when other widgets change */
 	void ComboBoxText::notify( Event* e ){
 		switch(e->type()){
 			case Event::Type::SINGLE:
@@ -33,10 +39,6 @@ namespace mc {
 		}
 	};
 
-	void ComboBoxText::broadcast(){
-		broadcaster->broadcast(Event(this));
-	};
-
 	void ComboBoxText::populate(){
 		if(!references.empty()){
 			std::vector<std::string> v;
@@ -47,32 +49,40 @@ namespace mc {
 		}
 	};
 
-	void ComboBoxText::set_references( std::vector<Interface*> i ){
+	void ComboBoxText::set_data(json* d){
+		data = d;
+	}
+
+	void ComboBoxText::set_references( std::vector<mc::Interface*> i ){
 		references = i;
 		populate();
 	};
 
 	std::string ComboBoxText::get_value(){
-		return widget->get_active_text();
+		return this->get_active_text();
 	};
 
+	void ComboBoxText::block( bool b ){
+		blocked = b;
+	}
+
 	void ComboBoxText::set_value( std::vector<std::string> v ){
-		on_change_conn.block(true);
-		gtk_combo_box_text_remove_all(widget->gobj());
+		this->block(true);
+		gtk_combo_box_text_remove_all(this->gobj());
 		json d = *data;
 
 		for(auto& str : v){ d = d[str]; }
 		for(json::iterator it = d.begin(); it != d.end(); ++it){
 			if (!(*it).is_primitive()) {
-				widget->append(it.key());
+				this->append(it.key());
 			} else {
 				if (it->type() != json::value_t::null){
-					widget->append(it->get<std::string>());
+					this->append(it->get<std::string>());
 				}
 			}
 		}
-		widget->set_active(0);
-		on_change_conn.block(false);
+		this->set_active(0);
+		this->block(false);
 	};
 
 }

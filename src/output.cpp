@@ -5,15 +5,13 @@
 
 namespace mc {
 
-	Output::Output( Gtk::Label* w, json* d){
-		widget = w;
-		data = d;
+	Output::Output(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
+	:	Gtk::Label(cobject),
+	 	blocked (false) {
 	};
 
 	Output::~Output(){
 		references.clear();
-		delete widget;
-		widget = nullptr;
 	};
 
 	void Output::notify( Event* e ){
@@ -33,11 +31,19 @@ namespace mc {
 		}
 	};
 
+	void Output::set_data(json* d){
+		data = d;
+	}
+
 	void Output::broadcast(){
 		broadcaster->broadcast(Event(this));
 	};
 
-	void Output::set_references( std::vector<Interface*> r ){
+	void Output::block( bool b ){
+		blocked = b;
+	}
+
+	void Output::set_references( std::vector<mc::Interface*> r ){
 		references = r;
 	};
 
@@ -46,11 +52,11 @@ namespace mc {
 	};
 
 	std::string Output::get_value(){
-		return widget->get_text();
+		return this->get_text();
 	};
 
 	void Output::set_value( double v ){
-		widget->set_text(std::to_string(v));
+		this->set_text(std::to_string(v));
 	};
 
 }

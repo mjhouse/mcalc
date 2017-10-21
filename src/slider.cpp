@@ -71,7 +71,7 @@ namespace mc {
 	void Slider::populate(){
 		if(!start_ref.empty() && !end_ref.empty()){
 			std::vector<double> vstart = as_vector( tunnel(data,start_ref) );
-			std::vector<double> vend = as_vector(tunnel(data,end_ref));
+			std::vector<double> vend = as_vector( tunnel(data,end_ref) );
 
 			double s_max = _max(vstart);
 			double s_min = _min(vstart);

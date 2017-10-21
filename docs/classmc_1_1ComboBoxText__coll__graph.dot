@@ -7,4 +7,6 @@ digraph "mc::ComboBoxText"
   Node2 [label="mc::Interface",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmc_1_1Interface.html"];
   Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" broadcaster" ,fontname="Helvetica"];
   Node3 [label="mc::Broadcaster",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classmc_1_1Broadcaster.html"];
+  Node4 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="Gtk::ComboBoxText",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled"];
 }

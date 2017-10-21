@@ -115,16 +115,21 @@ Collaboration diagram for mc::Output:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5876f782da4e0412765ec6d00acafcfc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#a5876f782da4e0412765ec6d00acafcfc">Output</a> (Gtk::Label *w, <a class="el" href="application_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a> *d)</td></tr>
-<tr class="separator:a5876f782da4e0412765ec6d00acafcfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae391ba854448cb0b882d14afd5578df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#aae391ba854448cb0b882d14afd5578df">Output</a> (BaseObjectType *cobject, const Glib::RefPtr&lt; Gtk::Builder &gt; &amp;refGlade)</td></tr>
+<tr class="separator:aae391ba854448cb0b882d14afd5578df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a008a9b63a361317f496bfc321d5f3972"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#a008a9b63a361317f496bfc321d5f3972">~Output</a> ()</td></tr>
 <tr class="separator:a008a9b63a361317f496bfc321d5f3972"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac743a7671116432ddaf910e1ffb8eaa2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#ac743a7671116432ddaf910e1ffb8eaa2">notify</a> (<a class="el" href="classmc_1_1Event.html">Event</a> *e)</td></tr>
 <tr class="separator:ac743a7671116432ddaf910e1ffb8eaa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8dee7534ebb9bbf9d4f340e768c0df7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#af8dee7534ebb9bbf9d4f340e768c0df7">set_data</a> (<a class="el" href="application_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a> *d)</td></tr>
+<tr class="separator:af8dee7534ebb9bbf9d4f340e768c0df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4551a309472c048d9c5c14786cc623a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#a4551a309472c048d9c5c14786cc623a1">broadcast</a> ()</td></tr>
 <tr class="separator:a4551a309472c048d9c5c14786cc623a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d84487fd991c839954d8458862d1aab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#a6d84487fd991c839954d8458862d1aab">set_references</a> (std::vector&lt; <a class="el" href="classmc_1_1Interface.html">Interface</a> * &gt; r)</td></tr>
-<tr class="separator:a6d84487fd991c839954d8458862d1aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a553e319868dd6ab4daa6664da1008527"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a553e319868dd6ab4daa6664da1008527"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>block</b> (bool b)</td></tr>
+<tr class="separator:a553e319868dd6ab4daa6664da1008527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dd163182f8762d9af5e1179179bc0ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#a3dd163182f8762d9af5e1179179bc0ce">set_references</a> (std::vector&lt; <a class="el" href="classmc_1_1Interface.html">mc::Interface</a> * &gt; r)</td></tr>
+<tr class="separator:a3dd163182f8762d9af5e1179179bc0ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6953830b79ed5b8360b0fd4e0af50f19"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#a6953830b79ed5b8360b0fd4e0af50f19">set_calculator</a> (std::function&lt; double(std::vector&lt; <a class="el" href="classmc_1_1Interface.html">mc::Interface</a> * &gt;)&gt; f)</td></tr>
 <tr class="separator:a6953830b79ed5b8360b0fd4e0af50f19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4ee892d21cd77e44f8c492e8ac62e99"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1Output.html#ab4ee892d21cd77e44f8c492e8ac62e99">get_value</a> ()</td></tr>
@@ -151,21 +156,21 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="classmc_1_1Output.html">Output</a> class wraps a Gtk::Label in the UI and uses a provided lambda function to calculate a display value. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a5876f782da4e0412765ec6d00acafcfc"></a>
+<a class="anchor" id="aae391ba854448cb0b882d14afd5578df"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">mc::Output::Output </td>
           <td>(</td>
-          <td class="paramtype">Gtk::Label *&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
+          <td class="paramtype">BaseObjectType *&#160;</td>
+          <td class="paramname"><em>cobject</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="application_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a> *&#160;</td>
-          <td class="paramname"><em>d</em>&#160;</td>
+          <td class="paramtype">const Glib::RefPtr&lt; Gtk::Builder &gt; &amp;&#160;</td>
+          <td class="paramname"><em>refGlade</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -204,9 +209,6 @@ Additional Inherited Members</h2></td></tr>
 <a class="anchor" id="a4551a309472c048d9c5c14786cc623a1"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void mc::Output::broadcast </td>
@@ -215,15 +217,8 @@ Additional Inherited Members</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <p>Generates a change event and sends it to <a class="el" href="classmc_1_1Broadcaster.html">Broadcaster</a>. </p>
-
-<p>Implements <a class="el" href="classmc_1_1Interface.html#af91ff5ec779e5af49bf798d5f6331b80">mc::Interface</a>.</p>
 
 </div>
 </div>
@@ -307,14 +302,31 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6d84487fd991c839954d8458862d1aab"></a>
+<a class="anchor" id="af8dee7534ebb9bbf9d4f340e768c0df7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mc::Output::set_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="application_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a> *&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set internal json data </p>
+
+</div>
+</div>
+<a class="anchor" id="a3dd163182f8762d9af5e1179179bc0ce"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void mc::Output::set_references </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="classmc_1_1Interface.html">Interface</a> * &gt;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classmc_1_1Interface.html">mc::Interface</a> * &gt;&#160;</td>
           <td class="paramname"><em>r</em></td><td>)</td>
           <td></td>
         </tr>

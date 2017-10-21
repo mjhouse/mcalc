@@ -43,7 +43,9 @@ namespace mc {
 			*/
 			inline json tunnel(json* d, std::vector<Interface*> i){
 				json k = *d;
-				for(auto& a : i){k = k[a->get_value()];}
+				for(auto& a : i){
+					k = k[a->get_value()];
+				}
 				return k;
 			}
 
@@ -85,12 +87,6 @@ namespace mc {
 				@param e The event object
 			*/
 			virtual void notify(Event* e)=0;
-
-			/**
-				Generates a change event and
-				sends it to Broadcaster.
-			*/
-			virtual void broadcast()=0;
 	};
 
 	/**

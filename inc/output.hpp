@@ -29,12 +29,11 @@ namespace mc {
 		The Output class wraps a Gtk::Label in the UI and
 		uses a provided lambda function to calculate a display value.
 	*/
-	class Output : public Interface {
+	class Output : public mc::Interface, public Gtk::Label {
 		private:
+			bool blocked;
 			json* data;
-			sigc::connection on_change_conn;
-			std::vector<Interface*> references;
-			Gtk::Label* widget;
+			std::vector<mc::Interface*> references;
 			std::function<double(std::vector<mc::Interface*>)> calculator;
 
 		public:
@@ -43,7 +42,7 @@ namespace mc {
 				@param w the Gtk::Label to wrap
 				@param d Pointer to the json datastore
 			*/
-			Output( Gtk::Label* w, json* d);
+			Output(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
 
 			/** Destructor */
 			~Output();
@@ -56,17 +55,25 @@ namespace mc {
 			void notify(Event* e);
 
 			/**
+				Set internal json data
+			*/
+			void set_data(json* d);
+
+			/**
 				Generates a change event and
 				sends it to Broadcaster.
 			*/
 			void broadcast();
+
+
+			void block( bool b );
 
 			/**
 				Add references to the interface that will trigger
 				the Output to update when they change.
 				@param r A vector of Interfaces to use as a reference
 			*/
-			void set_references( std::vector<Interface*> r );
+			void set_references( std::vector<mc::Interface*> r );
 
 			/**
 				Set the calculating function that will be used to
