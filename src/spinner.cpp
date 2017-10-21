@@ -3,18 +3,13 @@
 
 namespace mc {
 
-	Spinner::Spinner( Gtk::SpinButton* w, json* d){
-		widget = w;
-		data = d;
-
-		on_change_conn = w->signal_value_changed().connect(sigc::mem_fun(*this,
-			&Spinner::broadcast));
+	Spinner::Spinner(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
+	:	Gtk::SpinButton(cobject),
+	 	blocked (false) {
 	};
 
 	Spinner::~Spinner(){
 		references.clear();
-		delete widget;
-		widget = nullptr;
 	};
 
 	void Spinner::notify(Event* e){
@@ -26,19 +21,28 @@ namespace mc {
 		}
 	};
 
-	void Spinner::broadcast(){
-		broadcaster->broadcast(Event(this));
-	};
+	/* Broadcast when the value changes */
+	void Spinner::on_value_changed(){
+		// if block flag isn't set, broadcast
+		if(!blocked){
+			broadcaster->broadcast(Event(this));
+			Gtk::SpinButton::on_value_changed();
+		}
+	}
 
-	void Spinner::set_references( std::vector<Interface*> r ){
+	void Spinner::set_data(json* d){
+		data = d;
+	}
+
+	void Spinner::set_references( std::vector<mc::Interface*> r ){
 		references = r;
 	};
 
 	std::string Spinner::get_value(){
-		return std::to_string(widget->get_value());
+		return std::to_string(Gtk::SpinButton::get_value());
 	};
 
 	void Spinner::set_value( double d ){
-		widget->set_value(d);
+		this->set_value(d);
 	};
 }

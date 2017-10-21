@@ -6,8 +6,7 @@
 namespace mc {
 
 	Output::Output(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
-	:	Gtk::Label(cobject),
-	 	blocked (false) {
+	:	Gtk::Label(cobject) {
 	};
 
 	Output::~Output(){
@@ -38,10 +37,6 @@ namespace mc {
 	void Output::broadcast(){
 		broadcaster->broadcast(Event(this));
 	};
-
-	void Output::block( bool b ){
-		blocked = b;
-	}
 
 	void Output::set_references( std::vector<mc::Interface*> r ){
 		references = r;

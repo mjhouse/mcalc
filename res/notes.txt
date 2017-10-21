@@ -1,0 +1,19 @@
+NEW OUT:
+	IPR (Inches Per Revolution) = feedrate * 0.001
+
+Grade:
+	no decimals, try to add percent sign?
+
+RPM:
+	round to 0.001
+	units on label 
+
+Velocity:
+	add units on label
+
+Feed rate:
+	add units on label
+
+HSS:
+	always has feed rate of 12.0
+	grey out slider and show fixed value

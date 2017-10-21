@@ -27,14 +27,15 @@ namespace mcalc {
 		builder->get_widget_derived("fs_hardness_input",fs_hardness);
 		builder->get_widget_derived("fs_tool_input",fs_tool);
 		builder->get_widget_derived("fs_rpm_output",fs_rpm);
+		builder->get_widget_derived("fs_diameter_input",fs_diameter);
 
 		fs_material->set_data(&datastore);
 		fs_designation->set_data(&datastore);
 		fs_hardness->set_data(&datastore);
 		fs_tool->set_data(&datastore);
 		fs_rpm->set_data(&datastore);
+		fs_diameter->set_data(&datastore);
 
-		fs_diameter 	= get_wrapper<mc::Spinner,Gtk::SpinButton>("fs_diameter_input");
 		fs_grade 		= get_wrapper<mc::Slider,Gtk::Scale>("fs_grade_output");
 		fs_velocity 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_velocity_output");
 		fs_feedrate 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_feedrate_output");

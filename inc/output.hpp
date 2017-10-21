@@ -31,7 +31,6 @@ namespace mc {
 	*/
 	class Output : public mc::Interface, public Gtk::Label {
 		private:
-			bool blocked;
 			json* data;
 			std::vector<mc::Interface*> references;
 			std::function<double(std::vector<mc::Interface*>)> calculator;
@@ -64,9 +63,6 @@ namespace mc {
 				sends it to Broadcaster.
 			*/
 			void broadcast();
-
-
-			void block( bool b );
 
 			/**
 				Add references to the interface that will trigger
