@@ -1,6 +1,7 @@
+import sqlite3
 import re
 import csv
-import sys
+import sys, os
 from collections import defaultdict
 
 from pprint import PrettyPrinter
@@ -93,15 +94,23 @@ def generate_output_str( data, buf='\t\t'):
 
 	return out
 
-def generate_cpp( fn ):
+def generate_output_database( data, path ):
+	path = os.path.abspath(path)
+	conn = sqlite3.connect(path)
+	c = conn.cursor()
+
+	c.execute('CREATE TABLE materials (description,designation,hardness)')
+
+
+def generate( fn ):
 	with open(fn,newline='') as f:
 		data = list(list(r) for r in csv.reader(f))
 		code = generate_json(data)
-		sout = generate_output_str(code)
+		generate_output_database(code,"output.db")
 
 
 
 if __name__=='__main__':
 	if len(sys.argv) > 1:
 		fname = sys.argv[1]
-		generate_cpp(fname)
+		generate(fname)

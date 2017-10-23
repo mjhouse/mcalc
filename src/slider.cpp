@@ -7,24 +7,18 @@
 #define _min(V) (*std::min_element(V.begin(),V.end()))
 
 namespace mc {
-
 	/* -------------------------------------------------------------------------
 		Slider */
-	Slider::Slider( Gtk::Scale* w, json* d){
-		widget = w;
-		data = d;
 
-		scaler = nullptr;
-
-		on_change_conn = w->signal_value_changed().connect(sigc::mem_fun(*this,
-			&Slider::broadcast));
+	Slider::Slider(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
+	:	Gtk::Scale(cobject),
+		blocked (false),
+		scaler(nullptr) {
 	};
 
 	Slider::~Slider(){
 		start_ref.clear();
 		end_ref.clear();
-		delete widget;
-		widget = nullptr;
 	};
 
 	void Slider::notify( Event* e ){
@@ -41,14 +35,19 @@ namespace mc {
 		}
 	};
 
-	void Slider::broadcast(){
+	void Slider::set_data(json* d){
+		data = d;
+	};
+
+	void Slider::on_value_changed(){
 		broadcaster->broadcast(Event(this));
+		Gtk::Scale::on_value_changed();
 	};
 
 	void Slider::set_marks(){
 		if(!marks.empty()){
 			for(auto& mark : marks){
-				widget->add_mark(mark.first,Gtk::POS_BOTTOM,mark.second);
+				this->add_mark(mark.first,Gtk::POS_BOTTOM,mark.second);
 			}
 		}
 	};
@@ -58,11 +57,11 @@ namespace mc {
 		set_marks();
 	};
 
-	void Slider::set_scaler( Interface* i ){
+	void Slider::set_scaler( mc::Interface* i ){
 		scaler = i;
 	};
 
-	void Slider::set_references( std::vector<Interface*> s, std::vector<Interface*> e ){
+	void Slider::set_references( std::vector<mc::Interface*> s, std::vector<mc::Interface*> e ){
 		start_ref = s;
 		end_ref = e;
 		populate();
@@ -90,18 +89,22 @@ namespace mc {
 		}
 	};
 
+	void Slider::block( bool b ){
+		blocked = b;
+	}
+
 	std::string Slider::get_value(){
-		return std::to_string(widget->get_value());
+		return std::to_string(Gtk::Scale::get_value());
 	};
 
 	void Slider::set_value( double min, double max, double mid ){
-		on_change_conn.block(true);
-		widget->set_range(min,max);
-		widget->set_value(mid);
-		widget->clear_marks();
-		widget->add_mark(mid,Gtk::POS_BOTTOM,"default");
+		block(true);
+		Gtk::Scale::set_range(min,max);
+		Gtk::Scale::set_value(mid);
+		Gtk::Scale::clear_marks();
+		Gtk::Scale::add_mark(mid,Gtk::POS_BOTTOM,"default");
 		set_marks();
-		on_change_conn.block(false);
+		block(false);
 		broadcaster->broadcast(Event(Event::Type::ALL,this));
 	};
 

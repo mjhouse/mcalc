@@ -29,16 +29,19 @@ namespace mcalc {
 		builder->get_widget_derived("fs_rpm_output",fs_rpm);
 		builder->get_widget_derived("fs_diameter_input",fs_diameter);
 
+		builder->get_widget_derived("fs_grade_output",fs_grade);
+		builder->get_widget_derived("fs_velocity_output",fs_velocity);
+		builder->get_widget_derived("fs_feedrate_output",fs_feedrate);
+
 		fs_material->set_data(&datastore);
 		fs_designation->set_data(&datastore);
 		fs_hardness->set_data(&datastore);
 		fs_tool->set_data(&datastore);
 		fs_rpm->set_data(&datastore);
 		fs_diameter->set_data(&datastore);
-
-		fs_grade 		= get_wrapper<mc::Slider,Gtk::Scale>("fs_grade_output");
-		fs_velocity 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_velocity_output");
-		fs_feedrate 	= get_wrapper<mc::Slider,Gtk::Scale>("fs_feedrate_output");
+		fs_grade->set_data(&datastore);
+		fs_velocity->set_data(&datastore);
+		fs_feedrate->set_data(&datastore);
 
 		hard 			= _vinterface("hard");
 		tough 			= _vinterface("tough");

@@ -1,9 +1,9 @@
 <map id="mcalc::Application" name="mcalc::Application">
-<area shape="rect" id="node2" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="21,171,159,197"/>
-<area shape="rect" id="node3" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="311,95,410,121"/>
-<area shape="rect" id="node6" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="184,171,276,197"/>
-<area shape="rect" id="node8" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="300,171,381,197"/>
-<area shape="rect" id="node9" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="405,171,551,197"/>
-<area shape="rect" id="node10" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="575,171,661,197"/>
-<area shape="rect" id="node4" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="301,5,420,32"/>
+<area shape="rect" id="node2" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="525,171,664,197"/>
+<area shape="rect" id="node3" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="268,95,367,121"/>
+<area shape="rect" id="node6" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="23,171,115,197"/>
+<area shape="rect" id="node8" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="139,171,221,197"/>
+<area shape="rect" id="node10" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="245,171,390,197"/>
+<area shape="rect" id="node11" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="414,171,501,197"/>
+<area shape="rect" id="node4" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="258,5,377,32"/>
 </map>

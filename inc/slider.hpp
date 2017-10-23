@@ -31,23 +31,22 @@ namespace mc {
 		manages flexible max/min values, responding to
 		broadcast events.
 	*/
-	class Slider : public Interface {
+	class Slider : public mc::Interface, public Gtk::Scale {
 		private:
+			bool blocked;
 			json* data;
-			sigc::connection on_change_conn;
-			std::vector<Interface*> start_ref;
-			std::vector<Interface*> end_ref;
-			Gtk::Scale* widget;
-			Interface* scaler;
+			std::vector<mc::Interface*> start_ref;
+			std::vector<mc::Interface*> end_ref;
+			mc::Interface* scaler;
 			std::map<double,std::string> marks;
 
 		public:
 			/**
-				Constructor
-				@param w the Gtk::Label to wrap
-				@param d Pointer to the json datastore
+				Constructor for the Gtk::Builder
+				@param cobject A base object typedef
+				@param refGlade A reference to the builder.
 			*/
-			Slider( Gtk::Scale* w, json* d);
+			Slider(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
 
 			/** Destructor */
 			~Slider();
@@ -60,10 +59,15 @@ namespace mc {
 			void notify(Event* e);
 
 			/**
+				Set internal json data
+			*/
+			void set_data(json* d);
+
+			/**
 				Generates a change event and
 				sends it to Broadcaster.
 			*/
-			void broadcast();
+			void on_value_changed();
 
 			/**
 				Populates the UI with values from the datastore.
@@ -89,7 +93,7 @@ namespace mc {
 				the max and min values of this slider.
 				@param i The Interface to use as a scaler.
 			*/
-			void set_scaler( Interface* i );
+			void set_scaler( mc::Interface* i );
 
 			/**
 				Add references to the interface that will trigger
@@ -100,7 +104,13 @@ namespace mc {
 				@param s A vector of Interfaces to use as a reference
 				@param e A vector of Interfaces to use as a reference
 			*/
-			void set_references( std::vector<Interface*> s, std::vector<Interface*> e );
+			void set_references( std::vector<mc::Interface*> s, std::vector<mc::Interface*> e );
+
+			/**
+				Stop/start broadcasting events
+				@param b True allows broadcasts, false dis-allows.
+			*/
+			void block( bool b );
 
 			/**
 				Returns a string representation of the current
