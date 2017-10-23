@@ -31,7 +31,6 @@ namespace mc {
 	class Spinner : public mc::Interface, public Gtk::SpinButton {
 		private:
 			bool blocked;
-			json* data;
 			std::vector<mc::Interface*> references;
 
 		public:
@@ -54,11 +53,6 @@ namespace mc {
 				Sends out a change event.
 			*/
 			virtual void on_value_changed();
-
-			/**
-				Set internal json data
-			*/
-			void set_data(json* d);
 
 			/**
 				Add references to the interface that will trigger

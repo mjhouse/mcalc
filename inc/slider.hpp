@@ -34,7 +34,6 @@ namespace mc {
 	class Slider : public mc::Interface, public Gtk::Scale {
 		private:
 			bool blocked;
-			json* data;
 			std::vector<mc::Interface*> start_ref;
 			std::vector<mc::Interface*> end_ref;
 			mc::Interface* scaler;
@@ -57,11 +56,6 @@ namespace mc {
 				@param e The event object
 			*/
 			void notify(Event* e);
-
-			/**
-				Set internal json data
-			*/
-			void set_data(json* d);
 
 			/**
 				Generates a change event and

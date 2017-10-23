@@ -21,6 +21,7 @@
 using json = nlohmann::json; /**< alias for the nlohmann namespace*/
 
 namespace mc {
+	class DataStore;
 	class Interface;
 	class DummyInterface;
 	class ComboBoxText;
@@ -46,7 +47,7 @@ namespace mcalc {
 			Glib::RefPtr<Gtk::Builder> builder;
 
 			/** The generated tabls and other data used for lookups. */
-			json datastore;
+			mc::DataStore* datastore;
 
 			mc::ComboBoxText* fs_material;		/**< material to use */
 			mc::ComboBoxText* fs_designation;	/**< AISI/SAE material designation */
@@ -62,7 +63,7 @@ namespace mcalc {
 			mc::DummyInterface* tough;
 			mc::DummyInterface* speed;
 			mc::DummyInterface* feed;
-			
+
 		public:
 			/**
 				The constructor for the application.
@@ -70,23 +71,10 @@ namespace mcalc {
 				@param b A Gtk::Builder initialized from a glade file.
 				@param d JSON data used for value lookups and populating the ui.
 			*/
-			Application(Glib::RefPtr<Gtk::Builder> b, json d);
+			Application(Glib::RefPtr<Gtk::Builder> b);
 
 			/** The application destructor */
 			~Application();
-
-			/**
-				A templated function that generates Interfaces
-				for given Gtk::Widgets.
-
-				@tparam A The Interface subclass to create
-				@tparam B The Gtk::Widget type to look up
-
-				@param n The name to lookup in builder (Gtk::Builder)
-				@return The new Interface object.
-			 */
-			template <class A,class B>
-			A* get_wrapper ( std::string n );
 	};
 
 }

@@ -30,10 +30,6 @@ namespace mc {
 		}
 	}
 
-	void Spinner::set_data(json* d){
-		data = d;
-	}
-
 	void Spinner::set_references( std::vector<mc::Interface*> r ){
 		references = r;
 	};

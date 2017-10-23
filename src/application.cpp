@@ -9,15 +9,16 @@
 #include "output.hpp"
 #include "spinner.hpp"
 #include "comboboxtext.hpp"
+#include "datastore.hpp"
 
 
 namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Constructors/Destructors */
-	Application::Application(Glib::RefPtr<Gtk::Builder> b, json d){
+	Application::Application(Glib::RefPtr<Gtk::Builder> b){
 		this->builder = b;
-		this->datastore = d;
+		this->datastore = mc::DataStore::get_instance();
 
 		// generate wrapping Interface's for each ui element that we need to interact
 		// with.
@@ -32,16 +33,6 @@ namespace mcalc {
 		builder->get_widget_derived("fs_grade_output",fs_grade);
 		builder->get_widget_derived("fs_velocity_output",fs_velocity);
 		builder->get_widget_derived("fs_feedrate_output",fs_feedrate);
-
-		fs_material->set_data(&datastore);
-		fs_designation->set_data(&datastore);
-		fs_hardness->set_data(&datastore);
-		fs_tool->set_data(&datastore);
-		fs_rpm->set_data(&datastore);
-		fs_diameter->set_data(&datastore);
-		fs_grade->set_data(&datastore);
-		fs_velocity->set_data(&datastore);
-		fs_feedrate->set_data(&datastore);
 
 		hard 			= _vinterface("hard");
 		tough 			= _vinterface("tough");
@@ -113,26 +104,6 @@ namespace mcalc {
 		delete tough; 			tough			= nullptr;
 		delete speed; 			speed			= nullptr;
 		delete feed; 			feed			= nullptr;
-	}
-	/* -------------------------------------------------------------------------
-		Functions */
-
-	/* -------------------------------------------------------------------------
-		get_wrapper:
-			create an mc::Interface around a widget, where A is the
-			Interface to create, and B is the type of widget to use.
-
-			std::string n:
-				the name of the ui widget to look up.
-
-			A*:
-				a pointer to the newly created Interface
-	*/
-	template <class A,class B>
-	A* Application::get_wrapper ( std::string n ) {
-		B* tmp;
-		builder->get_widget(n,tmp);
-		return new A(tmp, &(datastore));
 	}
 
 }

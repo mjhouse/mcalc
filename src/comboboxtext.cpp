@@ -1,3 +1,4 @@
+#include "datastore.hpp"
 #include "comboboxtext.hpp"
 #include "broadcaster.hpp"
 
@@ -10,6 +11,7 @@ namespace mc {
 	ComboBoxText::ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
 	:	Gtk::ComboBoxText(cobject),
 	 	blocked (false) {
+
 	};
 
 	/* The destructor */
@@ -41,17 +43,9 @@ namespace mc {
 
 	void ComboBoxText::populate(){
 		if(!references.empty()){
-			std::vector<std::string> v;
-			for(auto& a : references){
-				v.push_back(a->get_value());
-			}
-			this->set_value(v);
+			this->set_value(references);
 		}
 	};
-
-	void ComboBoxText::set_data(json* d){
-		data = d;
-	}
 
 	void ComboBoxText::set_references( std::vector<mc::Interface*> i ){
 		references = i;
@@ -66,12 +60,11 @@ namespace mc {
 		blocked = b;
 	}
 
-	void ComboBoxText::set_value( std::vector<std::string> v ){
+	void ComboBoxText::set_value( std::vector<mc::Interface*> v ){
 		this->block(true);
 		gtk_combo_box_text_remove_all(this->gobj());
-		json d = *data;
+		json d = data->get_value(v);
 
-		for(auto& str : v){ d = d[str]; }
 		for(json::iterator it = d.begin(); it != d.end(); ++it){
 			if (!(*it).is_primitive()) {
 				this->append(it.key());

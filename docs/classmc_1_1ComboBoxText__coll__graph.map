@@ -1,4 +1,5 @@
 <map id="mc::ComboBoxText" name="mc::ComboBoxText">
-<area shape="rect" id="node2" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="15,95,114,121"/>
-<area shape="rect" id="node3" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node2" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="77,95,176,121"/>
+<area shape="rect" id="node3" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="5,5,112,32"/>
+<area shape="rect" id="node4" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="137,5,255,32"/>
 </map>

@@ -34,7 +34,6 @@ namespace mc {
 	class ComboBoxText : public mc::Interface, public Gtk::ComboBoxText {
 		private:
 			bool blocked;
-			json* data;
 			std::vector<mc::Interface*> references;
 
 		public:
@@ -58,11 +57,6 @@ namespace mc {
 				Sends out a change event.
 			*/
 			virtual void on_changed();
-
-			/**
-				Set internal json data
-			*/
-			void set_data(json* d);
 
 			/**
 				Populates the UI with values from the datastore.
@@ -89,9 +83,9 @@ namespace mc {
 
 			/**
 				Set the ComboBoxText contents
-				@param v A vector of strings to use as entries
+				@param v A vector of Interface objects to fetch path from datastore
 			*/
-			void set_value( std::vector<std::string> v );
+			void set_value( std::vector<mc::Interface*> v );
 
 	};
 

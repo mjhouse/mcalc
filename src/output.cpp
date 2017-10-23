@@ -30,10 +30,6 @@ namespace mc {
 		}
 	};
 
-	void Output::set_data(json* d){
-		data = d;
-	}
-
 	void Output::broadcast(){
 		broadcaster->broadcast(Event(this));
 	};

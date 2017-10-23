@@ -94,19 +94,13 @@ def generate_output_str( data, buf='\t\t'):
 
 	return out
 
-def generate_output_database( data, path ):
-	path = os.path.abspath(path)
-	conn = sqlite3.connect(path)
-	c = conn.cursor()
-
-	c.execute('CREATE TABLE materials (description,designation,hardness)')
-
 
 def generate( fn ):
 	with open(fn,newline='') as f:
 		data = list(list(r) for r in csv.reader(f))
 		code = generate_json(data)
-		generate_output_database(code,"output.db")
+		text = generate_output_str(code)
+		print(text)
 
 
 

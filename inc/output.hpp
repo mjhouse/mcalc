@@ -31,15 +31,14 @@ namespace mc {
 	*/
 	class Output : public mc::Interface, public Gtk::Label {
 		private:
-			json* data;
 			std::vector<mc::Interface*> references;
 			std::function<double(std::vector<mc::Interface*>)> calculator;
 
 		public:
 			/**
-				Constructor
-				@param w the Gtk::Label to wrap
-				@param d Pointer to the json datastore
+				Constructor for the Gtk::Builder
+				@param cobject A base object typedef
+				@param refGlade A reference to the builder.
 			*/
 			Output(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade);
 
@@ -52,11 +51,6 @@ namespace mc {
 				@param e The event object
 			*/
 			void notify(Event* e);
-
-			/**
-				Set internal json data
-			*/
-			void set_data(json* d);
 
 			/**
 				Generates a change event and

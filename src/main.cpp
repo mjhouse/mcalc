@@ -17,7 +17,6 @@
 
 #include <gtkmm/builder.h>
 #include "application.hpp"
-#include "datastore.hpp"
 
 int main( int argc, char *argv[] ){
 	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc,argv,"org.mcalc.base");
@@ -26,7 +25,7 @@ int main( int argc, char *argv[] ){
 	Gtk::Window* window = nullptr;
 	builder->get_widget("mcalc",window);
 
-	mcalc::Application calc = mcalc::Application(builder,mcalc::material);
+	mcalc::Application calc = mcalc::Application(builder);
 
 	//GtkCssProvider* css_provider = nullptr;
 	//gtk_css_provider_load_from_path (css_provider, "bin/app.css", NULL);

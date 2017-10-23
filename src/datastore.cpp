@@ -1,0 +1,27 @@
+#include "datastore.hpp"
+#include "interface.hpp"
+#include <vector>
+
+#include "json.hpp"
+using json = nlohmann::json;
+
+namespace mc {
+
+	DataStore::~DataStore(){}
+
+	DataStore* DataStore::get_instance(){
+		static DataStore datastore;
+		return &datastore;
+	}
+
+	// --------------------------------------------
+	// Functions
+	json DataStore::get_value( std::vector<Interface*> p ){
+		json k = data;
+		for(auto& a : p){
+			k = k[a->get_value()];
+		}
+		return k;
+	}
+
+}

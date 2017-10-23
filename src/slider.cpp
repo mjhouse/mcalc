@@ -1,5 +1,6 @@
 #include "slider.hpp"
 #include "broadcaster.hpp"
+#include "datastore.hpp"
 
 #define _in(E,V) (std::find(V.begin(), V.end(), E) != V.end())
 
@@ -35,10 +36,6 @@ namespace mc {
 		}
 	};
 
-	void Slider::set_data(json* d){
-		data = d;
-	};
-
 	void Slider::on_value_changed(){
 		broadcaster->broadcast(Event(this));
 		Gtk::Scale::on_value_changed();
@@ -69,8 +66,8 @@ namespace mc {
 
 	void Slider::populate(){
 		if(!start_ref.empty() && !end_ref.empty()){
-			std::vector<double> vstart = as_vector( tunnel(data,start_ref) );
-			std::vector<double> vend = as_vector( tunnel(data,end_ref) );
+			std::vector<double> vstart = as_vector( data->get_value(start_ref) );
+			std::vector<double> vend = as_vector( data->get_value(end_ref) );
 
 			double s_max = _max(vstart);
 			double s_min = _min(vstart);

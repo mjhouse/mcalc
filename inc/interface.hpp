@@ -25,6 +25,7 @@ using json = nlohmann::json; /**< alias for the nlohmann namespace*/
 namespace mc {
 
 	class Broadcaster;
+	class DataStore;
 	class DummyInterface;
 	class Event;
 
@@ -67,6 +68,7 @@ namespace mc {
 
 		protected:
 			Broadcaster* broadcaster; /**< Pointer to the broadcaster instance */
+			DataStore* data; /**< Pointer to the datastore */
 
 		public:
 			/** Constructor */
