@@ -10,11 +10,6 @@
 	@version 0.1 10/19/17
 */
 
-#include <map>
-#include <iostream>
-#include <string>
-#include <vector>
-
 #include <gtkmm/builder.h>
 #include "application.hpp"
 

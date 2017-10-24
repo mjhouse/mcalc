@@ -9,7 +9,7 @@
 	@author Michael House
 	@version 0.1 10/19/17
 */
-
+#pragma once
 #ifndef MCALC_SLIDER_HPP
 #define MCALC_SLIDER_HPP
 
@@ -116,12 +116,6 @@ namespace mc {
 				Freezes the slider at the current value.
 			*/
 			void fix();
-
-			/**
-				Freezes the slider at a constant value.
-				@param val The value to set the slider at.
-			*/
-			void fix( double val );
 
 			/**
 				Unfreezes the slider.

@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "slider.hpp"
 #include "broadcaster.hpp"
 #include "datastore.hpp"
@@ -65,7 +67,7 @@ namespace mc {
 	};
 
 	void Slider::populate(){
-		if(!start_ref.empty() && !end_ref.empty() && !fixed){
+		if(!start_ref.empty() && !end_ref.empty()){
 			std::vector<double> vstart = as_vector( data->get_value(start_ref) );
 			std::vector<double> vend = as_vector( data->get_value(end_ref) );
 
@@ -74,16 +76,25 @@ namespace mc {
 				double s_min = _min(vstart);
 				double e_max = _max(vend);
 				double e_min = _min(vend);
+
 				double scale = scaler ? std::stod(scaler->get_value())/100 : 1.0;
 
 				double tmin = s_min < e_min ? s_min : e_min;
 				double tmax = s_max < e_max ? s_max : e_max;
 
-				double min = (fabs(s_min-e_min)*scale) + tmin;
-				double max = (fabs(s_max-e_max)*scale) + tmax;
+				double min, max, mid;
+				if(tmin!=tmax){
+					min = (fabs(s_min-e_min)*scale) + tmin;
+					max = (fabs(s_max-e_max)*scale) + tmax;
 
-				double mid = (max-min)/2+min;
-				set_value( min, max, mid );
+					mid = (max-min)/2+min;
+					set_value( min, max, mid );
+					unfix();
+				}
+				else {
+					set_value(tmax-1,tmax+1,tmax);
+					fix();
+				}
 			}
 		}
 	};
@@ -100,14 +111,8 @@ namespace mc {
 		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), false);
 	};
 
-	void Slider::fix( double val ){
-		set_value(val-1,val+1,val);
-		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), false);
-	};
-
 	void Slider::unfix(){
 		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), true);
-		populate();
 	};
 
 	void Slider::set_value( double min, double max, double mid ){

@@ -10,7 +10,7 @@
 	@author Michael House
 	@version 0.1 10/19/17
 */
-
+#pragma once
 #ifndef MCALC_BROADCASTER_HPP
 #define MCALC_BROADCASTER_HPP
 

@@ -40,7 +40,7 @@ def get_jhardness( row ):
 	return cell
 
 def generate_json( data ):
-	rstart,rend = 0, 11
+	rstart,rend = 0, 16
 	cstart,cend = 3, 16
 
 	json = {}
@@ -59,21 +59,15 @@ def generate_json( data ):
 					for j,col in enumerate(row[cstart:cend]):
 						header = data[0][j+cstart]
 						tool, kind  = get_jtoolkind( header )
-						if tool == 'HSS':
-							values = get_jfeedspeed( col )
-							odata = hdata.setdefault(tool,[])
-							odata.extend(values)
+						feed, speed = get_jfeedspeed( col )
 
-						else:
-							feed, speed = get_jfeedspeed( col )
+						odata = hdata.setdefault(tool,{})
+						kdata = odata.setdefault(kind,{})
+						fdata = kdata.setdefault('feed',[])
+						sdata = kdata.setdefault('speed',[])
 
-							odata = hdata.setdefault(tool,{})
-							kdata = odata.setdefault(kind,{})
-							fdata = kdata.setdefault('feed',[])
-							sdata = kdata.setdefault('speed',[])
-
-							fdata.append(feed)
-							sdata.append(speed)
+						fdata.append(feed)
+						sdata.append(speed)
 
 	return json
 
@@ -90,7 +84,12 @@ def generate_output_str( data, buf='\t\t'):
 		out += buf + ','.join(['"{}"'.format(w) for w in data])
 
 	with open('data.hpp','w') as f:
-		f.write('namespace mcalc {{\n\tjson material = {{\n{}\n\t}}; \n}}'.format(out))
+		f.write('#pragma once\n')
+		f.write('#ifndef MCALC_STATIC_DATA_HPP\n')
+		f.write('#define MCALC_STATIC_DATA_HPP\n\n')
+		f.write('#include "json.hpp"\n\n')
+		f.write('namespace static_data {{\n\tnlohmann::json DATA = {{\n{}\n\t}}; \n}}'.format(out))
+		f.write('\n\n#endif')
 
 	return out
 
@@ -99,8 +98,7 @@ def generate( fn ):
 	with open(fn,newline='') as f:
 		data = list(list(r) for r in csv.reader(f))
 		code = generate_json(data)
-		text = generate_output_str(code)
-		print(text)
+		generate_output_str(code)
 
 
 

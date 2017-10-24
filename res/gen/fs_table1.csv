@@ -1,5 +1,21 @@
-Material designation,Brinell Hardness,,HSS: SFPM,Uncoated Carbide:    (HARD)                  MAX- FEED               MIN- SFPM,Uncoated Carbide:    (HARD)                  MIN- FEED               MAX- SFPM,Uncoated Carbide:    (TOUGH)                  MAX- FEED               MIN- SFPM,Uncoated Carbide:    (TOUGH)                  MIN- FEED               MAX- SFPM,Coated Carbide: (HARD)          MIN-FEED         MAX-SFPM,Coated Carbide: (HARD)          MAX-FEED         MIN-SFPM,Coated Carbide: (TOUGH)          MIN-FEED         MAX-SFPM,Coated Carbide: (TOUGH)          MAX-FEED         MIN-SFPM,Ceramic: (HARD)          MIN-FEED         MAX-SFPM,Ceramic: (HARD)          MAX-FEED         MIN-SFPM,Ceramic: (TOUGH)          MIN-FEED         MAX-SFPM,Ceramic: (TOUGH)          MAX-FEED         MIN-SFPM
-"Free-machining plain carbon steels: 1212, 1213, 1215, ",100-150,f s,150,"17          
+Material designation,Brinell Hardness,,"HSS:
+(HARD)
+MAX- FEED
+MIN- SFPM","HSS:
+(HARD)
+MIN- FEED
+MAX- SFPM","HSS:
+(TOUGH)
+MAX- FEED
+MIN- SFPM","HSS:
+(TOUGH)
+MIN- FEED
+MAX- SFPM",Uncoated Carbide:    (HARD)                  MAX- FEED               MIN- SFPM,Uncoated Carbide:    (HARD)                  MIN- FEED               MAX- SFPM,Uncoated Carbide:    (TOUGH)                  MAX- FEED               MIN- SFPM,Uncoated Carbide:    (TOUGH)                  MIN- FEED               MAX- SFPM,Coated Carbide: (HARD)          MIN-FEED         MAX-SFPM,Coated Carbide: (HARD)          MAX-FEED         MIN-SFPM,Coated Carbide: (TOUGH)          MIN-FEED         MAX-SFPM,Coated Carbide: (TOUGH)          MAX-FEED         MIN-SFPM,Ceramic: (HARD)          MIN-FEED         MAX-SFPM,Ceramic: (HARD)          MAX-FEED         MIN-SFPM,Ceramic: (TOUGH)          MIN-FEED         MAX-SFPM,Ceramic: (TOUGH)          MAX-FEED         MIN-SFPM
+"Free-machining plain carbon steels: 1212, 1213, 1215, ",100-150,f s,"12
+150","12
+150","12
+150","12
+150","17          
 805       ",8                                      1075,"36         
 405       ",17                                   555,"17         
 1165     ",8                                  1295,"28         
@@ -7,15 +23,32 @@ Material designation,Brinell Hardness,,HSS: SFPM,Uncoated Carbide:    (HARD)    
 3340     ",8                                       4985,"15         
 1670     ",8                                    2500
 "Free-machining plain carbon steels: 1212, 1213, 1215, ",150-200,"f
-s",160,"17         
+s","12
+160","12
+160","12
+160","12
+160","17         
 745       ",8                                        935,"36         
 345       ",17                                     470,"28         
 915       ",13                                       1330,"28         
 785       ",13                                          1110,"15         
 1795     ",8                                     2680,"15         
 1485     ",8                                2215
-"Free-machining plain carbon steels: 1108, 1109, 1115, 1117, 1118, 1120, 1126, 1211","100–150
-150–200",f s,"130
+"Free-machining plain carbon steels: 1108, 1109, 1115, 1117, 1118, 1120, 1126, 1211",100–150,f s,"12
+130","12
+130","12
+130","12
+130","17         
+730       ",8                                        990,"36         
+300       ",17                                             430,"17         
+1090     ",8                                      1410,"28         
+780       ",13                                    1105,"15         
+1610     ",8                                    2780,"15         
+1345    ",8                                 2005
+"Free-machining plain carbon steels: 1108, 1109, 1115, 1117, 1118, 1120, 1126, 1211",150–200,f s,"12
+120","12
+120","12
+120","12
 120","17         
 730       ",8                                        990,"36         
 300       ",17                                             430,"17         
@@ -24,33 +57,80 @@ s",160,"17
 1610     ",8                                    2780,"15         
 1345    ",8                                 2005
 "Free-machining plain carbon steels:1132, 1137, 1139, 1140, 1144, 1146, 1151 ","175–225
-275-325","f
-s",120                 75,"17         
+","f
+s","12
+120","12
+120","12
+120","12
+120","17         
 615       ",8                                      815,"36         
 300       ",17                                         405,"17         
 865       ",8                                           960,"28         
 755       ",13                                      960,"13         
 1400     ",7                                            1965,"13         
 1170     ",7                                   1640
-"Free-machining plain carbon steels:1132, 1137, 1139, 1140, 1144, 1146, 1151 ",325-375           375-425,f s,50            40,"17         
+"Free-machining plain carbon steels:1132, 1137, 1139, 1140, 1144, 1146, 1151 ",275-325,"f
+s","12
+75","12
+75","12
+75","12
+75","17         
+615       ",8                                      815,"36         
+300       ",17                                         405,"17         
+865       ",8                                           960,"28         
+755       ",13                                      960,"13         
+1400     ",7                                            1965,"13         
+1170     ",7                                   1640
+"Free-machining plain carbon steels:1132, 1137, 1139, 1140, 1144, 1146, 1151 ",325-375,f s,"12
+50","12
+50","12
+50","12
+50","17         
 515       ",8                                             685,"36         
 235       ",17                                     340,"17         
 720       ",8                                            805,"28         
 650       ",13                                     810,"10         
 1430     ",5                                   1745,"10         
 1070     ",5                                      1305
-"Free-machining plain carbon steels: 11L17, 11L18, 12L13, 12L14                ","100–150
-150–200
-",f s,"140
-145
-","17         
+"Free-machining plain carbon steels:1132, 1137, 1139, 1140, 1144, 1146, 1151 ",375-425,f s,"12
+40","12
+40","12
+40","12
+40","17         
+515       ",8                                             685,"36         
+235       ",17                                     340,"17         
+720       ",8                                            805,"28         
+650       ",13                                     810,"10         
+1430     ",5                                   1745,"10         
+1070     ",5                                      1305
+"Free-machining plain carbon steels: 11L17, 11L18, 12L13, 12L14                ",100–150,f s,"12
+140","12
+140","12
+140","12
+140","17         
 745       ",8                                        935,"36         
 345      ",17                                           470 ,"28         
 915       ",13                                    1330,"28        
 785       ",13                                   1110,"15         
 1795     ",8                                      2680,"15         
 1485     ",8                                 2215
-"Free-machining plain carbon steels: 11L17, 11L18, 12L13, 12L14                ",200-250,f s,110,"17         
+"Free-machining plain carbon steels: 11L17, 11L18, 12L13, 12L14                ","150–200
+",f s,"12
+145","12
+145","12
+145","12
+145","17         
+745       ",8                                        935,"36         
+345      ",17                                           470 ,"28         
+915       ",13                                    1330,"28        
+785       ",13                                   1110,"15         
+1795     ",8                                      2680,"15         
+1485     ",8                                 2215
+"Free-machining plain carbon steels: 11L17, 11L18, 12L13, 12L14                ",200-250,f s,"12
+110","12
+110","12
+110","12
+110","17         
 615       ",8                                             815,"36         
 300       ",17                                            405,"17         
 865       ",8                                       960,"28         
@@ -61,7 +141,11 @@ s",120                 75,"17
 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022,
 1023, 1024, 1025, 1026, 1513, 1514","100–125
 ","f
-s",120,"17         
+s","12
+120","12
+120","12
+120","12
+120","17         
 805       ",8                                                 1075,"36         
 405       ",17                                            555,"17         
 1165     ",8                                           1295,"28         
@@ -70,7 +154,11 @@ s",120,"17
 1670     ",8                                    2500
 "Plain carbon steels: 1006, 1008, 1009, 1010, 1012,
 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022,
-1023, 1024, 1025, 1026, 1513, 1514",125-175          ,f s,110,"17         
+1023, 1024, 1025, 1026, 1513, 1514",125-175          ,f s,"12
+110","12
+110","12
+110","12
+110","17         
 745       ",8                                                              935,"36        
 345       ",17                                            470,"28         
 915       ",13                                        1330,"28         
@@ -79,12 +167,32 @@ s",120,"17
 1485     ",8                                       2215
 "Plain carbon steels: 1006, 1008, 1009, 1010, 1012,
 1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022,
-1023, 1024, 1025, 1026, 1513, 1514",175-225               225-275,f s,90                  70,"17         
+1023, 1024, 1025, 1026, 1513, 1514",175-225 ,f s,"12
+90","12
+90","12
+90","12
+90","17         
 615      ",8                                                           815,"36         
 300       ",17                                               405,"17         
 865       ",8                                           960,"28         
 755       ",13                                           960,"13         
 1400     ",7                                                  1965,"13         
 1170     ",7                                      1640
-,,,,,,,,,,,,,,,
-"THREE ADJUSTMENT SLIDERS: ONE FOR THE INBETWEEN OF ""HARD AND TOUGH""--------ONE FOR FEED RATE-----------ONE FOR SFPM---------- THE USER WILL PICK MATERIAL-----CHOOSE TOOL SUCH AS UNCOATED CARBIDE OR CERAMIC. NEXT THEY WILL USE THE SLIDER TO ADJUST THE HARDNESS/TOUGHNESS OF THAT TOOL.....THEN THEY CAN GO WITH THE FEED AND SFPM OR ADJUST THEM.",,,,,,,,,,,,,,,
+"Plain carbon steels: 1006, 1008, 1009, 1010, 1012,
+1015, 1016, 1017, 1018, 1019, 1020, 1021, 1022,
+1023, 1024, 1025, 1026, 1513, 1514",225-275,f s,"12
+70","12
+70","12
+70","12
+70","17         
+615      ",8                                                           815,"36         
+300       ",17                                               405,"17         
+865       ",8                                           960,"28         
+755       ",13                                           960,"13         
+1400     ",7                                                  1965,"13         
+1170     ",7                                      1640
+,,,,,,,,,,,,,,,,,,
+"THREE ADJUSTMENT SLIDERS: ONE FOR THE INBETWEEN OF ""HARD AND TOUGH""--------ONE FOR FEED RATE-----------ONE FOR SFPM---------- THE USER WILL PICK MATERIAL-----CHOOSE TOOL SUCH AS UNCOATED CARBIDE OR CERAMIC. NEXT THEY WILL USE THE SLIDER TO ADJUST THE HARDNESS/TOUGHNESS OF THAT TOOL.....THEN THEY CAN GO WITH THE FEED AND SFPM OR ADJUST THEM.",,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,
+1. Add in a HARD <----> TOUGH slider by taking hard value as minimum and tough as maximum and dividing the difference by 100 to get 1 percent steps for a slider between the two.,,,,,,,,,,,,,,,,,,
+2. Add Cermet,,,,,,,,,,,,,,,,,,

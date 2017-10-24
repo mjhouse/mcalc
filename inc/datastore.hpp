@@ -10,7 +10,7 @@
 	@author Michael House
 	@version 0.1 10/19/17
 */
-
+#pragma once
 #ifndef MCALC_DATASTORE_HPP
 #define MCALC_DATASTORE_HPP
 
@@ -56,6 +56,13 @@ namespace mc {
 				@param p collection of Interface objects to use as path.
 			*/
 			json get_value( std::vector<Interface*> p );
+
+			/**
+				Get the first value of the referenced path as a
+				double.
+				@param p The path to access.
+			*/
+			double get_first_value( std::vector<Interface*> p );
 
 	};
 

@@ -10,11 +10,10 @@
 	@author Michael House
 	@version 0.1 10/19/17
 */
-
+#pragma once
 #ifndef MCALC_APPLICATION_HPP
 #define MCALC_APPLICATION_HPP
 
-#include <map>
 #include <gtkmm.h>
 
 #include "json.hpp"
@@ -75,8 +74,6 @@ namespace mcalc {
 			/** The application destructor */
 			~Application();
 
-			/** Manual signal handler for fs_tool */
-			void on_fs_tool_changed();
 	};
 
 }

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <functional>
 
 #include "application.hpp"
@@ -82,8 +81,6 @@ namespace mcalc {
 			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough,feed}
 		);
 
-		fs_tool->signal_changed().connect( sigc::mem_fun(*this, &Application::on_fs_tool_changed) );
-
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.
 		mc::Broadcaster* broadcaster = mc::Broadcaster::get_instance();
@@ -92,28 +89,20 @@ namespace mcalc {
 
 
 	Application::~Application () {
-		delete fs_material; 	fs_material		= nullptr;
-		delete fs_designation; 	fs_designation	= nullptr;
-		delete fs_hardness; 	fs_hardness 	= nullptr;
-		delete fs_tool; 		fs_tool			= nullptr;
-		delete fs_diameter; 	fs_diameter 	= nullptr;
-		delete fs_grade; 		fs_grade		= nullptr;
-		delete fs_velocity; 	fs_velocity 	= nullptr;
-		delete fs_feedrate; 	fs_feedrate 	= nullptr;
-		delete fs_rpm; 			fs_rpm			= nullptr;
+		delete fs_material;
+		delete fs_designation;
+		delete fs_hardness;
+		delete fs_tool;
+		delete fs_diameter;
+		delete fs_grade;
+		delete fs_velocity;
+		delete fs_feedrate;
+		delete fs_rpm;
 
-		delete hard; 			hard			= nullptr;
-		delete tough; 			tough			= nullptr;
-		delete speed; 			speed			= nullptr;
-		delete feed; 			feed			= nullptr;
-	}
-
-	void Application::on_fs_tool_changed(){
-		if(fs_tool->get_value()=="HSS"){
-			fs_feedrate->fix();
-		} else {
-			fs_feedrate->unfix();
-		}
+		delete hard;
+		delete tough;
+		delete speed;
+		delete feed;
 	}
 
 }
