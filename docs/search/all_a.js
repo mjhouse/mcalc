@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['mcalc',['MCalc',['../index.html',1,'']]],
-  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['mcalc',['mcalc',['../namespacemcalc.html',1,'']]]
+  ['json',['json',['../application_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;application.hpp'],['../comboboxtext_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;comboboxtext.hpp'],['../datastore_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;datastore.hpp'],['../interface_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;interface.hpp'],['../output_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;output.hpp'],['../slider_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;slider.hpp'],['../spinner_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;spinner.hpp']]]
 ];

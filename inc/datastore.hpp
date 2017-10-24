@@ -41,9 +41,20 @@ namespace mc {
 			DataStore();
 
 		public:
+			/** The destructor */
 			~DataStore();
 
+			/**
+				Get the existing datastore instance or create
+				a new datastore and return it.
+			*/
 			static DataStore* get_instance();
+
+			/**
+				Get a value from the datastore using a path
+				made up of Interface objects.
+				@param p collection of Interface objects to use as path.
+			*/
 			json get_value( std::vector<Interface*> p );
 
 	};

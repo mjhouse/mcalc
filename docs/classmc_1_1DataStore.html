@@ -102,19 +102,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7ef605d7ffdf180f5862a4f19c3e11b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ef605d7ffdf180f5862a4f19c3e11b6"></a>
-<a class="el" href="spinner_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a>&#160;</td><td class="memItemRight" valign="bottom"><b>get_value</b> (std::vector&lt; <a class="el" href="classmc_1_1Interface.html">Interface</a> * &gt; p)</td></tr>
+<tr class="memitem:acf9ed6ebf7051913daa2ad455eda46cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1DataStore.html#acf9ed6ebf7051913daa2ad455eda46cd">~DataStore</a> ()</td></tr>
+<tr class="separator:acf9ed6ebf7051913daa2ad455eda46cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ef605d7ffdf180f5862a4f19c3e11b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="spinner_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1DataStore.html#a7ef605d7ffdf180f5862a4f19c3e11b6">get_value</a> (std::vector&lt; <a class="el" href="classmc_1_1Interface.html">Interface</a> * &gt; p)</td></tr>
 <tr class="separator:a7ef605d7ffdf180f5862a4f19c3e11b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a979fe6bc0148ebfb65e162b114a75b8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a979fe6bc0148ebfb65e162b114a75b8b"></a>
-static <a class="el" href="classmc_1_1DataStore.html">DataStore</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get_instance</b> ()</td></tr>
+<tr class="memitem:a979fe6bc0148ebfb65e162b114a75b8b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classmc_1_1DataStore.html">DataStore</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1DataStore.html#a979fe6bc0148ebfb65e162b114a75b8b">get_instance</a> ()</td></tr>
 <tr class="separator:a979fe6bc0148ebfb65e162b114a75b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the main source of all data used by the application. It contains tables of values that are used to populate the UI and perform calculations. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="acf9ed6ebf7051913daa2ad455eda46cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mc::DataStore::~DataStore </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The destructor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a979fe6bc0148ebfb65e162b114a75b8b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmc_1_1DataStore.html">DataStore</a> * mc::DataStore::get_instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the existing datastore instance or create a new datastore and return it. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7ef605d7ffdf180f5862a4f19c3e11b6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="spinner_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d">json</a> mc::DataStore::get_value </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classmc_1_1Interface.html">Interface</a> * &gt;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get a value from the datastore using a path made up of <a class="el" href="classmc_1_1Interface.html">Interface</a> objects. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>collection of <a class="el" href="classmc_1_1Interface.html">Interface</a> objects to use as path. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>inc/<a class="el" href="datastore_8hpp_source.html">datastore.hpp</a></li>
 <li>src/datastore.cpp</li>
 </ul>

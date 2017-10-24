@@ -59,17 +59,16 @@ namespace mcalc {
 			mc::Slider*		  fs_feedrate;		/**< feed rate of material */
 			mc::Output*		  fs_rpm;			/**< revolutions per minute */
 
-			mc::DummyInterface* hard;
-			mc::DummyInterface* tough;
-			mc::DummyInterface* speed;
-			mc::DummyInterface* feed;
+			mc::DummyInterface* hard;			/**< DummyInterface with value "hard" */
+			mc::DummyInterface* tough;			/**< DummyInterface with value "tough" */
+			mc::DummyInterface* speed;			/**< DummyInterface with value "speed" */
+			mc::DummyInterface* feed;			/**< DummyInterface with value "feed" */
 
 		public:
 			/**
 				The constructor for the application.
 
 				@param b A Gtk::Builder initialized from a glade file.
-				@param d JSON data used for value lookups and populating the ui.
 			*/
 			Application(Glib::RefPtr<Gtk::Builder> b);
 
