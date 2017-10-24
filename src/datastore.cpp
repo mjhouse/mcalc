@@ -20,11 +20,16 @@ namespace mc {
 	// --------------------------------------------
 	// Functions
 	json DataStore::get_value( std::vector<Interface*> p ){
-		json k = data;
-		for(auto& a : p){
-			k = k[a->get_value()];
+		try {
+			json k = data;
+			for(auto& a : p){
+				k = k[a->get_value()];
+			}
+			return k;
 		}
-		return k;
+		catch (json::exception const& err) {
+			return json::array();
+		}
 	}
 
 }

@@ -113,6 +113,22 @@ namespace mc {
 			std::string get_value();
 
 			/**
+				Freezes the slider at the current value.
+			*/
+			void fix();
+
+			/**
+				Freezes the slider at a constant value.
+				@param val The value to set the slider at.
+			*/
+			void fix( double val );
+
+			/**
+				Unfreezes the slider.
+			*/
+			void unfix();
+
+			/**
 				Sets the max, min and current position of the Slider.
 			*/
 			void set_value( double max, double min, double val );

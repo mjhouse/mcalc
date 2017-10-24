@@ -65,24 +65,26 @@ namespace mc {
 	};
 
 	void Slider::populate(){
-		if(!start_ref.empty() && !end_ref.empty()){
+		if(!start_ref.empty() && !end_ref.empty() && !fixed){
 			std::vector<double> vstart = as_vector( data->get_value(start_ref) );
 			std::vector<double> vend = as_vector( data->get_value(end_ref) );
 
-			double s_max = _max(vstart);
-			double s_min = _min(vstart);
-			double e_max = _max(vend);
-			double e_min = _min(vend);
-			double scale = scaler ? std::stod(scaler->get_value())/100 : 1.0;
+			if (!vstart.empty() && !vend.empty()) {
+				double s_max = _max(vstart);
+				double s_min = _min(vstart);
+				double e_max = _max(vend);
+				double e_min = _min(vend);
+				double scale = scaler ? std::stod(scaler->get_value())/100 : 1.0;
 
-			double tmin = s_min < e_min ? s_min : e_min;
-			double tmax = s_max < e_max ? s_max : e_max;
+				double tmin = s_min < e_min ? s_min : e_min;
+				double tmax = s_max < e_max ? s_max : e_max;
 
-			double min = (fabs(s_min-e_min)*scale) + tmin;
-			double max = (fabs(s_max-e_max)*scale) + tmax;
+				double min = (fabs(s_min-e_min)*scale) + tmin;
+				double max = (fabs(s_max-e_max)*scale) + tmax;
 
-			double mid = (max-min)/2+min;
-			set_value( min, max, mid );
+				double mid = (max-min)/2+min;
+				set_value( min, max, mid );
+			}
 		}
 	};
 
@@ -92,6 +94,20 @@ namespace mc {
 
 	std::string Slider::get_value(){
 		return std::to_string(Gtk::Scale::get_value());
+	};
+
+	void Slider::fix(){
+		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), false);
+	};
+
+	void Slider::fix( double val ){
+		set_value(val-1,val+1,val);
+		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), false);
+	};
+
+	void Slider::unfix(){
+		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), true);
+		populate();
 	};
 
 	void Slider::set_value( double min, double max, double mid ){

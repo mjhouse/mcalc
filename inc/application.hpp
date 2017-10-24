@@ -74,6 +74,9 @@ namespace mcalc {
 
 			/** The application destructor */
 			~Application();
+
+			/** Manual signal handler for fs_tool */
+			void on_fs_tool_changed();
 	};
 
 }

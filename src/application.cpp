@@ -82,6 +82,8 @@ namespace mcalc {
 			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough,feed}
 		);
 
+		fs_tool->signal_changed().connect( sigc::mem_fun(*this, &Application::on_fs_tool_changed) );
+
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.
 		mc::Broadcaster* broadcaster = mc::Broadcaster::get_instance();
@@ -104,6 +106,14 @@ namespace mcalc {
 		delete tough; 			tough			= nullptr;
 		delete speed; 			speed			= nullptr;
 		delete feed; 			feed			= nullptr;
+	}
+
+	void Application::on_fs_tool_changed(){
+		if(fs_tool->get_value()=="HSS"){
+			fs_feedrate->fix(12.0);
+		} else {
+			fs_feedrate->unfix();
+		}
 	}
 
 }

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['feed',['feed',['../classmcalc_1_1Application.html#aa81a2fa3427feeb7640502457036463e',1,'mcalc::Application']]],
+  ['fix',['fix',['../classmc_1_1Slider.html#a4df5b0f030912b016b1f5bc46c180bbf',1,'mc::Slider::fix()'],['../classmc_1_1Slider.html#ac6124dc813cc19319aacfc72c36abc85',1,'mc::Slider::fix(double val)']]],
   ['fs_5fdesignation',['fs_designation',['../classmcalc_1_1Application.html#a5dd81c68d005acedeb18336bfe87cdcb',1,'mcalc::Application']]],
   ['fs_5fdiameter',['fs_diameter',['../classmcalc_1_1Application.html#aa5fa7c6a44d89abb85a6947767261698',1,'mcalc::Application']]],
   ['fs_5ffeedrate',['fs_feedrate',['../classmcalc_1_1Application.html#a7cd486d0bde1d1ecdf82c41a5f2e6d53',1,'mcalc::Application']]],
