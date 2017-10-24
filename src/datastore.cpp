@@ -1,11 +1,14 @@
 #include "datastore.hpp"
 #include "interface.hpp"
+#include "data.hpp"
 #include <vector>
 
 #include "json.hpp"
 using json = nlohmann::json;
 
 namespace mc {
+
+	DataStore::DataStore() : data(static_data::DATA) {}
 
 	DataStore::~DataStore(){}
 

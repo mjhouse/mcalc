@@ -1,5 +1,5 @@
 CC=g++
-CPPFLAGS=`pkg-config gtkmm-3.0 --cflags --libs` -std=c++11 -g
+CPPFLAGS=`pkg-config gtkmm-3.0 --cflags --libs` -std=c++11 -g -H
 
 TARGET = bin/mcalc
 OUTDIR = bin

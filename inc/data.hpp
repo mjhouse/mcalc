@@ -1,10 +1,10 @@
-#ifndef MCALC_DATA_HPP
-#define MCALC_DATA_HPP
+#ifndef MCALC_STATIC_DATA_HPP
+#define MCALC_STATIC_DATA_HPP
 
 #include "json.hpp"
 
 namespace static_data {
-	nlohmann::json material = {
+	nlohmann::json DATA = {
 		{"Plain carbon steels",{
 			{"1006",{
 				{"125-175",{

@@ -15,7 +15,6 @@
 #define MCALC_DATASTORE_HPP
 
 #include <vector>
-#include "data.hpp"
 
 #include "json.hpp"
 using json = nlohmann::json; /**< alias for the nlohmann namespace*/
@@ -39,7 +38,7 @@ namespace mc {
 	class DataStore {
 		private:
 			json data;
-			DataStore() : data(static_data::material) {};
+			DataStore();
 
 		public:
 			~DataStore();
