@@ -110,7 +110,7 @@ namespace mcalc {
 
 	void Application::on_fs_tool_changed(){
 		if(fs_tool->get_value()=="HSS"){
-			fs_feedrate->fix(12.0);
+			fs_feedrate->fix();
 		} else {
 			fs_feedrate->unfix();
 		}
