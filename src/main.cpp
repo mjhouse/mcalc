@@ -18,6 +18,7 @@
 #include <gtkmm/builder.h>
 #include "application.hpp"
 
+/** The entry point into the application */
 int main( int argc, char *argv[] ){
 	Glib::RefPtr<Gtk::Application> app = Gtk::Application::create(argc,argv,"org.mcalc.base");
 	Glib::RefPtr<Gtk::Builder> builder = Gtk::Builder::create_from_file("bin/app.glade");
