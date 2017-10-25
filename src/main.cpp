@@ -12,6 +12,9 @@
 
 #include <gtkmm/builder.h>
 #include "application.hpp"
+#include "sqlite3.h"
+
+#include <iostream>
 
 /** The entry point into the application */
 int main( int argc, char *argv[] ){
@@ -21,11 +24,19 @@ int main( int argc, char *argv[] ){
 	Gtk::Window* window = nullptr;
 	builder->get_widget("mcalc",window);
 
-	mcalc::Application calc = mcalc::Application(builder);
+	mcalc::Application calc = mcalc::Application(builder,window);
+	calc.set_stylesheet("bin/app.css");
 
-	//GtkCssProvider* css_provider = nullptr;
-	//gtk_css_provider_load_from_path (css_provider, "bin/app.css", NULL);
-	//gtk_style_context_add_provider (window, GTK_STYLE_PROVIDER(css_provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+	sqlite3 *db;
+	char *zErrMsg = 0;
+	int rc;
+
+	rc = sqlite3_open("mcalc.db", &db);
+	if (rc) {
+		std::cout << "opened database successfully" << std::endl;
+	}
+
+	sqlite3_close(db);
 
 	app->run(*window);
 	delete window;

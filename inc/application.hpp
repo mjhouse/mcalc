@@ -20,6 +20,7 @@
 using json = nlohmann::json; /**< alias for the nlohmann namespace*/
 
 namespace mc {
+	class Settings;
 	class DataStore;
 	class Interface;
 	class DummyInterface;
@@ -44,9 +45,13 @@ namespace mcalc {
 		protected:
 			/** The Gtk::Builder that is used to fetch ui elements.*/
 			Glib::RefPtr<Gtk::Builder> builder;
+			Gtk::Window* window;
 
-			/** The generated tabls and other data used for lookups. */
+			/** The static data used for value lookups. */
 			mc::DataStore* datastore;
+
+			/** The user-provided settings. */
+			mc::Settings* settings;
 
 			mc::ComboBoxText* fs_material;		/**< material to use */
 			mc::ComboBoxText* fs_designation;	/**< AISI/SAE material designation */
@@ -68,11 +73,18 @@ namespace mcalc {
 				The constructor for the application.
 
 				@param b A Gtk::Builder initialized from a glade file.
+				@param w Gtk::Window that the application is managing.
 			*/
-			Application(Glib::RefPtr<Gtk::Builder> b);
+			Application(Glib::RefPtr<Gtk::Builder> b, Gtk::Window* w);
 
 			/** The application destructor */
 			~Application();
+
+			/**
+				The css file to use style the window with.
+				@param f the file to use.
+			*/
+			void set_stylesheet( std::string f );
 
 	};
 

@@ -9,15 +9,18 @@
 #include "spinner.hpp"
 #include "comboboxtext.hpp"
 #include "datastore.hpp"
+#include "settings.hpp"
 
 
 namespace mcalc {
 
 	/* -------------------------------------------------------------------------
 		Constructors/Destructors */
-	Application::Application(Glib::RefPtr<Gtk::Builder> b){
+	Application::Application(Glib::RefPtr<Gtk::Builder> b, Gtk::Window* w){
 		this->builder = b;
+		this->window = w;
 		this->datastore = mc::DataStore::get_instance();
+		this->settings = mc::Settings::get_instance();
 
 		// generate wrapping Interface's for each ui element that we need to interact
 		// with.
@@ -103,6 +106,17 @@ namespace mcalc {
 		delete tough;
 		delete speed;
 		delete feed;
+	}
+
+	void Application::set_stylesheet( std::string f ){
+		Glib::RefPtr<Gtk::CssProvider> css_provider = Gtk::CssProvider::create();
+		Glib::RefPtr<Gtk::StyleContext> style_context = Gtk::StyleContext::create();
+
+		//load our css file, wherever that may be hiding
+		if(css_provider->load_from_path(f)){
+			Glib::RefPtr<Gdk::Screen> screen = window->get_screen();
+			style_context->add_provider_for_screen(screen, css_provider, GTK_STYLE_PROVIDER_PRIORITY_USER);
+		}
 	}
 
 }

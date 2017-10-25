@@ -10,6 +10,7 @@
 	@version 0.1 10/19/17
 */
 #pragma once
+
 #ifndef MCALC_INTERFACE_HPP
 #define MCALC_INTERFACE_HPP
 

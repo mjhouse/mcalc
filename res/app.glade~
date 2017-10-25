@@ -86,7 +86,7 @@
                   <object class="GtkLabel" id="fs_designation_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">SAE Designation</property>
+                    <property name="label" translatable="yes">AISI/SAE Designation</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -114,7 +114,7 @@
                   <object class="GtkLabel" id="fs_velocity_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Velocity</property>
+                    <property name="label" translatable="yes">Velocity (fpm)</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -158,7 +158,7 @@
                   <object class="GtkLabel" id="fs_hardness_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Brinell Hardness</property>
+                    <property name="label" translatable="yes">Hardness (Brinell)</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -233,7 +233,7 @@
                   <object class="GtkLabel" id="fs_feedrate_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Feed Rate</property>
+                    <property name="label" translatable="yes">Feed Rate (0.001 in./rev)</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -247,6 +247,7 @@
                     <property name="adjustment">grade_adjust</property>
                     <property name="round_digits">3</property>
                     <property name="digits">2</property>
+                    <property name="has_origin">False</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -268,7 +269,7 @@
                   <object class="GtkLabel" id="fs_diameter_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Workpiece Dia.</property>
+                    <property name="label" translatable="yes">Workpiece Diameter (in.)</property>
                     <property name="lines">1</property>
                   </object>
                   <packing>
@@ -324,6 +325,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
+                <property name="padding">5</property>
                 <property name="position">0</property>
               </packing>
             </child>

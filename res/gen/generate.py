@@ -41,7 +41,7 @@ def get_jhardness( row ):
 
 def generate_json( data ):
 	rstart,rend = 0, 16
-	cstart,cend = 3, 16
+	cstart,cend = 3, 19
 
 	json = {}
 	for i,row in enumerate(data[rstart:rend]):
@@ -84,7 +84,6 @@ def generate_output_str( data, buf='\t\t'):
 		out += buf + ','.join(['"{}"'.format(w) for w in data])
 
 	with open('data.hpp','w') as f:
-		f.write('#pragma once\n')
 		f.write('#ifndef MCALC_STATIC_DATA_HPP\n')
 		f.write('#define MCALC_STATIC_DATA_HPP\n\n')
 		f.write('#include "json.hpp"\n\n')

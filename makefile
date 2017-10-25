@@ -32,5 +32,8 @@ link: $(OBJECTS)
 obj/%.o: src/%.c*
 	$(CC) $(INC) -c $< -o $@ $(CPPFLAGS)
 
+#inc/data.hpp.gch: inc/data.hpp
+#	$(CC) -c $< -o $@ $(CPPFLAGS)
+
 clean:
 	rm $(BLDDIR)/*.o; rm $(TARGET);

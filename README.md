@@ -15,3 +15,4 @@ It's written in C++ and uses GTK for the UI.
 - inc/json.hpp 		([MIT License](https://github.com/nlohmann/json#license))
 - doxygen 1.8.11	([GNU Library General Public License](http://www.stack.nl/~dimitri/doxygen/))
 - Graphviz/dot		([Eclipse Public License - v1.0](www.graphviz.org/License.php))
+- Sqlite3			([Public Domain](https://sqlite.org/copyright.html))
