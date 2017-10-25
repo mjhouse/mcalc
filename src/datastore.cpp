@@ -1,6 +1,5 @@
 #include "datastore.hpp"
 #include "interface.hpp"
-#include "data.hpp"
 
 #include <vector>
 
@@ -9,7 +8,7 @@ using json = nlohmann::json;
 
 namespace mc {
 
-	DataStore::DataStore() : data(static_data::DATA) {}
+	DataStore::DataStore(){}
 
 	DataStore::~DataStore(){}
 

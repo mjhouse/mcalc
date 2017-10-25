@@ -81,8 +81,8 @@ namespace mcalc {
 			~Application();
 
 			/**
-				The css file to use style the window with.
-				@param f the file to use.
+				The css file to style the window with.
+				@param f the path to the css file.
 			*/
 			void set_stylesheet( std::string f );
 

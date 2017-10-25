@@ -1,21 +1,6 @@
 var searchData=
 [
-  ['p4union',['p4union',['../unionVdbeOp_1_1p4union.html',1,'VdbeOp']]],
-  ['pager',['Pager',['../structPager.html',1,'']]],
-  ['pagersavepoint',['PagerSavepoint',['../structPagerSavepoint.html',1,'']]],
-  ['parse',['Parse',['../structParse.html',1,'']]],
-  ['pcache',['PCache',['../structPCache.html',1,'']]],
-  ['pcache1',['PCache1',['../structPCache1.html',1,'']]],
-  ['pgfreeslot',['PgFreeslot',['../structPgFreeslot.html',1,'']]],
-  ['pghdr',['PgHdr',['../structPgHdr.html',1,'']]],
-  ['pghdr1',['PgHdr1',['../structPgHdr1.html',1,'']]],
-  ['pgroup',['PGroup',['../structPGroup.html',1,'']]],
-  ['pmareader',['PmaReader',['../structPmaReader.html',1,'']]],
-  ['pmawriter',['PmaWriter',['../structPmaWriter.html',1,'']]],
-  ['populate',['populate',['../classmc_1_1ComboBoxText.html#acac1e8f7b02c7cc76098768c6bcf9d12',1,'mc::ComboBoxText::populate()'],['../classmc_1_1Slider.html#a42c9a7dc4cc7db0098f6a8e1313ae098',1,'mc::Slider::populate()']]],
-  ['pragmaname',['PragmaName',['../structPragmaName.html',1,'']]],
-  ['pragmavtab',['PragmaVtab',['../structPragmaVtab.html',1,'']]],
-  ['pragmavtabcursor',['PragmaVtabCursor',['../structPragmaVtabCursor.html',1,'']]],
-  ['preupdate',['PreUpdate',['../structPreUpdate.html',1,'']]],
-  ['printfarguments',['PrintfArguments',['../structPrintfArguments.html',1,'']]]
+  ['tough',['tough',['../classmcalc_1_1Application.html#a906a4214727ac6347c98e9cc356af838',1,'mcalc::Application']]],
+  ['tunnel',['tunnel',['../classmc_1_1Interface.html#a231dc1d03130742787f2a16d2775a756',1,'mc::Interface']]],
+  ['type',['type',['../classmc_1_1Event.html#ae95c0cc6d4609bb6c032c124caafbf4f',1,'mc::Event::type()'],['../classmc_1_1Event.html#afe30211c7b3a7564272ed756e96c8717',1,'mc::Event::Type()']]]
 ];

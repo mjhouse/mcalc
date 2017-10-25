@@ -12,7 +12,10 @@
 
 #include <gtkmm/builder.h>
 #include "application.hpp"
-#include "sqlite3.h"
+
+extern "C" {
+	#include "sqlite3.h"
+}
 
 #include <iostream>
 
@@ -31,9 +34,13 @@ int main( int argc, char *argv[] ){
 	char *zErrMsg = 0;
 	int rc;
 
-	rc = sqlite3_open("mcalc.db", &db);
+	rc = sqlite3_open_v2("file:mcalc.db", &db,SQLITE_OPEN_READONLY,NULL);
 	if (rc) {
-		std::cout << "opened database successfully" << std::endl;
+		
+
+
+	} else {
+		std::cout << "did not open database" << std::endl;
 	}
 
 	sqlite3_close(db);
