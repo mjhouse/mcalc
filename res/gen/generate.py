@@ -92,22 +92,42 @@ def generate_output_str( data, buf='\t\t'):
 
 	return out
 
-def db_get_commands( data ):
-	
-
 def generate_output_db( data ):
 	dbfile = 'mcalc.db'
 	if (os.path.exists(dbfile)):
 		os.remove(dbfile)
 
 	conn = sqlite3.connect('mcalc.db')
-	c = conn.cursor()
+	cur = conn.cursor()
 
-	c.execute('''CREATE TABLE materials
+	cur.execute('''CREATE TABLE materials
              (description text, designation text, hardness text, tool text, grade text, max_feed real, min_feed real, max_sfpm real, min_sfpm real)''')
 
-	commands = db_get_commands(data)
+	for desc,a in data.items():
+		for desg,b in a.items():
+			for hard,c in b.items():
+				for tool,d in c.items():
+					for grade,e in d.items():
+						max_s = max(e["speed"])
+						min_s = min(e["speed"])
 
+						max_f = max(e["feed"])
+						min_f = min(e["feed"])
+
+						command = "INSERT INTO materials VALUES (\"{}\",\"{}\",\"{}\",\"{}\",\"{}\",{},{},{},{})".format(
+							desc,
+							desg,
+							hard,
+							tool,
+							grade,
+							max_f,
+							min_f,
+							max_s,
+							min_s
+						)
+
+						cur.execute(command)
+	conn.commit()
 	conn.close()
 
 def generate( fn ):
@@ -115,6 +135,7 @@ def generate( fn ):
 		data = list(list(r) for r in csv.reader(f))
 		code = generate_json(data)
 		generate_output_db(code)
+		#generate_output_str(code)
 
 
 

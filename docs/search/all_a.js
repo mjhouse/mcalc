@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['json',['json',['../application_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;application.hpp'],['../comboboxtext_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;comboboxtext.hpp'],['../datastore_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;datastore.hpp'],['../interface_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;interface.hpp'],['../output_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;output.hpp'],['../slider_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;slider.hpp'],['../spinner_8hpp.html#ab701e3ac61a85b337ec5c1abaad6742d',1,'json():&#160;spinner.hpp']]]
+  ['mcalc',['MCalc',['../index.html',1,'']]],
+  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_2ecpp',['main.cpp',['../main_8cpp.html',1,'']]],
+  ['mc',['mc',['../namespacemc.html',1,'']]],
+  ['mcalc',['mcalc',['../namespacemcalc.html',1,'']]]
 ];

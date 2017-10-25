@@ -19,9 +19,6 @@
 
 #include "interface.hpp"
 
-#include "json.hpp"
-using json = nlohmann::json; /**< alias for the nlohmann namespace*/
-
 namespace mc {
 
 	class Event;

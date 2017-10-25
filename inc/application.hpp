@@ -16,9 +16,6 @@
 
 #include <gtkmm.h>
 
-#include "json.hpp"
-using json = nlohmann::json; /**< alias for the nlohmann namespace*/
-
 namespace mc {
 	class Settings;
 	class DataStore;

@@ -62,8 +62,10 @@ namespace mc {
 
 	void ComboBoxText::set_value( std::vector<mc::Interface*> v ){
 		this->block(true);
+
+		/*
 		gtk_combo_box_text_remove_all(this->gobj());
-		json d = data->get_value(v);
+		int d = data->get_value(v);
 
 		for(json::iterator it = d.begin(); it != d.end(); ++it){
 			if (!(*it).is_primitive()) {
@@ -74,6 +76,7 @@ namespace mc {
 				}
 			}
 		}
+		*/
 		this->set_active(0);
 		this->block(false);
 	};

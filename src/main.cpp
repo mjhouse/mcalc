@@ -12,10 +12,7 @@
 
 #include <gtkmm/builder.h>
 #include "application.hpp"
-
-extern "C" {
-	#include "sqlite3.h"
-}
+#include "datastore.hpp"
 
 #include <iostream>
 
@@ -27,23 +24,17 @@ int main( int argc, char *argv[] ){
 	Gtk::Window* window = nullptr;
 	builder->get_widget("mcalc",window);
 
-	mcalc::Application calc = mcalc::Application(builder,window);
-	calc.set_stylesheet("bin/app.css");
+	//mcalc::Application calc = mcalc::Application(builder,window);
+	//calc.set_stylesheet("bin/app.css");
 
-	sqlite3 *db;
-	char *zErrMsg = 0;
-	int rc;
-
-	rc = sqlite3_open_v2("file:mcalc.db", &db,SQLITE_OPEN_READONLY,NULL);
-	if (rc) {
-		
-
-
-	} else {
-		std::cout << "did not open database" << std::endl;
-	}
-
-	sqlite3_close(db);
+	mc::DataStore* data = mc::DataStore::get_instance();
+	data->query(
+		"SELECT max_feed, min_feed, max_sfpm, min_sfpm FROM materials WHERE "
+		"description = 'Plain carbon steels' AND "
+		"designation = '1021' AND "
+		"hardness = '100–125' AND "
+		"tool = 'Uncoated Carbide' AND "
+		"grade = 'tough';");
 
 	app->run(*window);
 	delete window;

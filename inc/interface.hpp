@@ -15,9 +15,7 @@
 #define MCALC_INTERFACE_HPP
 
 #include <vector>
-
-#include "json.hpp"
-using json = nlohmann::json; /**< alias for the nlohmann namespace*/
+#include <iostream>
 
 /** A macro to simplify the creation of a DummyInterface */
 #define _vinterface(V) (new mc::DummyInterface(V))
@@ -34,38 +32,6 @@ namespace mc {
 		etc.
 	*/
 	class Interface {
-		protected:
-
-			/**
-				A utility function that will return json for a given
-				path of Interfaces. Uses the current value of each one.
-				@param d The json to search
-				@param i The Interface list to use as a path
-			*/
-			inline json tunnel(json* d, std::vector<Interface*> i){
-				json k = *d;
-				for(auto& a : i){
-					k = k[a->get_value()];
-				}
-				return k;
-			}
-
-			/**
-				A utility function that generates a vector of doubles
-				from a json array.
-				@param d The json array to use
-			*/
-			inline std::vector<double> as_vector(json d){
-				std::vector<double> r;
-				if(d.is_array()){
-					for(auto& a : d){
-						r.push_back(std::stod(a.get<std::string>()));
-					}
-				}
-				return r;
-			}
-
-
 		protected:
 			Broadcaster* broadcaster; /**< Pointer to the broadcaster instance */
 			DataStore* data; /**< Pointer to the datastore */

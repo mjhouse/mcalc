@@ -68,6 +68,7 @@ namespace mc {
 
 	void Slider::populate(){
 		if(!start_ref.empty() && !end_ref.empty()){
+			/*
 			std::vector<double> vstart = as_vector( data->get_value(start_ref) );
 			std::vector<double> vend = as_vector( data->get_value(end_ref) );
 
@@ -96,6 +97,7 @@ namespace mc {
 					fix();
 				}
 			}
+			*/
 		}
 	};
 
