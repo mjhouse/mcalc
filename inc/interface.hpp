@@ -57,8 +57,19 @@ namespace mc {
 			*/
 			virtual void notify(Event* e)=0;
 
+			/**
+				Set the column that this Interface
+				refers to, if the input value of the Interface
+				directly maps to the database.
+				@param n The column name..
+			*/
 			void set_column( std::string n );
 
+			/**
+				Get the name of the column that this
+				Interface refers to, if none is set, get
+				empty string.
+			*/
 			std::string get_column();
 	};
 
