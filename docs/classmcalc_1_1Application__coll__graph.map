@@ -1,10 +1,12 @@
 <map id="mcalc::Application" name="mcalc::Application">
-<area shape="rect" id="node2" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="63,5,169,32"/>
-<area shape="rect" id="node4" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="329,95,428,121"/>
-<area shape="rect" id="node3" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="48,184,187,211"/>
-<area shape="rect" id="node7" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="211,184,303,211"/>
-<area shape="rect" id="node9" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="327,184,409,211"/>
-<area shape="rect" id="node11" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="433,184,578,211"/>
-<area shape="rect" id="node12" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="602,184,689,211"/>
-<area shape="rect" id="node5" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="319,5,438,32"/>
+<area shape="rect" id="node2" href="$classmc_1_1Settings.html" title="mc::Settings" alt="" coords="519,8,615,35"/>
+<area shape="rect" id="node3" href="$classmc_1_1Subscriber.html" title="mc::Subscriber" alt="" coords="261,8,372,35"/>
+<area shape="rect" id="node4" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="11,333,118,360"/>
+<area shape="rect" id="node6" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="267,199,366,225"/>
+<area shape="rect" id="node5" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="498,97,637,124"/>
+<area shape="rect" id="node9" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="521,280,613,307"/>
+<area shape="rect" id="node11" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="527,352,608,379"/>
+<area shape="rect" id="node13" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="495,168,640,195"/>
+<area shape="rect" id="node14" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="524,229,611,256"/>
+<area shape="rect" id="node7" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="5,199,124,225"/>
 </map>

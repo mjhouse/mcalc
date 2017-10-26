@@ -10,15 +10,20 @@ namespace mc {
 		return &instance;
 	}
 
-	Broadcaster::~Broadcaster() {
-		subscribers.clear();
-	}
+	Broadcaster::~Broadcaster() {}
 
 	void Broadcaster::subscribe(Interface* s) {
+		interfaces.push_back(s);
+	}
+
+	void Broadcaster::subscribe(Subscriber* s) {
 		subscribers.push_back(s);
 	}
 
 	void Broadcaster::broadcast( Event e ) {
+		for(auto& a : interfaces){
+			a->notify(&e);
+		}
 		for(auto& a : subscribers){
 			a->notify(&e);
 		}

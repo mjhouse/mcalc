@@ -9,5 +9,6 @@ var searchData=
   ['_7eoutput',['~Output',['../classmc_1_1Output.html#a008a9b63a361317f496bfc321d5f3972',1,'mc::Output']]],
   ['_7esettings',['~Settings',['../classmc_1_1Settings.html#a1ee6111739e768cd4d359a800eccdf5d',1,'mc::Settings']]],
   ['_7eslider',['~Slider',['../classmc_1_1Slider.html#afde5e7b53d80e8667111d36099ba7297',1,'mc::Slider']]],
-  ['_7espinner',['~Spinner',['../classmc_1_1Spinner.html#a6e9f8cdd594f84e5a58d96c40de9c3aa',1,'mc::Spinner']]]
+  ['_7espinner',['~Spinner',['../classmc_1_1Spinner.html#a6e9f8cdd594f84e5a58d96c40de9c3aa',1,'mc::Spinner']]],
+  ['_7esubscriber',['~Subscriber',['../classmc_1_1Subscriber.html#aaf6b413f64e9b02a809714358e358c5e',1,'mc::Subscriber']]]
 ];

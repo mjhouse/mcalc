@@ -26,6 +26,23 @@ namespace mc {
 	class Event;
 
 	/**
+		The subscriber interface that needs to be implemented
+		in order to listen for broadcaster events.
+	*/
+	class Subscriber {
+		protected:
+		public:
+			/** The constructor. */
+			Subscriber(){};
+
+			/** The virtual destructor. */
+			virtual ~Subscriber(){};
+
+			/** The notify method. */
+			virtual void notify(Event* e)=0;
+	};
+
+	/**
 		The abstract base class for Sliders, ComboBoxText
 		etc.
 	*/

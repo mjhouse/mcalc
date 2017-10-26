@@ -18,6 +18,7 @@
 
 namespace mc {
 
+	class Subscriber;
 	class Interface;
 	class Event;
 
@@ -27,13 +28,15 @@ namespace mc {
 	*/
 	class Broadcaster {
 		private:
-			std::vector<Interface*> subscribers;
+			std::vector<Interface*> interfaces;
+			std::vector<Subscriber*> subscribers;
 			Broadcaster() : subscribers({}) {};
 
 		public:
 			static Broadcaster* get_instance();		/**< Get the singleton instance of broadcaster */
 			~Broadcaster();							/**< The destructor */
 			void subscribe(Interface* s);			/**< Subscribe an interface to receive notifications */
+			void subscribe(Subscriber* s);			/**< Subscribe a subscriber to receive notifications */
 			void broadcast(Event e);				/**< Broadcast an event to all subscribed interfaces */
 	};
 

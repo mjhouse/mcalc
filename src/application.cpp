@@ -93,6 +93,8 @@ namespace mcalc {
 			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough}
 		);
 
+		settings->bind("feed test",fs_feedrate);
+
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.
 		mc::Broadcaster* broadcaster = mc::Broadcaster::get_instance();

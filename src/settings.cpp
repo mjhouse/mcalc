@@ -1,9 +1,16 @@
 #include "settings.hpp"
-#include "interface.hpp"
+#include "datastore.hpp"
+#include "broadcaster.hpp"
 
 namespace mc {
 
-	Settings::Settings(){};
+	Settings::Settings() :
+		data(DataStore::get_instance()),
+		broadcaster(Broadcaster::get_instance()),
+		settings({}) {
+
+			broadcaster->subscribe(this);
+		};
 
 	Settings::~Settings(){};
 
@@ -12,13 +19,15 @@ namespace mc {
 		return &instance;
 	};
 
-	void Settings::set_ui( Glib::RefPtr<Gtk::Builder> b ){
-		ui = b;
+	void Settings::bind( std::string s, Interface* i ){
+		settings.insert(std::pair<Interface*,std::string>(i,s));
 	};
 
-	void Settings::set_inputs( std::vector<std::string> i ){
-		inputs = i;
-	};
 
+	void Settings::notify(Event* e){
+		if (settings.find(e->sender()) != settings.end()) {
+			std::cout << "changed msg setting: " << settings[e->sender()] << std::endl;
+		}
+	}
 
 }

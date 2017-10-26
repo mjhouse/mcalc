@@ -12,20 +12,24 @@
 #ifndef MCALC_SETTINGS_HPP
 #define MCALC_SETTINGS_HPP
 
+#include "interface.hpp"
 #include <gtkmm.h>
 
 namespace mc {
 
-	class Interface;
+	class Broadcaster;
+	class DataStore;
 
 	/**
 		The Settings object acts as a collection of
 		user-provided values.
 	*/
-	class Settings {
+	class Settings : public Subscriber {
 		private:
-			Glib::RefPtr<Gtk::Builder> ui;
-			std::vector<std::string> inputs;
+			DataStore* data;
+			Broadcaster* broadcaster;
+
+			std::map<Interface*,std::string> settings;
 
 			Settings();
 
@@ -34,16 +38,18 @@ namespace mc {
 			~Settings();							/**< The destructor */
 
 			/**
-				set the settings input widgets
-				@param b The builder to fetch widgets from.
+				Map an input to a setting value.
+				@param s The setting to update.
+				@param i The interface to watch.
 			*/
-			void set_ui( Glib::RefPtr<Gtk::Builder> b );
+			void bind( std::string s, Interface* i );
 
 			/**
-				set the settings input widgets
-				@param i The ui widgets
+				The method that will receive notifications from
+				the broadcaster.
+				@param e The event object.
 			*/
-			void set_inputs( std::vector<std::string> i );
+			void notify(Event* e);
 	};
 
 }
