@@ -30,6 +30,7 @@ namespace mc {
 	*/
 	class Slider : public mc::Interface, public Gtk::Scale {
 		private:
+			std::vector<std::string> columns;
 			bool blocked;
 			std::vector<mc::Interface*> start_ref;
 			std::vector<mc::Interface*> end_ref;
@@ -96,6 +97,12 @@ namespace mc {
 				@param e A vector of Interfaces to use as a reference
 			*/
 			void set_references( std::vector<mc::Interface*> s, std::vector<mc::Interface*> e );
+
+			/**
+				The columns to use for setting max and min values.
+				@param c Column names ('max_sfpm' etc.)
+			*/
+			void set_columns( std::vector<std::string> c );
 
 			/**
 				Stop/start broadcasting events

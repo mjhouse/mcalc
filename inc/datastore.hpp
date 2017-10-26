@@ -19,6 +19,9 @@ extern "C" {
 	#include "sqlite3.h"
 }
 
+typedef std::vector<std::vector<std::string>> Records;
+typedef std::vector<std::string> Record;
+
 /** @namespace mc
 
 	The mc namespace exists only to isolate
@@ -43,7 +46,7 @@ namespace mc {
 			bool open();
 			void close();
 
-			std::vector<std::vector<std::string>> query( std::string q );
+			Records query( std::string q );
 
 		public:
 			/** The destructor */
@@ -55,7 +58,7 @@ namespace mc {
 			*/
 			static DataStore* get_instance();
 
-			std::vector<std::string> material( std::map<std::string,std::string> ref );
+			Records get( std::vector<Interface*> r, std::vector<std::string> cols );
 
 	};
 

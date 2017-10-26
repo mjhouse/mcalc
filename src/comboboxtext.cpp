@@ -1,6 +1,7 @@
 #include "datastore.hpp"
 #include "comboboxtext.hpp"
 #include "broadcaster.hpp"
+#include <set>
 
 #define _in(E,V) (std::find(V.begin(), V.end(), E) != V.end())
 
@@ -63,20 +64,18 @@ namespace mc {
 	void ComboBoxText::set_value( std::vector<mc::Interface*> v ){
 		this->block(true);
 
-		/*
+		// clear the contents of the comboboxtext ui
 		gtk_combo_box_text_remove_all(this->gobj());
-		int d = data->get_value(v);
 
-		for(json::iterator it = d.begin(); it != d.end(); ++it){
-			if (!(*it).is_primitive()) {
-				this->append(it.key());
-			} else {
-				if (it->type() != json::value_t::null){
-					this->append(it->get<std::string>());
-				}
-			}
-		}
-		*/
+		// get a vector<vector<string>> set of records from the database
+		Records r = data->get(v,std::vector<std::string>{this->get_column()});
+
+		// get a unique collection of column values
+		// and append it to this comboboxtext
+		std::set<std::string> values;
+		for (auto& a : r){ values.insert(a[0]); }
+		for (auto& b : values){ this->append(b); }
+
 		this->set_active(0);
 		this->block(false);
 	};

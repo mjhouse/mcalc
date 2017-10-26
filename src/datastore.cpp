@@ -31,27 +31,28 @@ namespace mc {
 		sqlite3_close(database);
 	}
 
-	std::vector<std::vector<std::string>> DataStore::query( std::string q ) {
+	Records DataStore::query( std::string q ) {
 		sqlite3_stmt *statement;
-		std::vector<std::vector<std::string>> results;
+		Records results;
 
 		if (this->open()){
 			if(sqlite3_prepare_v2(database, q.c_str(), -1, &statement, NULL) == SQLITE_OK){
 
 				while (true) {
 					if ( sqlite3_step(statement) == SQLITE_ROW ) {
-						std::vector<std::string> values;
+						Record row;
 						for(int i = 0; i < sqlite3_column_count(statement); i++){
 							std::string value = (char*)sqlite3_column_text(statement,i);
-							values.push_back(value);
+							row.push_back(value);
 						}
-						results.push_back(values);
+						results.push_back(row);
 					} else {
 						break;
 					}
 				}
 
 			} else {
+				_print(q);
 				_print(sqlite3_errmsg(database));
 			}
 		}
@@ -63,7 +64,10 @@ namespace mc {
 
 	// ----------------------------------------------
 	// Public Functions
-	std::vector<std::string> DataStore::material( std::map<std::string,std::string> ref ){
+
+	/*
+	std::map<std::string,double> DataStore::material( std::vector<Interface*> r ){
+
 		if(ref.size()<=5){
 			std::string req = "SELECT max_feed, min_feed, max_sfpm, min_sfpm FROM materials WHERE ";
 			for (std::map<std::string,std::string>::iterator it = ref.begin(); it != ref.end(); it++) {
@@ -76,12 +80,32 @@ namespace mc {
 			}
 
 			std::vector<std::vector<std::string>> r = this->query(req);
-			if(r.size()>0){
-				return r[0];
+			return std::map<std::string,double>{};
+		}
+
+		return std::map<std::string,double>{};
+	}
+	*/
+
+	Records DataStore::get( std::vector<Interface*> r, std::vector<std::string> cols ){
+		std::string request = "SELECT ";
+
+		for (std::vector<std::string>::iterator it = cols.begin(); it != cols.end(); it++) {
+			request += (std::next(it) != cols.end()) ? *it + ", " : *it;
+		}
+
+		request += " FROM materials WHERE ";
+
+		for (std::vector<Interface*>::iterator it = r.begin(); it != r.end(); it++) {
+			Interface* tmp = *it;
+			if(std::next(it) != r.end()){
+				request += tmp->get_column() + "='" + tmp->get_value() + "' AND ";
 			} else {
-				return std::vector<std::string>{};
+				request += tmp->get_column() + "='" + tmp->get_value() + "'";
 			}
 		}
+
+		return this->query(request);
 	}
 
 }

@@ -24,21 +24,8 @@ int main( int argc, char *argv[] ){
 	Gtk::Window* window = nullptr;
 	builder->get_widget("mcalc",window);
 
-	//mcalc::Application calc = mcalc::Application(builder,window);
-	//calc.set_stylesheet("bin/app.css");
-
-	mc::DataStore* data = mc::DataStore::get_instance();
-	std::vector<std::string> result = data->material(std::map<std::string,std::string> {
-		{"description","Plain carbon steels"},
-		{"designation","1021"},
-		{"hardness","100-125"},
-		{"tool","Uncoated Carbide"},
-		{"grade","tough"}
-	});
-
-	for(auto& a : result){
-		std::cout << a << std::endl;
-	}
+	mcalc::Application calc = mcalc::Application(builder,window);
+	calc.set_stylesheet("bin/app.css");
 
 
 	app->run(*window);

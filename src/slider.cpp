@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include "slider.hpp"
 #include "broadcaster.hpp"
@@ -8,6 +9,8 @@
 
 #define _max(V) (*std::max_element(V.begin(),V.end()))
 #define _min(V) (*std::min_element(V.begin(),V.end()))
+
+#define _try(X) (try { X; } catch (...) {})
 
 namespace mc {
 	/* -------------------------------------------------------------------------
@@ -66,17 +69,32 @@ namespace mc {
 		populate();
 	};
 
+	void Slider::set_columns( std::vector<std::string> c ){
+		columns = c;
+	};
+
 	void Slider::populate(){
 		if(!start_ref.empty() && !end_ref.empty()){
-			/*
-			std::vector<double> vstart = as_vector( data->get_value(start_ref) );
-			std::vector<double> vend = as_vector( data->get_value(end_ref) );
 
-			if (!vstart.empty() && !vend.empty()) {
-				double s_max = _max(vstart);
-				double s_min = _min(vstart);
-				double e_max = _max(vend);
-				double e_min = _min(vend);
+			Records start_r = data->get( start_ref, columns );
+			Records end_r   = data->get( end_ref, columns );
+
+			if(start_r.size()>0 && end_r.size()>0){
+				std::vector<double> start_vals;
+				std::vector<double> end_vals;
+
+				for(auto& i : start_r[0]){
+					start_vals.push_back( std::stod(i) );
+				}
+
+				for(auto& i : end_r[0]){
+					end_vals.push_back( std::stod(i) );
+				}
+
+				double s_max = _max(start_vals);
+				double s_min = _min(start_vals);
+				double e_max = _max(end_vals);
+				double e_min = _min(end_vals);
 
 				double scale = scaler ? std::stod(scaler->get_value())/100 : 1.0;
 
@@ -96,8 +114,8 @@ namespace mc {
 					set_value(tmax-1,tmax+1,tmax);
 					fix();
 				}
+
 			}
-			*/
 		}
 	};
 

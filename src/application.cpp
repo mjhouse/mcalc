@@ -38,8 +38,15 @@ namespace mcalc {
 
 		hard 			= _vinterface("hard");
 		tough 			= _vinterface("tough");
-		speed 			= _vinterface("speed");
-		feed 			= _vinterface("feed");
+
+		fs_material->set_column("description");
+		fs_designation->set_column("designation");
+		fs_hardness->set_column("hardness");
+		fs_tool->set_column("tool");
+		fs_grade->set_column("grade");
+
+		hard->set_column("grade");
+		tough->set_column("grade");
 
 
 		// set referenced ui elements. when the references change their values,
@@ -72,16 +79,18 @@ namespace mcalc {
 		// There are two references for the slider, because there are two possible max/min pairs
 		// that the scaler adjusts between.
 		fs_velocity->set_scaler(fs_grade);
-		fs_velocity->set_references(
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,hard,speed},
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough,speed}
+		fs_velocity->set_columns(std::vector<std::string>{"max_sfpm","min_sfpm"});
+		fs_velocity->set_references( // SPEED
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,hard},
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough}
 		);
 
 		// do the same for the feed rate Slider.
 		fs_feedrate->set_scaler(fs_grade);
-		fs_feedrate->set_references(
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,hard,feed},
-			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough,feed}
+		fs_feedrate->set_columns(std::vector<std::string>{"max_feed","min_feed"});
+		fs_feedrate->set_references( // FEED
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,hard},
+			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough}
 		);
 
 		// manually broadcast a single ALL event to make the ui initialize itself with
@@ -104,8 +113,6 @@ namespace mcalc {
 
 		delete hard;
 		delete tough;
-		delete speed;
-		delete feed;
 	}
 
 	void Application::set_stylesheet( std::string f ){

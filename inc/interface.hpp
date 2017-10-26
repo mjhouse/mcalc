@@ -35,6 +35,7 @@ namespace mc {
 		protected:
 			Broadcaster* broadcaster; /**< Pointer to the broadcaster instance */
 			DataStore* data; /**< Pointer to the datastore */
+			std::string column_name;
 
 		public:
 			/** Constructor */
@@ -55,6 +56,10 @@ namespace mc {
 				@param e The event object
 			*/
 			virtual void notify(Event* e)=0;
+
+			void set_column( std::string n );
+
+			std::string get_column();
 	};
 
 	/**
@@ -80,6 +85,22 @@ namespace mc {
 				value of the Interface.
 			*/
 			std::string get_value(){return value;}
+
+			/**
+				Set the column name that this input maps to.
+				@param n The name of the column
+			*/
+			void set_column( std::string n ){
+				column_name = n;
+			};
+
+			/**
+				Get the column value.
+			*/
+			std::string get_column(){
+				return column_name;
+			};
+
 
 			/**
 				Update the Interface about change
