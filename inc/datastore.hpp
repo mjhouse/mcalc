@@ -19,7 +19,10 @@ extern "C" {
 	#include "sqlite3.h"
 }
 
+/** Nested vectors in vectors are defined as 'Records' */
 typedef std::vector<std::vector<std::string>> Records;
+
+/** Inner vectors of 'Records' are 'Record' */
 typedef std::vector<std::string> Record;
 
 /** @namespace mc
@@ -38,7 +41,7 @@ namespace mc {
 		the UI and perform calculations.
 	*/
 	class DataStore {
-		public:
+		private:
 			sqlite3 *database;
 			std::string path;
 			DataStore( std::string p );
@@ -58,7 +61,20 @@ namespace mc {
 			*/
 			static DataStore* get_instance();
 
+			/**
+				Get records from the database using a collection of Interface
+				objects to build a query.
+				@param r The Interfaces to use as a reference.
+				@param cols The columns to return
+			*/
 			Records get( std::vector<Interface*> r, std::vector<std::string> cols );
+
+			/**
+				Get records from the database using a collection of Interface
+				objects to build a query. All columns are returned.
+				@param r The Interfaces to use as a reference.
+			*/
+			Records get( std::vector<Interface*> r );
 
 	};
 

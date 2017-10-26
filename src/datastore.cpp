@@ -65,28 +65,6 @@ namespace mc {
 	// ----------------------------------------------
 	// Public Functions
 
-	/*
-	std::map<std::string,double> DataStore::material( std::vector<Interface*> r ){
-
-		if(ref.size()<=5){
-			std::string req = "SELECT max_feed, min_feed, max_sfpm, min_sfpm FROM materials WHERE ";
-			for (std::map<std::string,std::string>::iterator it = ref.begin(); it != ref.end(); it++) {
-				req += it->first + " = '" + it->second + "'";
-				if(std::next(it)!=ref.end()){
-					req += " AND ";
-				} else {
-					req += " LIMIT 1;";
-				}
-			}
-
-			std::vector<std::vector<std::string>> r = this->query(req);
-			return std::map<std::string,double>{};
-		}
-
-		return std::map<std::string,double>{};
-	}
-	*/
-
 	Records DataStore::get( std::vector<Interface*> r, std::vector<std::string> cols ){
 		std::string request = "SELECT ";
 
@@ -106,6 +84,10 @@ namespace mc {
 		}
 
 		return this->query(request);
+	}
+
+	Records DataStore::get( std::vector<Interface*> r ){
+		return this->get( r, std::vector<std::string> {"*"});
 	}
 
 }

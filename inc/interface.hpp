@@ -9,8 +9,6 @@
 	@author Michael House
 	@version 0.1 10/19/17
 */
-#pragma once
-
 #ifndef MCALC_INTERFACE_HPP
 #define MCALC_INTERFACE_HPP
 
@@ -33,9 +31,9 @@ namespace mc {
 	*/
 	class Interface {
 		protected:
-			Broadcaster* broadcaster; /**< Pointer to the broadcaster instance */
-			DataStore* data; /**< Pointer to the datastore */
-			std::string column_name;
+			Broadcaster* broadcaster; 	/**< Pointer to the broadcaster instance */
+			DataStore* data; 			/**< Pointer to the datastore */
+			std::string column_name; 	/**< Name of column in database if this Interface refers to one */
 
 		public:
 			/** Constructor */

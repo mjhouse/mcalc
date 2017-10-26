@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['settings',['settings',['../classmcalc_1_1Application.html#a6e8378ee3ff8eaff0dccf1977ee7efcd',1,'mcalc::Application']]],
-  ['speed',['speed',['../classmcalc_1_1Application.html#a4c7483c2a9057bd01caf3dd490119eaa',1,'mcalc::Application']]]
+  ['hard',['hard',['../classmcalc_1_1Application.html#aea962d0236a178c9c2f6ec8bdfa9c966',1,'mcalc::Application']]]
 ];

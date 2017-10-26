@@ -42,6 +42,8 @@ namespace mcalc {
 		protected:
 			/** The Gtk::Builder that is used to fetch ui elements.*/
 			Glib::RefPtr<Gtk::Builder> builder;
+
+			/** The window that this Application instance manages. */
 			Gtk::Window* window;
 
 			/** The static data used for value lookups. */
