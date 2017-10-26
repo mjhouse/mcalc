@@ -28,13 +28,18 @@ int main( int argc, char *argv[] ){
 	//calc.set_stylesheet("bin/app.css");
 
 	mc::DataStore* data = mc::DataStore::get_instance();
-	data->query(
-		"SELECT max_feed, min_feed, max_sfpm, min_sfpm FROM materials WHERE "
-		"description = 'Plain carbon steels' AND "
-		"designation = '1021' AND "
-		"hardness = '100–125' AND "
-		"tool = 'Uncoated Carbide' AND "
-		"grade = 'tough';");
+	std::vector<std::string> result = data->material(std::map<std::string,std::string> {
+		{"description","Plain carbon steels"},
+		{"designation","1021"},
+		{"hardness","100-125"},
+		{"tool","Uncoated Carbide"},
+		{"grade","tough"}
+	});
+
+	for(auto& a : result){
+		std::cout << a << std::endl;
+	}
+
 
 	app->run(*window);
 	delete window;

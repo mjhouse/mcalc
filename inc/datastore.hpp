@@ -37,10 +37,13 @@ namespace mc {
 	class DataStore {
 		public:
 			sqlite3 *database;
-			DataStore();
+			std::string path;
+			DataStore( std::string p );
 
-			bool open( std::string f );
-			void query( std::string q );
+			bool open();
+			void close();
+
+			std::vector<std::vector<std::string>> query( std::string q );
 
 		public:
 			/** The destructor */
@@ -52,7 +55,7 @@ namespace mc {
 			*/
 			static DataStore* get_instance();
 
-			std::string lookup( std::map<std::string,std::string> ref, int col );
+			std::vector<std::string> material( std::map<std::string,std::string> ref );
 
 	};
 

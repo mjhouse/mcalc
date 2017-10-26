@@ -103,17 +103,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac18bfc40392fb508a880920e32d9b8ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac18bfc40392fb508a880920e32d9b8ef"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> (std::string f)</td></tr>
-<tr class="separator:ac18bfc40392fb508a880920e32d9b8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0aed532e103809c057cf44c1bbc0f385"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0aed532e103809c057cf44c1bbc0f385"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>query</b> (std::string q)</td></tr>
-<tr class="separator:a0aed532e103809c057cf44c1bbc0f385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f5f09343d6ae679d0a1f72ed835e67d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f5f09343d6ae679d0a1f72ed835e67d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>DataStore</b> (std::string p)</td></tr>
+<tr class="separator:a3f5f09343d6ae679d0a1f72ed835e67d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac65995a768e943d8e503480dec4bb528"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac65995a768e943d8e503480dec4bb528"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>open</b> ()</td></tr>
+<tr class="separator:ac65995a768e943d8e503480dec4bb528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aec7ab3fc6c5f709cab040bbf94d988"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0aec7ab3fc6c5f709cab040bbf94d988"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>close</b> ()</td></tr>
+<tr class="separator:a0aec7ab3fc6c5f709cab040bbf94d988"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb073cb49727f87e0f1f5ae12cd9008"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afbb073cb49727f87e0f1f5ae12cd9008"></a>
+std::vector&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>query</b> (std::string q)</td></tr>
+<tr class="separator:afbb073cb49727f87e0f1f5ae12cd9008"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf9ed6ebf7051913daa2ad455eda46cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmc_1_1DataStore.html#acf9ed6ebf7051913daa2ad455eda46cd">~DataStore</a> ()</td></tr>
 <tr class="separator:acf9ed6ebf7051913daa2ad455eda46cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5745ada8fee3f085ad81f61a41267e9f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5745ada8fee3f085ad81f61a41267e9f"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>lookup</b> (std::map&lt; std::string, std::string &gt; ref, int col)</td></tr>
-<tr class="separator:a5745ada8fee3f085ad81f61a41267e9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b4763b6e3ead73b909ebdb1bb2f41f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b4763b6e3ead73b909ebdb1bb2f41f7"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>material</b> (std::map&lt; std::string, std::string &gt; ref)</td></tr>
+<tr class="separator:a3b4763b6e3ead73b909ebdb1bb2f41f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -125,6 +131,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a4c792b064d00ca89ff25500260d2599a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c792b064d00ca89ff25500260d2599a"></a>
 sqlite3 *&#160;</td><td class="memItemRight" valign="bottom"><b>database</b></td></tr>
 <tr class="separator:a4c792b064d00ca89ff25500260d2599a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1fed62418949eef67f433595574293"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a1fed62418949eef67f433595574293"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>path</b></td></tr>
+<tr class="separator:a0a1fed62418949eef67f433595574293"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the main source of all data used by the application. It contains tables of values that are used to populate the UI and perform calculations. </p>

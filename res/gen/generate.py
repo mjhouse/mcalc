@@ -106,6 +106,7 @@ def generate_output_db( data ):
 	for desc,a in data.items():
 		for desg,b in a.items():
 			for hard,c in b.items():
+				hard = '-'.join([i for i in re.split('[^\d]',hard) if i])
 				for tool,d in c.items():
 					for grade,e in d.items():
 						max_s = max(e["speed"])
