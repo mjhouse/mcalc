@@ -1,22 +1,51 @@
 #include "settings.hpp"
 #include "datastore.hpp"
 #include "broadcaster.hpp"
+#include "filechooserbutton.hpp"
 
 namespace mc {
 
-	Settings::Settings() : 	data(DataStore::get_instance()),
+	Settings::Settings() : 	builder(nullptr),
+							submit(nullptr),
+							data(DataStore::get_instance()),
 							broadcaster(Broadcaster::get_instance()),
 							settings({})
 	{
 
+			//s_save->signal_clicked().connect( sigc::mem_fun(settings,&mc::Settings::save));
 			broadcaster->subscribe(this);
 	}
 
-	Settings::~Settings(){}
+	Settings::~Settings(){
+		std::map<Interface*,std::string>::iterator it;
+		for(it = settings.begin(); it != settings.end(); it++){
+			delete it->first;
+			settings.erase(it);
+		}
+	}
 
 	Settings* Settings::get_instance(){
 		static Settings instance;
 		return &instance;
+	}
+
+	void Settings::set_builder( Glib::RefPtr<Gtk::Builder> b ){
+		builder = b;
+
+		FileChooserButton* btn = nullptr;
+		builder->get_widget_derived("s_theme_chooser",btn);
+		this->bind("theme",btn);
+	}
+
+	void Settings::set_submit( std::string s ){
+		static sigc::connection submit_conn;
+		if(builder){
+			builder->get_widget(s,submit);
+
+			submit_conn.disconnect();
+			submit_conn = submit->signal_clicked().connect(
+				sigc::mem_fun(*this,&mc::Settings::save));
+		}
 	}
 
 	void Settings::bind( std::string s, Interface* i ){
@@ -24,16 +53,18 @@ namespace mc {
 	}
 
 	void Settings::save(){
-		std::map<Interface*,std::string>::iterator it;
-		for(it = settings.begin(); it != settings.end(); it++){
-			std::cout << it->second << std::endl;
-		}
+		data->save( this );
 	}
 
-	void Settings::notify(Event* /* e */){
-		//if (settings.find(e->sender()) != settings.end()) {
-		//	std::cout << "changed msg setting: " << settings[e->sender()] << std::endl;
-		//}
+	std::map<std::string,std::string> Settings::values(){
+		std::map<std::string,std::string> vals;
+		std::map<Interface*,std::string>::iterator it;
+		for(it = settings.begin(); it != settings.end(); it++){
+			vals.insert( std::pair<std::string,std::string>( it->second, it->first->get_value() ) );
+		}
+		return vals;
 	}
+
+	void Settings::notify(Event* /* e */){}
 
 }

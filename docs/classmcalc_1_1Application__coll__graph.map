@@ -1,13 +1,12 @@
 <map id="mcalc::Application" name="mcalc::Application">
-<area shape="rect" id="node2" href="$classmc_1_1Settings.html" title="mc::Settings" alt="" coords="428,469,524,496"/>
-<area shape="rect" id="node3" href="$classmc_1_1Subscriber.html" title="mc::Subscriber" alt="" coords="9,383,120,409"/>
-<area shape="rect" id="node6" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="275,240,374,267"/>
-<area shape="rect" id="node4" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="11,117,118,144"/>
-<area shape="rect" id="node5" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="557,129,695,156"/>
-<area shape="rect" id="node9" href="$classmc_1_1FileChooserButton.html" title="mc::FileChooserButton" alt="" coords="548,180,704,207"/>
-<area shape="rect" id="node11" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="580,405,672,432"/>
-<area shape="rect" id="node13" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="585,355,667,381"/>
-<area shape="rect" id="node15" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="553,232,699,259"/>
-<area shape="rect" id="node16" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="583,283,669,309"/>
-<area shape="rect" id="node7" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="5,240,124,267"/>
+<area shape="rect" id="node2" href="$classmc_1_1Settings.html" title="mc::Settings" alt="" coords="412,416,508,443"/>
+<area shape="rect" id="node3" href="$classmc_1_1Subscriber.html" title="mc::Subscriber" alt="" coords="9,333,120,360"/>
+<area shape="rect" id="node6" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="267,199,366,225"/>
+<area shape="rect" id="node4" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="11,101,118,128"/>
+<area shape="rect" id="node5" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="535,165,674,192"/>
+<area shape="rect" id="node9" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="559,235,651,261"/>
+<area shape="rect" id="node11" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="564,357,645,384"/>
+<area shape="rect" id="node13" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="532,108,677,135"/>
+<area shape="rect" id="node14" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="561,285,648,312"/>
+<area shape="rect" id="node7" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="5,199,124,225"/>
 </map>

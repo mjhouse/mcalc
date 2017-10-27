@@ -26,6 +26,8 @@ namespace mc {
 	*/
 	class Settings : public Subscriber {
 		private:
+			Glib::RefPtr<Gtk::Builder> builder;
+			Gtk::Button* submit;
 			DataStore* data;
 			Broadcaster* broadcaster;
 
@@ -36,6 +38,20 @@ namespace mc {
 		public:
 			static Settings* get_instance();		/**< Get the singleton instance of settings */
 			~Settings();							/**< The destructor */
+
+			/**
+				Set the builder object so that Settings can
+				load widgets from the ui.
+				@param b The builder
+			*/
+			void set_builder( Glib::RefPtr<Gtk::Builder> b );
+
+			/**
+				Link the given Gtk::Button element id to the
+				save method.
+				@param s The id of the Gtk::Button to use.
+			*/
+			void set_submit( std::string s );
 
 			/**
 				Map an input to a setting value.
@@ -49,6 +65,13 @@ namespace mc {
 				database.
 			*/
 			void save();
+
+			/**
+				Get a key/value map of the current values
+				from the ui.
+				@return The key/value map
+			*/
+			std::map<std::string,std::string> values();
 
 			/**
 				The method that will receive notifications from

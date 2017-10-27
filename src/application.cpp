@@ -37,8 +37,6 @@ namespace mcalc {
 		builder->get_widget_derived("fs_velocity_output",fs_velocity);
 		builder->get_widget_derived("fs_feedrate_output",fs_feedrate);
 
-		builder->get_widget_derived("s_theme_chooser",s_theme);
-
 		hard 			= _vinterface("hard");
 		tough 			= _vinterface("tough");
 
@@ -98,7 +96,8 @@ namespace mcalc {
 
 		// Bind the settings input elements and the settings 'Save' button
 		// to the Settings object.
-		//settings->bind("",);
+		settings->set_builder(b);
+		settings->set_submit("s_save_btn");
 
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.

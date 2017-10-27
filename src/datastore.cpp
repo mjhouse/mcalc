@@ -1,5 +1,6 @@
 #include "datastore.hpp"
 #include "interface.hpp"
+#include "settings.hpp"
 
 #include <vector>
 #include <string.h>
@@ -93,6 +94,41 @@ namespace mc {
 
 	Records DataStore::get( std::vector<Interface*> r ){
 		return this->get( r, std::vector<std::string> {"*"});
+	}
+
+	void DataStore::update( std::string table, std::map<std::string,std::string> s, std::map<std::string,std::string> v ){
+		std::map<std::string,std::string>::iterator it;
+
+		std::string request = "UPDATE " + table + " SET";
+
+		for(it = v.begin(); it != v.end(); it++){
+			request += " " + it->first + " = " + it->second;
+			request += (std::next(it) != v.end()) ? "," : " WHERE";
+		}
+
+		for(it = s.begin(); it != s.end(); it++){
+			request += " " + it->first + " = " + it->second;
+			request += (std::next(it) != s.end()) ? "," : ";";
+		}
+
+		std::cout << request << std::endl;
+	}
+
+	void DataStore::save( Settings* s ){
+		std::map<std::string,std::string> settings = s->values();
+
+		std::string profile;
+		if (settings.find("profile") != settings.end()){
+			profile =  settings.at("profile");
+		} else {
+			profile = "default";
+		}
+
+		this->update(
+			"settings",
+			std::map<std::string,std::string>{{"profile",profile}},
+			settings
+		);
 	}
 
 }

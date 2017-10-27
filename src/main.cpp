@@ -27,7 +27,6 @@ int main( int argc, char *argv[] ){
 	mcalc::Application calc = mcalc::Application(builder,window);
 	calc.set_stylesheet("bin/app.css");
 
-
 	app->run(*window);
 	delete window;
 	return 0;

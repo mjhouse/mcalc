@@ -32,6 +32,7 @@ typedef std::vector<std::string> Record;
 */
 namespace mc {
 
+	class Settings;
 	class Interface;
 
 	/**
@@ -75,6 +76,20 @@ namespace mc {
 				@param r The Interfaces to use as a reference.
 			*/
 			Records get( std::vector<Interface*> r );
+
+			/**
+				Update a record matching given key/values with new key/values.
+				@param table The table name to search in.
+				@param s The keys/values to match against.
+				@param v The keys/values to update.
+			*/
+			void update( std::string table, std::map<std::string,std::string> s, std::map<std::string,std::string> v );
+
+			/**
+				Get values from settings and save them in the database.
+				@param s The reference to the Settings object to save.
+			*/
+			void save( Settings* s );
 
 	};
 

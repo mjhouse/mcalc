@@ -102,6 +102,8 @@ def generate_output_db( data ):
 
 	cur.execute('''CREATE TABLE materials
              (description text, designation text, hardness text, tool text, grade text, max_feed real, min_feed real, max_sfpm real, min_sfpm real)''')
+	cur.execute("CREATE TABLE settings (profile text, theme text)")
+	cur.execute("INSERT INTO settings VALUES (\"default\",\"\")")
 
 	for desc,a in data.items():
 		for desg,b in a.items():

@@ -52,7 +52,6 @@ namespace mcalc {
 
 			/** The user-provided settings. */
 			mc::Settings* settings;
-			mc::FileChooserButton* s_theme;		/**< theme to use */
 
 			mc::ComboBoxText* fs_material;		/**< material to use */
 			mc::ComboBoxText* fs_designation;	/**< AISI/SAE material designation */
