@@ -1,4 +1,5 @@
 <map id="mc::Interface" name="mc::Interface">
-<area shape="rect" id="node2" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="5,5,112,32"/>
-<area shape="rect" id="node3" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="137,5,255,32"/>
+<area shape="rect" id="node2" href="$classmc_1_1Subscriber.html" title="mc::Subscriber" alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node3" href="$classmc_1_1DataStore.html" title="mc::DataStore" alt="" coords="141,5,247,32"/>
+<area shape="rect" id="node4" href="$classmc_1_1Broadcaster.html" title="mc::Broadcaster" alt="" coords="272,5,391,32"/>
 </map>

@@ -1,7 +1,6 @@
 CPP=g++
 C=gcc
-
-CPPFLAGS=`pkg-config gtkmm-3.0 --cflags --libs` -std=c++11 -ldl -g
+CPPFLAGS=`pkg-config gtkmm-3.0 --cflags --libs` -std=c++11 -ldl -Wall -Wextra -Wpedantic -g
 
 TARGET = bin/mcalc
 OUTDIR = bin

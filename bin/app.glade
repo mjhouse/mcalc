@@ -13,6 +13,12 @@
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
+  <object class="GtkFileFilter" id="theme_file_filter">
+    <patterns>
+      <pattern>*.css</pattern>
+      <pattern>*.theme</pattern>
+    </patterns>
+  </object>
   <object class="GtkAdjustment" id="velocity_adjust">
     <property name="upper">3000</property>
     <property name="step_increment">1</property>
@@ -100,6 +106,7 @@
                   <object class="GtkComboBoxText" id="fs_designation_input">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">SAE Steel designation</property>
                     <property name="active">0</property>
                     <property name="has_entry">True</property>
                     <child internal-child="entry">
@@ -128,6 +135,7 @@
                   <object class="GtkScale" id="fs_velocity_output">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Suggested velocity max and min</property>
                     <property name="adjustment">velocity_adjust</property>
                     <property name="round_digits">1</property>
                   </object>
@@ -140,6 +148,7 @@
                   <object class="GtkComboBoxText" id="fs_material_input">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">General type of material</property>
                     <property name="active">0</property>
                     <property name="has_entry">True</property>
                     <items>
@@ -172,6 +181,7 @@
                   <object class="GtkComboBoxText" id="fs_hardness_input">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Brinell hardness</property>
                     <property name="active">0</property>
                     <property name="has_entry">True</property>
                     <child internal-child="entry">
@@ -211,6 +221,7 @@
                     <child internal-child="entry">
                       <object class="GtkEntry" id="comboboxtext-entry">
                         <property name="can_focus">True</property>
+                        <property name="tooltip_text" translatable="yes">Type of tool</property>
                       </object>
                     </child>
                   </object>
@@ -223,6 +234,7 @@
                   <object class="GtkScale" id="fs_feedrate_output">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Recommended feed rate</property>
                     <property name="adjustment">feedrate_adjust</property>
                     <property name="round_digits">1</property>
                     <property name="digits">3</property>
@@ -247,6 +259,7 @@
                   <object class="GtkScale" id="fs_grade_output">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Grade of the material</property>
                     <property name="adjustment">grade_adjust</property>
                     <property name="round_digits">3</property>
                     <property name="digits">2</property>
@@ -284,6 +297,7 @@
                   <object class="GtkSpinButton" id="fs_diameter_input">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="tooltip_text" translatable="yes">Diameter of the workpiece</property>
                     <property name="width_chars">5</property>
                     <property name="caps_lock_warning">False</property>
                     <property name="input_purpose">digits</property>
@@ -312,6 +326,7 @@
                   <object class="GtkLabel" id="fs_rpm_output">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="tooltip_text" translatable="yes">Revolutions / minute calculated from given values.</property>
                   </object>
                   <packing>
                     <property name="left_attach">4</property>
@@ -355,14 +370,88 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="label3">
+              <object class="GtkGrid" id="grid2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Settings</property>
+                <child>
+                  <object class="GtkLabel" id="s_theme_label">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">Theme:</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkFileChooserButton" id="s_theme_chooser">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="filter">theme_file_filter</property>
+                    <property name="preview_widget_active">False</property>
+                    <property name="use_preview_label">False</property>
+                    <property name="title" translatable="yes">Select a Theme</property>
+                    <property name="width_chars">15</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">1</property>
+                    <property name="top_attach">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="s_save_btn">
+                    <property name="label" translatable="yes">Save Settings</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">4</property>
+                    <property name="top_attach">2</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">True</property>
+                <property name="fill">False</property>
+                <property name="padding">5</property>
                 <property name="position">0</property>
               </packing>
             </child>

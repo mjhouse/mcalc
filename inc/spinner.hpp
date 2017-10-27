@@ -29,6 +29,7 @@ namespace mc {
 	class Spinner : public mc::Interface, public Gtk::SpinButton {
 		private:
 			bool blocked;
+			const Glib::RefPtr<Gtk::Builder>& glade_ref;
 			std::vector<mc::Interface*> references;
 
 		public:

@@ -28,6 +28,7 @@ namespace mc {
 	*/
 	class Output : public mc::Interface, public Gtk::Label {
 		private:
+			const Glib::RefPtr<Gtk::Builder>& glade_ref;
 			std::vector<mc::Interface*> references;
 			std::function<double(std::vector<mc::Interface*>)> calculator;
 

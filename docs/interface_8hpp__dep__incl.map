@@ -1,7 +1,8 @@
 <map id="inc/interface.hpp" name="inc/interface.hpp">
 <area shape="rect" id="node2" href="$comboboxtext_8hpp.html" title="The class definition file for the comboboxtext class. " alt="" coords="5,80,156,107"/>
-<area shape="rect" id="node3" href="$output_8hpp.html" title="The class definition file for the output class. " alt="" coords="181,80,285,107"/>
-<area shape="rect" id="node4" href="$settings_8hpp.html" title="The class definition file for the settings class. " alt="" coords="309,80,423,107"/>
-<area shape="rect" id="node5" href="$slider_8hpp.html" title="The class definition file for the slider class. " alt="" coords="447,80,546,107"/>
-<area shape="rect" id="node6" href="$spinner_8hpp.html" title="The class definition file for the spinner class. " alt="" coords="571,80,681,107"/>
+<area shape="rect" id="node3" href="$filechooserbutton_8hpp.html" title="The class definition file for the filechooserbutton class. " alt="" coords="180,80,347,107"/>
+<area shape="rect" id="node4" href="$output_8hpp.html" title="The class definition file for the output class. " alt="" coords="371,80,475,107"/>
+<area shape="rect" id="node5" href="$settings_8hpp.html" title="The class definition file for the settings class. " alt="" coords="499,80,614,107"/>
+<area shape="rect" id="node6" href="$slider_8hpp.html" title="The class definition file for the slider class. " alt="" coords="638,80,737,107"/>
+<area shape="rect" id="node7" href="$spinner_8hpp.html" title="The class definition file for the spinner class. " alt="" coords="761,80,872,107"/>
 </map>

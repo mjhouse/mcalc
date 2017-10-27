@@ -32,6 +32,7 @@ namespace mc {
 		private:
 			std::vector<std::string> columns;
 			bool blocked;
+			const Glib::RefPtr<Gtk::Builder>& glade_ref;
 			std::vector<mc::Interface*> start_ref;
 			std::vector<mc::Interface*> end_ref;
 			mc::Interface* scaler;

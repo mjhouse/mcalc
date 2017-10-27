@@ -8,6 +8,7 @@
 #include "output.hpp"
 #include "spinner.hpp"
 #include "comboboxtext.hpp"
+#include "filechooserbutton.hpp"
 #include "datastore.hpp"
 #include "settings.hpp"
 
@@ -35,6 +36,8 @@ namespace mcalc {
 		builder->get_widget_derived("fs_grade_output",fs_grade);
 		builder->get_widget_derived("fs_velocity_output",fs_velocity);
 		builder->get_widget_derived("fs_feedrate_output",fs_feedrate);
+
+		builder->get_widget_derived("s_theme_chooser",s_theme);
 
 		hard 			= _vinterface("hard");
 		tough 			= _vinterface("tough");
@@ -93,7 +96,9 @@ namespace mcalc {
 			std::vector<mc::Interface*> {fs_material,fs_designation,fs_hardness,fs_tool,tough}
 		);
 
-		settings->bind("feed test",fs_feedrate);
+		// Bind the settings input elements and the settings 'Save' button
+		// to the Settings object.
+		//settings->bind("",);
 
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.

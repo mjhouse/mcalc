@@ -22,6 +22,7 @@ namespace mc {
 	class Interface;
 	class DummyInterface;
 	class ComboBoxText;
+	class FileChooserButton;
 	class Spinner;
 	class Slider;
 	class Output;
@@ -51,6 +52,7 @@ namespace mcalc {
 
 			/** The user-provided settings. */
 			mc::Settings* settings;
+			mc::FileChooserButton* s_theme;		/**< theme to use */
 
 			mc::ComboBoxText* fs_material;		/**< material to use */
 			mc::ComboBoxText* fs_designation;	/**< AISI/SAE material designation */
@@ -64,8 +66,6 @@ namespace mcalc {
 
 			mc::DummyInterface* hard;			/**< DummyInterface with value "hard" */
 			mc::DummyInterface* tough;			/**< DummyInterface with value "tough" */
-			mc::DummyInterface* speed;			/**< DummyInterface with value "speed" */
-			mc::DummyInterface* feed;			/**< DummyInterface with value "feed" */
 
 		public:
 			/**

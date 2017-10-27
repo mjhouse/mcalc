@@ -19,13 +19,15 @@ namespace mc {
 	Slider::Slider(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
 	:	Gtk::Scale(cobject),
 		blocked (false),
-		scaler(nullptr) {
-	};
+		glade_ref(refGlade),
+		scaler(nullptr)
+	{
+	}
 
 	Slider::~Slider(){
 		start_ref.clear();
 		end_ref.clear();
-	};
+	}
 
 	void Slider::notify( Event* e ){
 		if (e) {
@@ -39,12 +41,12 @@ namespace mc {
 					break;
 			}
 		}
-	};
+	}
 
 	void Slider::on_value_changed(){
 		broadcaster->broadcast(Event(this));
 		Gtk::Scale::on_value_changed();
-	};
+	}
 
 	void Slider::set_marks(){
 		if(!marks.empty()){
@@ -52,26 +54,26 @@ namespace mc {
 				this->add_mark(mark.first,Gtk::POS_BOTTOM,mark.second);
 			}
 		}
-	};
+	}
 
 	void Slider::set_marks( std::map<double,std::string> m ){
 		marks = m;
 		set_marks();
-	};
+	}
 
 	void Slider::set_scaler( mc::Interface* i ){
 		scaler = i;
-	};
+	}
 
 	void Slider::set_references( std::vector<mc::Interface*> s, std::vector<mc::Interface*> e ){
 		start_ref = s;
 		end_ref = e;
 		populate();
-	};
+	}
 
 	void Slider::set_columns( std::vector<std::string> c ){
 		columns = c;
-	};
+	}
 
 	void Slider::populate(){
 		if(!start_ref.empty() && !end_ref.empty()){
@@ -117,7 +119,7 @@ namespace mc {
 
 			}
 		}
-	};
+	}
 
 	void Slider::block( bool b ){
 		blocked = b;
@@ -125,15 +127,15 @@ namespace mc {
 
 	std::string Slider::get_value(){
 		return std::to_string(Gtk::Scale::get_value());
-	};
+	}
 
 	void Slider::fix(){
 		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), false);
-	};
+	}
 
 	void Slider::unfix(){
 		gtk_widget_set_sensitive ((GtkWidget*)(this->gobj()), true);
-	};
+	}
 
 	void Slider::set_value( double min, double max, double mid ){
 		block(true);
@@ -144,6 +146,6 @@ namespace mc {
 		set_marks();
 		block(false);
 		broadcaster->broadcast(Event(Event::Type::ALL,this));
-	};
+	}
 
 }

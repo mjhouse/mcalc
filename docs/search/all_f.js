@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['s_5ftheme',['s_theme',['../classmcalc_1_1Application.html#a7b2ae044c9027b958588df93eab056be',1,'mcalc::Application']]],
+  ['save',['save',['../classmc_1_1Settings.html#a7eadf701993100b62db7319079f59575',1,'mc::Settings']]],
   ['sender',['sender',['../classmc_1_1Event.html#a05c4a8a5a5df79804315306dc1b6c257',1,'mc::Event']]],
   ['set_5fcalculator',['set_calculator',['../classmc_1_1Output.html#a6953830b79ed5b8360b0fd4e0af50f19',1,'mc::Output']]],
   ['set_5fcolumn',['set_column',['../classmc_1_1Interface.html#a61f5f7db859e72f655f4d17c1279458c',1,'mc::Interface::set_column()'],['../classmc_1_1DummyInterface.html#a2ffa130e4fee55c9c55a2bef079e1242',1,'mc::DummyInterface::set_column()']]],
@@ -15,11 +17,10 @@ var searchData=
   ['slider',['Slider',['../classmc_1_1Slider.html',1,'mc']]],
   ['slider',['Slider',['../classmc_1_1Slider.html#a05d2bf360bccabe1b8cc1175aa607a3e',1,'mc::Slider']]],
   ['slider_2ehpp',['slider.hpp',['../slider_8hpp.html',1,'']]],
-  ['speed',['speed',['../classmcalc_1_1Application.html#a4c7483c2a9057bd01caf3dd490119eaa',1,'mcalc::Application']]],
-  ['spinner',['Spinner',['../classmc_1_1Spinner.html',1,'mc']]],
   ['spinner',['Spinner',['../classmc_1_1Spinner.html#aa831ea6b9370aae8576c2f024c2b55cb',1,'mc::Spinner']]],
+  ['spinner',['Spinner',['../classmc_1_1Spinner.html',1,'mc']]],
   ['spinner_2ehpp',['spinner.hpp',['../spinner_8hpp.html',1,'']]],
-  ['subscribe',['subscribe',['../classmc_1_1Broadcaster.html#aad912e54f0309b68f32fe1cd40e4abb5',1,'mc::Broadcaster::subscribe(Interface *s)'],['../classmc_1_1Broadcaster.html#a7998f9b553feb39b40a67802968fe350',1,'mc::Broadcaster::subscribe(Subscriber *s)']]],
+  ['subscribe',['subscribe',['../classmc_1_1Broadcaster.html#a7998f9b553feb39b40a67802968fe350',1,'mc::Broadcaster']]],
   ['subscriber',['Subscriber',['../classmc_1_1Subscriber.html',1,'mc']]],
   ['subscriber',['Subscriber',['../classmc_1_1Subscriber.html#a1a30e3cc5e1b23c396501fa1a96ce987',1,'mc::Subscriber']]]
 ];

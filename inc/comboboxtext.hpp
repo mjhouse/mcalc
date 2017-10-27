@@ -31,6 +31,7 @@ namespace mc {
 	class ComboBoxText : public mc::Interface, public Gtk::ComboBoxText {
 		private:
 			bool blocked;
+			const Glib::RefPtr<Gtk::Builder>& glade_ref;
 			std::vector<mc::Interface*> references;
 
 		public:

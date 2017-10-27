@@ -45,6 +45,12 @@ namespace mc {
 			void bind( std::string s, Interface* i );
 
 			/**
+				Save the values from the ui into the
+				database.
+			*/
+			void save();
+
+			/**
 				The method that will receive notifications from
 				the broadcaster.
 				@param e The event object.

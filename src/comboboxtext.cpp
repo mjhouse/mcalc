@@ -11,14 +11,16 @@ namespace mc {
 		ComboBoxText */
 	ComboBoxText::ComboBoxText(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
 	:	Gtk::ComboBoxText(cobject),
-	 	blocked (false) {
+		blocked (false),
+		glade_ref(refGlade)
+	{
 
-	};
+	}
 
 	/* The destructor */
 	ComboBoxText::~ComboBoxText(){
 		references.clear();
-	};
+	}
 
 	/* Broadcast when the value changes */
 	void ComboBoxText::on_changed(){
@@ -40,22 +42,22 @@ namespace mc {
 			case Event::Type::ALL:
 				break;
 		}
-	};
+	}
 
 	void ComboBoxText::populate(){
 		if(!references.empty()){
 			this->set_value(references);
 		}
-	};
+	}
 
 	void ComboBoxText::set_references( std::vector<mc::Interface*> i ){
 		references = i;
 		populate();
-	};
+	}
 
 	std::string ComboBoxText::get_value(){
 		return this->get_active_text();
-	};
+	}
 
 	void ComboBoxText::block( bool b ){
 		blocked = b;
@@ -78,6 +80,6 @@ namespace mc {
 
 		this->set_active(0);
 		this->block(false);
-	};
+	}
 
 }

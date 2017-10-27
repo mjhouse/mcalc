@@ -5,12 +5,14 @@ namespace mc {
 
 	Spinner::Spinner(BaseObjectType* cobject, const Glib::RefPtr<Gtk::Builder>& refGlade)
 	:	Gtk::SpinButton(cobject),
-	 	blocked (false) {
-	};
+	 	blocked (false),
+		glade_ref(refGlade)
+	{
+	}
 
 	Spinner::~Spinner(){
 		references.clear();
-	};
+	}
 
 	void Spinner::notify(Event* e){
 		switch(e->type()){
@@ -19,7 +21,7 @@ namespace mc {
 			case Event::Type::ALL:
 				break;
 		}
-	};
+	}
 
 	/* Broadcast when the value changes */
 	void Spinner::on_value_changed(){
@@ -32,13 +34,13 @@ namespace mc {
 
 	void Spinner::set_references( std::vector<mc::Interface*> r ){
 		references = r;
-	};
+	}
 
 	std::string Spinner::get_value(){
 		return std::to_string(Gtk::SpinButton::get_value());
-	};
+	}
 
 	void Spinner::set_value( double d ){
 		this->set_value(d);
-	};
+	}
 }

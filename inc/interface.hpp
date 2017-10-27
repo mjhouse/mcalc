@@ -38,15 +38,20 @@ namespace mc {
 			/** The virtual destructor. */
 			virtual ~Subscriber(){};
 
-			/** The notify method. */
+			/**
+				Update the Subscriber about change
+				events. Used by broadcaster.
+				@param e The event object
+			*/
 			virtual void notify(Event* e)=0;
+
 	};
 
 	/**
 		The abstract base class for Sliders, ComboBoxText
 		etc.
 	*/
-	class Interface {
+	class Interface : public Subscriber {
 		protected:
 			Broadcaster* broadcaster; 	/**< Pointer to the broadcaster instance */
 			DataStore* data; 			/**< Pointer to the datastore */
@@ -64,13 +69,6 @@ namespace mc {
 				value of the Interface. Subclass must implement.
 			*/
 			virtual std::string get_value()=0;
-
-			/**
-				Update the Interface about change
-				events. Used by broadcaster.
-				@param e The event object
-			*/
-			virtual void notify(Event* e)=0;
 
 			/**
 				Set the column that this Interface
@@ -104,28 +102,24 @@ namespace mc {
 				Interface.
 				@param s The constant value to use.
 			*/
-			DummyInterface( std::string s ){value=s;};
+			DummyInterface( std::string s );
 
 			/**
 				Returns a string representation of the current
 				value of the Interface.
 			*/
-			std::string get_value(){return value;}
+			std::string get_value();
 
 			/**
 				Set the column name that this input maps to.
 				@param n The name of the column
 			*/
-			void set_column( std::string n ){
-				column_name = n;
-			};
+			void set_column( std::string n );
 
 			/**
 				Get the column value.
 			*/
-			std::string get_column(){
-				return column_name;
-			};
+			std::string get_column();
 
 
 			/**
@@ -133,13 +127,13 @@ namespace mc {
 				events. Used by broadcaster.
 				@param e The event object
 			*/
-			void notify(Event* e){};
+			void notify(Event* e);
 
 			/**
 				Generates a change event and
 				sends it to Broadcaster.
 			*/
-			void broadcast(){};
+			void broadcast();
 	};
 }
 

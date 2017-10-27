@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['feed',['feed',['../classmcalc_1_1Application.html#aa81a2fa3427feeb7640502457036463e',1,'mcalc::Application']]],
+  ['filechooserbutton',['FileChooserButton',['../classmc_1_1FileChooserButton.html',1,'mc']]],
+  ['filechooserbutton',['FileChooserButton',['../classmc_1_1FileChooserButton.html#a6f355229ab8d79a8f109c43848679fbf',1,'mc::FileChooserButton']]],
+  ['filechooserbutton_2ehpp',['filechooserbutton.hpp',['../filechooserbutton_8hpp.html',1,'']]],
   ['fix',['fix',['../classmc_1_1Slider.html#a4df5b0f030912b016b1f5bc46c180bbf',1,'mc::Slider']]],
   ['fs_5fdesignation',['fs_designation',['../classmcalc_1_1Application.html#a5dd81c68d005acedeb18336bfe87cdcb',1,'mcalc::Application']]],
   ['fs_5fdiameter',['fs_diameter',['../classmcalc_1_1Application.html#aa5fa7c6a44d89abb85a6947767261698',1,'mcalc::Application']]],

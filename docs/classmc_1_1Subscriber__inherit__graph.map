@@ -1,3 +1,10 @@
 <map id="mc::Subscriber" name="mc::Subscriber">
-<area shape="rect" id="node2" href="$classmc_1_1Settings.html" title="mc::Settings" alt="" coords="13,80,109,107"/>
+<area shape="rect" id="node2" href="$classmc_1_1Interface.html" title="mc::Interface" alt="" coords="164,132,263,159"/>
+<area shape="rect" id="node9" href="$classmc_1_1Settings.html" title="mc::Settings" alt="" coords="165,183,261,209"/>
+<area shape="rect" id="node3" href="$classmc_1_1ComboBoxText.html" title="mc::ComboBoxText" alt="" coords="319,5,458,32"/>
+<area shape="rect" id="node4" href="$classmc_1_1DummyInterface.html" title="mc::DummyInterface" alt="" coords="316,56,461,83"/>
+<area shape="rect" id="node5" href="$classmc_1_1FileChooserButton.html" title="mc::FileChooserButton" alt="" coords="311,107,467,133"/>
+<area shape="rect" id="node6" href="$classmc_1_1Output.html" title="mc::Output" alt="" coords="345,157,432,184"/>
+<area shape="rect" id="node7" href="$classmc_1_1Slider.html" title="mc::Slider" alt="" coords="348,208,429,235"/>
+<area shape="rect" id="node8" href="$classmc_1_1Spinner.html" title="mc::Spinner" alt="" coords="343,259,435,285"/>
 </map>

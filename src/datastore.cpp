@@ -8,7 +8,12 @@
 
 namespace mc {
 
-	DataStore::DataStore( std::string p ) : database(NULL), path(p) {}
+	DataStore::DataStore( std::string p )
+	:	database(NULL),
+		path(p)
+	{
+
+	}
 
 	DataStore::~DataStore(){}
 
