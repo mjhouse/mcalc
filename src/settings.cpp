@@ -9,10 +9,12 @@ namespace mc {
 							submit(nullptr),
 							data(DataStore::get_instance()),
 							broadcaster(Broadcaster::get_instance()),
+							profile_name("default"),
 							settings({})
 	{
-
-			//s_save->signal_clicked().connect( sigc::mem_fun(settings,&mc::Settings::save));
+			profile_data = {
+				{"theme",""},
+			};
 			broadcaster->subscribe(this);
 	}
 
@@ -24,6 +26,14 @@ namespace mc {
 		}
 	}
 
+	void Settings::init_components(){
+		FileChooserButton* btn = nullptr;
+
+		builder->get_widget_derived("s_theme_chooser",btn);
+
+		this->bind("theme",btn);
+	}
+
 	Settings* Settings::get_instance(){
 		static Settings instance;
 		return &instance;
@@ -31,10 +41,7 @@ namespace mc {
 
 	void Settings::set_builder( Glib::RefPtr<Gtk::Builder> b ){
 		builder = b;
-
-		FileChooserButton* btn = nullptr;
-		builder->get_widget_derived("s_theme_chooser",btn);
-		this->bind("theme",btn);
+		this->init_components();
 	}
 
 	void Settings::set_submit( std::string s ){
@@ -49,22 +56,43 @@ namespace mc {
 	}
 
 	void Settings::bind( std::string s, Interface* i ){
-		settings.insert(std::pair<Interface*,std::string>(i,s));
+		if (profile_data.find(s) != profile_data.end()) {
+			settings.insert(std::pair<Interface*,std::string>(i,s));
+		}
+	}
+
+	void Settings::load( std::string p ){
+		this->profile_name = p;
+		std::vector< std::map<std::string,std::string> > vals = data->fetch("settings",std::map<std::string,std::string>{{"profile",p}});
+		if(vals.size()>0){
+			this->profile_data = vals.at(0);
+			for (std::map<Interface*,std::string>::iterator it = settings.begin(); it != settings.end(); it++) {
+				Interface* tmp = it->first;
+				std::string value = this->profile_data[it->second];
+				if(!value.empty()){
+					tmp->set_value(value);
+				}
+			}
+		}
 	}
 
 	void Settings::save(){
-		data->save( this );
+		std::map<std::string,std::string> profile = {{"profile",this->profile_name}};
+		data->update( "settings", profile, this->profile_data);
 	}
 
-	std::map<std::string,std::string> Settings::values(){
-		std::map<std::string,std::string> vals;
-		std::map<Interface*,std::string>::iterator it;
-		for(it = settings.begin(); it != settings.end(); it++){
-			vals.insert( std::pair<std::string,std::string>( it->second, it->first->get_value() ) );
+	void Settings::notify(Event* e){
+		switch(e->type()){
+			case Event::Type::SINGLE:
+				if (settings.find(e->sender()) != settings.end()){
+					std::string key = settings[e->sender()];
+					std::string val = (e->sender())->get_value();
+					profile_data[key] = val;
+				}
+				break;
+			case Event::Type::ALL:
+				break;
 		}
-		return vals;
 	}
-
-	void Settings::notify(Event* /* e */){}
 
 }

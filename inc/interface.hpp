@@ -71,6 +71,11 @@ namespace mc {
 			virtual std::string get_value()=0;
 
 			/**
+				Set the value of the Interface.
+			*/
+			virtual void set_value( std::string s )=0;
+
+			/**
 				Set the column that this Interface
 				refers to, if the input value of the Interface
 				directly maps to the database.
@@ -109,6 +114,11 @@ namespace mc {
 				value of the Interface.
 			*/
 			std::string get_value();
+
+			/**
+				Sets the current value of the interface.
+			*/
+			void set_value( std::string s );
 
 			/**
 				Set the column name that this input maps to.

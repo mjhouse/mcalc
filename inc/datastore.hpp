@@ -50,7 +50,8 @@ namespace mc {
 			bool open();
 			void close();
 
-			Records query( std::string q );
+			std::vector<std::vector<std::string>> query_vector( std::string q );
+			std::vector< std::map<std::string,std::string> > query_map( std::string q );
 
 		public:
 			/** The destructor */
@@ -68,14 +69,14 @@ namespace mc {
 				@param r The Interfaces to use as a reference.
 				@param cols The columns to return
 			*/
-			Records get( std::vector<Interface*> r, std::vector<std::string> cols );
+			std::vector<std::vector<std::string>> get( std::vector<Interface*> r, std::vector<std::string> cols );
 
 			/**
 				Get records from the database using a collection of Interface
 				objects to build a query. All columns are returned.
 				@param r The Interfaces to use as a reference.
 			*/
-			Records get( std::vector<Interface*> r );
+			std::vector<std::vector<std::string>> get( std::vector<Interface*> r );
 
 			/**
 				Update a record matching given key/values with new key/values.
@@ -86,11 +87,21 @@ namespace mc {
 			void update( std::string table, std::map<std::string,std::string> s, std::map<std::string,std::string> v );
 
 			/**
-				Get values from settings and save them in the database.
-				@param s The reference to the Settings object to save.
+				Fetch a record from the database.
+				@param table The table to search in.
+				@param s The key/value pairs to match against.
+				@return A vector of vectors of strings (rows from the database).
 			*/
-			void save( Settings* s );
+			std::vector<std::map<std::string,std::string>> fetch( std::string table, std::map<std::string,std::string> s );
 
+			/**
+				Fetch a record from the database.
+				@param table The table to search in.
+				@param s The key/value pairs to match against.
+				@param v The values to fetch.
+				@return A vector of vectors of strings (rows from the database).
+			*/
+			std::vector<std::map<std::string,std::string>> fetch( std::string table, std::map<std::string,std::string> s, std::vector<std::string> v );
 	};
 
 }

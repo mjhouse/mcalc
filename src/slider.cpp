@@ -148,4 +148,13 @@ namespace mc {
 		broadcaster->broadcast(Event(Event::Type::ALL,this));
 	}
 
+	void Slider::set_value( std::string s ){
+		try {
+			double v = std::stod(s);
+			this->set_value(v-1,v+1,v);
+		} catch (...){
+
+		}
+	}
+
 }

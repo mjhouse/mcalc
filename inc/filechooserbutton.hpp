@@ -30,6 +30,7 @@ namespace mc {
 	class FileChooserButton : public mc::Interface, public Gtk::FileChooserButton {
 		private:
 			const Glib::RefPtr<Gtk::Builder>& glade_ref;
+			bool blocked;
 
 		public:
 			/**
@@ -42,6 +43,8 @@ namespace mc {
 			/** The destructor */
 			~FileChooserButton();
 
+			void on_file_set();
+
 			/**
 				Method used to update the FileChooserButton by the broadcaster.
 				@param e Event received from broadcaster
@@ -52,6 +55,11 @@ namespace mc {
 				Get the current value of the FileChooserButton
 			*/
 			std::string get_value();
+
+			/**
+				Sets the current value of the interface.
+			*/
+			void set_value( std::string s );
 
 	};
 

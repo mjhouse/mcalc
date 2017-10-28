@@ -31,6 +31,8 @@ namespace mc {
 			DataStore* data;
 			Broadcaster* broadcaster;
 
+			std::string profile_name;
+			std::map<std::string,std::string> profile_data;
 			std::map<Interface*,std::string> settings;
 
 			Settings();
@@ -38,6 +40,8 @@ namespace mc {
 		public:
 			static Settings* get_instance();		/**< Get the singleton instance of settings */
 			~Settings();							/**< The destructor */
+
+			void init_components();
 
 			/**
 				Set the builder object so that Settings can
@@ -61,17 +65,16 @@ namespace mc {
 			void bind( std::string s, Interface* i );
 
 			/**
+				Load the values from the database into the
+				ui and settings.
+			*/
+			void load( std::string p );
+
+			/**
 				Save the values from the ui into the
 				database.
 			*/
 			void save();
-
-			/**
-				Get a key/value map of the current values
-				from the ui.
-				@return The key/value map
-			*/
-			std::map<std::string,std::string> values();
 
 			/**
 				The method that will receive notifications from

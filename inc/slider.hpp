@@ -131,6 +131,11 @@ namespace mc {
 				Sets the max, min and current position of the Slider.
 			*/
 			void set_value( double max, double min, double val );
+
+			/**
+				Sets a value from a string (converts to double).
+			*/
+			void set_value( std::string s );
 	};
 
 }

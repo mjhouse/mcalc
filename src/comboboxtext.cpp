@@ -82,4 +82,6 @@ namespace mc {
 		this->block(false);
 	}
 
+	void ComboBoxText::set_value( std::string /* s */ ){}
+
 }
