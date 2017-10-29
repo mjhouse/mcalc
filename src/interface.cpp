@@ -24,28 +24,32 @@ namespace mc {
 	/* -------------------------------------------------------------------------
 	 	DummyInterface */
 
-		DummyInterface::DummyInterface( std::string s ){
-			value = s;
-		}
+	DummyInterface::DummyInterface( std::string s ){
+		value = s;
+	}
 
-		std::string DummyInterface::get_value(){
-			return value;
-		}
+	std::string DummyInterface::get_value(){
+		return value;
+	}
 
-		void DummyInterface::set_column( std::string n ){
-			column_name = n;
-		}
+	void DummyInterface::set_value( std::string s ){
+		value = s;
+	}
 
-		std::string DummyInterface::get_column(){
-			return column_name;
-		}
+	void DummyInterface::set_column( std::string n ){
+		column_name = n;
+	}
 
-		void DummyInterface::notify(Event* /* e */){
+	std::string DummyInterface::get_column(){
+		return column_name;
+	}
 
-		}
+	void DummyInterface::notify(Event* /* e */){
 
-		void DummyInterface::broadcast(){
+	}
 
-		}
+	void DummyInterface::broadcast(){
+
+	}
 
 }

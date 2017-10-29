@@ -74,6 +74,11 @@ namespace mc {
 			std::string get_value();
 
 			/**
+				Sets the current value of the interface.
+			*/
+			void set_value( std::string s );
+
+			/**
 				Stop/start broadcasting events
 				@param b True allows broadcasts, false dis-allows.
 			*/

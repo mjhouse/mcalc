@@ -52,4 +52,8 @@ namespace mc {
 		this->set_text(std::to_string(v));
 	}
 
+	void Output::set_value( std::string s ){
+		this->set_text(s);
+	}
+
 }

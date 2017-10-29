@@ -99,6 +99,8 @@ namespace mcalc {
 		settings->set_builder(b);
 		settings->set_submit("s_save_btn");
 
+		settings->load("default");
+
 		// manually broadcast a single ALL event to make the ui initialize itself with
 		// starting values.
 		mc::Broadcaster* broadcaster = mc::Broadcaster::get_instance();

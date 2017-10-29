@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['record',['Record',['../datastore_8hpp.html#adbc9bbc077c06a1125c9a536f7162c1e',1,'datastore.hpp']]],
-  ['records',['Records',['../datastore_8hpp.html#a1b936af76a49bcab49108829c2fbc5c3',1,'datastore.hpp']]]
+  ['populate',['populate',['../classmc_1_1ComboBoxText.html#acac1e8f7b02c7cc76098768c6bcf9d12',1,'mc::ComboBoxText::populate()'],['../classmc_1_1Slider.html#a42c9a7dc4cc7db0098f6a8e1313ae098',1,'mc::Slider::populate()']]]
 ];

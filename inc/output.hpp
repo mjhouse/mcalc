@@ -82,6 +82,12 @@ namespace mc {
 				@param v A double value to set in the ui.
 			*/
 			void set_value( double v );
+
+			/**
+				Sets the current value of the interface.
+				@param s The string value to set.
+			*/
+			void set_value( std::string s );
 	};
 
 }

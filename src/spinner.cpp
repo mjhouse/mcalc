@@ -43,4 +43,12 @@ namespace mc {
 	void Spinner::set_value( double d ){
 		this->set_value(d);
 	}
+
+	void Spinner::set_value( std::string s ){
+		try {
+			Gtk::SpinButton::set_value(std::stod(s));
+		} catch (...) {
+
+		}
+	}
 }

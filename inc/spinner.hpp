@@ -73,9 +73,14 @@ namespace mc {
 			std::string get_value();
 
 			/**
-				Sets the current value of the Spinner..
+				Sets the current value of the Spinner.
 			*/
 			void set_value( double d );
+
+			/**
+				Sets the string value of the Spinner.
+			*/
+			void set_value( std::string s );
 	};
 }
 
