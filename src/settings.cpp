@@ -12,7 +12,7 @@ namespace mc {
 							settings({})
 	{
 
-			//s_save->signal_clicked().connect( sigc::mem_fun(settings,&mc::Settings::save));
+			data->load("default",this);
 			broadcaster->subscribe(this);
 	}
 
@@ -56,13 +56,17 @@ namespace mc {
 		data->save( this );
 	}
 
-	std::map<std::string,std::string> Settings::values(){
+	std::map<std::string,std::string> Settings::get_values(){
 		std::map<std::string,std::string> vals;
 		std::map<Interface*,std::string>::iterator it;
 		for(it = settings.begin(); it != settings.end(); it++){
 			vals.insert( std::pair<std::string,std::string>( it->second, it->first->get_value() ) );
 		}
 		return vals;
+	}
+
+	void Settings::set_values( std::map<std::string,std::string> v ){
+		
 	}
 
 	void Settings::notify(Event* /* e */){}

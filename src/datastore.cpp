@@ -68,6 +68,27 @@ namespace mc {
 		return results;
 	}
 
+	std::map<std::string,std::string> DataStore::map_query( std::string q ) {
+		sqlite3_stmt *statement;
+		std::map<std::string,std::string> results;
+
+		if (this->open() && sqlite3_prepare_v2(database, q.c_str(), -1, &statement, NULL) == SQLITE_OK){
+			if ( sqlite3_step(statement) == SQLITE_ROW ){
+				for(int i = 0; i < sqlite3_column_count(statement); i++){
+					std::string key = sqlite3_column_name(statement,i);
+					std::string value = (char*)sqlite3_column_text(statement,i);
+					results.insert(std::pair<std::string,std::string>(key,value));
+				}
+			}
+		} else {
+				_print(sqlite3_errmsg(database));
+		}
+
+		sqlite3_finalize(statement);
+		this->close();
+		return results;
+	}
+
 	// ----------------------------------------------
 	// Public Functions
 
@@ -102,20 +123,30 @@ namespace mc {
 		std::string request = "UPDATE " + table + " SET";
 
 		for(it = v.begin(); it != v.end(); it++){
-			request += " " + it->first + " = " + it->second;
+			request += " " + it->first + " = '" + it->second + "'";
 			request += (std::next(it) != v.end()) ? "," : " WHERE";
 		}
 
 		for(it = s.begin(); it != s.end(); it++){
-			request += " " + it->first + " = " + it->second;
+			request += " " + it->first + " = '" + it->second + "'";
 			request += (std::next(it) != s.end()) ? "," : ";";
 		}
 
-		std::cout << request << std::endl;
+		sqlite3_stmt* statement;
+		if(this->open() && sqlite3_prepare_v2(database, request.c_str(), -1, &statement, NULL) == SQLITE_OK){
+			if(sqlite3_step(statement) != SQLITE_DONE){
+				_print(sqlite3_errmsg(database));
+			};
+		} else {
+			_print(sqlite3_errmsg(database));
+		}
+
+		sqlite3_finalize(statement);
+		this->close();
 	}
 
 	void DataStore::save( Settings* s ){
-		std::map<std::string,std::string> settings = s->values();
+		std::map<std::string,std::string> settings = s->get_values();
 
 		std::string profile;
 		if (settings.find("profile") != settings.end()){
@@ -129,6 +160,14 @@ namespace mc {
 			std::map<std::string,std::string>{{"profile",profile}},
 			settings
 		);
+	}
+
+	void DataStore::load( std::string p, Settings* s ){
+		std::string request = "SELECT * FROM settings WHERE profile = '" + p + "'";
+		std::map<std::string,std::string> results = this->map_query(request);
+		if(!results.empty()){
+			s->set_values( results );
+		}
 	}
 
 }

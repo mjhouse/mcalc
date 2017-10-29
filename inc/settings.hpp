@@ -71,7 +71,13 @@ namespace mc {
 				from the ui.
 				@return The key/value map
 			*/
-			std::map<std::string,std::string> values();
+			std::map<std::string,std::string> get_values();
+
+			/**
+				Set a key/value map of the current values
+				from the ui.
+			*/
+			void set_values( std::map<std::string,std::string> v );
 
 			/**
 				The method that will receive notifications from

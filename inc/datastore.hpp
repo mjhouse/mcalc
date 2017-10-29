@@ -51,6 +51,7 @@ namespace mc {
 			void close();
 
 			Records query( std::string q );
+			std::map<std::string,std::string> map_query( std::string q );
 
 		public:
 			/** The destructor */
@@ -90,6 +91,13 @@ namespace mc {
 				@param s The reference to the Settings object to save.
 			*/
 			void save( Settings* s );
+
+			/**
+				Load a previous profile into Settings.
+				@param p The profile to load into settings.
+				@param s A reference to the application settings.
+			*/
+			void load( std::string p, Settings* s );
 
 	};
 
