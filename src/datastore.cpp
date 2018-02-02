@@ -37,16 +37,16 @@ namespace mc {
 		sqlite3_close(database);
 	}
 
-	Records DataStore::query( std::string q ) {
+	std::vector<std::vector<std::string>> DataStore::query_vector( std::string q ) {
 		sqlite3_stmt *statement;
-		Records results;
+		std::vector<std::vector<std::string>> results;
 
 		if (this->open()){
 			if(sqlite3_prepare_v2(database, q.c_str(), -1, &statement, NULL) == SQLITE_OK){
 
 				while (true) {
 					if ( sqlite3_step(statement) == SQLITE_ROW ) {
-						Record row;
+						std::vector<std::string> row;
 						for(int i = 0; i < sqlite3_column_count(statement); i++){
 							std::string value = (char*)sqlite3_column_text(statement,i);
 							row.push_back(value);
@@ -68,6 +68,7 @@ namespace mc {
 		return results;
 	}
 
+<<<<<<< HEAD
 	std::map<std::string,std::string> DataStore::map_query( std::string q ) {
 		sqlite3_stmt *statement;
 		std::map<std::string,std::string> results;
@@ -82,6 +83,33 @@ namespace mc {
 			}
 		} else {
 				_print(sqlite3_errmsg(database));
+=======
+	std::vector< std::map<std::string,std::string> > DataStore::query_map( std::string q ) {
+		sqlite3_stmt *statement;
+		std::vector< std::map<std::string,std::string> > results;
+
+		if (this->open()){
+			if(sqlite3_prepare_v2(database, q.c_str(), -1, &statement, NULL) == SQLITE_OK){
+
+				while (true) {
+					if ( sqlite3_step(statement) == SQLITE_ROW ) {
+						std::map<std::string,std::string> row;
+						for(int i = 0; i < sqlite3_column_count(statement); i++){
+							std::string key = (char*)sqlite3_column_name(statement,i);
+							std::string value = (char*)sqlite3_column_text(statement,i);
+							row.insert( std::pair<std::string,std::string>(key,value) );
+						}
+						results.push_back(row);
+					} else {
+						break;
+					}
+				}
+
+			} else {
+				_print(q);
+				_print(sqlite3_errmsg(database));
+			}
+>>>>>>> a579b920af66391f21193620b890c7f47b777937
 		}
 
 		sqlite3_finalize(statement);
@@ -92,7 +120,7 @@ namespace mc {
 	// ----------------------------------------------
 	// Public Functions
 
-	Records DataStore::get( std::vector<Interface*> r, std::vector<std::string> cols ){
+	std::vector<std::vector<std::string>> DataStore::get( std::vector<Interface*> r, std::vector<std::string> cols ){
 		std::string request = "SELECT ";
 
 		for (std::vector<std::string>::iterator it = cols.begin(); it != cols.end(); it++) {
@@ -110,18 +138,24 @@ namespace mc {
 			}
 		}
 
-		return this->query(request);
+		return this->query_vector(request);
 	}
 
-	Records DataStore::get( std::vector<Interface*> r ){
+	std::vector<std::vector<std::string>> DataStore::get( std::vector<Interface*> r ){
 		return this->get( r, std::vector<std::string> {"*"});
 	}
 
 	void DataStore::update( std::string table, std::map<std::string,std::string> s, std::map<std::string,std::string> v ){
 		std::map<std::string,std::string>::iterator it;
+		if (!s.empty() && !v.empty()){
+			std::string request = "UPDATE " + table + " SET";
 
-		std::string request = "UPDATE " + table + " SET";
+			for(it = v.begin(); it != v.end(); it++){
+				request += " " + it->first + " = '" + it->second + "'";
+				request += (std::next(it) != v.end()) ? "," : " WHERE";
+			}
 
+<<<<<<< HEAD
 		for(it = v.begin(); it != v.end(); it++){
 			request += " " + it->first + " = '" + it->second + "'";
 			request += (std::next(it) != v.end()) ? "," : " WHERE";
@@ -130,8 +164,18 @@ namespace mc {
 		for(it = s.begin(); it != s.end(); it++){
 			request += " " + it->first + " = '" + it->second + "'";
 			request += (std::next(it) != s.end()) ? "," : ";";
-		}
+=======
+			for(it = s.begin(); it != s.end(); it++){
+				request += " " + it->first + " = '" + it->second + "'";
+				request += (std::next(it) != s.end()) ? "," : ";";
+			}
 
+			this->query_vector(request);
+>>>>>>> a579b920af66391f21193620b890c7f47b777937
+		}
+	}
+
+<<<<<<< HEAD
 		sqlite3_stmt* statement;
 		if(this->open() && sqlite3_prepare_v2(database, request.c_str(), -1, &statement, NULL) == SQLITE_OK){
 			if(sqlite3_step(statement) != SQLITE_DONE){
@@ -147,19 +191,30 @@ namespace mc {
 
 	void DataStore::save( Settings* s ){
 		std::map<std::string,std::string> settings = s->get_values();
+=======
+	std::vector<std::map<std::string,std::string>> DataStore::fetch( std::string table, std::map<std::string,std::string> s ){
+		return this->fetch(table,s,std::vector<std::string>{"*"});
+	}
 
-		std::string profile;
-		if (settings.find("profile") != settings.end()){
-			profile =  settings.at("profile");
+	std::vector<std::map<std::string,std::string>> DataStore::fetch( std::string table, std::map<std::string,std::string> s, std::vector<std::string> v ){
+		if (!s.empty() && !v.empty()){
+			std::string request = "SELECT ";
+>>>>>>> a579b920af66391f21193620b890c7f47b777937
+
+			for(std::vector<std::string>::iterator it = v.begin(); it != v.end(); it++){
+				request += " " + *it;
+				request += (std::next(it) != v.end()) ? "," : " FROM " + table + " WHERE";
+			}
+
+			for(std::map<std::string,std::string>::iterator it = s.begin(); it != s.end(); it++){
+				request += " " + it->first + " = '" + it->second + "'";
+				request += (std::next(it) != s.end()) ? "," : ";";
+			}
+
+			return this->query_map(request);
 		} else {
-			profile = "default";
+			return std::vector<std::map<std::string,std::string>> {};
 		}
-
-		this->update(
-			"settings",
-			std::map<std::string,std::string>{{"profile",profile}},
-			settings
-		);
 	}
 
 	void DataStore::load( std::string p, Settings* s ){
